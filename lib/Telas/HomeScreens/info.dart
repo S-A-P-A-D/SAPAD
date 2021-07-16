@@ -231,7 +231,7 @@ class _InfoPageState extends State<InfoPage> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("OK"))
+                  child: Text("OK", style: TextStyle(color: Colors.red)))
             ],
           );
         });
@@ -262,7 +262,7 @@ class _InfoPageState extends State<InfoPage> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("OK"))
+                  child: Text("OK", style: TextStyle(color: Colors.red)))
             ],
           );
         });

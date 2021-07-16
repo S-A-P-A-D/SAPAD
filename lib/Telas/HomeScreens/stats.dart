@@ -54,6 +54,11 @@ class _StatsPageState extends State<StatsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Text('Estatísticas', style: TextStyle(fontSize: 20)),
+          centerTitle: true,
+        ),
         backgroundColor: Colors.black87,
         body: SafeArea(
           child: DefaultTabController(
