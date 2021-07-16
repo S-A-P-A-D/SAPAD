@@ -72,10 +72,8 @@ class _MeditationPageState extends State<MeditationPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Expanded(
-                              child: Icon(MdiIcons.emoticonExcited,
-                                  size: 50, color: Colors.red),
-                            ),
+                            Icon(MdiIcons.emoticonExcited,
+                                size: 50, color: Colors.red),
                             SizedBox(width: 10),
                             Expanded(
                               child: Text("Saiba mais sobre Meditação!!",

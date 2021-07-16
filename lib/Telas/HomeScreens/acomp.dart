@@ -404,6 +404,7 @@ class _AcompPageState extends State<AcompPage> {
                 Padding(
                   padding: EdgeInsets.only(top: 5.0, right: 40),
                   child: FloatingActionButton(
+                    backgroundColor: Colors.red,
                     child: Icon(
                       Icons.play_circle,
                       color: Colors.white,
