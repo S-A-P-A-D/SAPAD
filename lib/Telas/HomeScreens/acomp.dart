@@ -300,16 +300,16 @@ class _AcompPageState extends State<AcompPage> {
               child: SfCircularChart(
                 title: ChartTitle(
                   text:
-                      'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas: $contMedit',
+                      'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n Total de Meditações realizadas: $contMedit',
                   textStyle: TextStyle(color: Colors.white),
                 ),
                 legend: Legend(
-                  isVisible: true,
-                  overflowMode: LegendItemOverflowMode.wrap,
-                  textStyle: TextStyle(color: Colors.white),
-                  alignment: ChartAlignment.center,
-                  itemPadding: 20,
-                ),
+                    isVisible: true,
+                    overflowMode: LegendItemOverflowMode.wrap,
+                    textStyle: TextStyle(color: Colors.white, fontSize: 10),
+                    alignment: ChartAlignment.center,
+                    itemPadding: 20,
+                    position: LegendPosition.right),
                 tooltipBehavior: _tooltipBehavior,
                 series: <CircularSeries>[
                   DoughnutSeries<GDPDatamedit, dynamic>(
@@ -337,12 +337,12 @@ class _AcompPageState extends State<AcompPage> {
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
-                    isVisible: true,
-                    overflowMode: LegendItemOverflowMode.wrap,
-                    textStyle: TextStyle(color: Colors.white),
-                    alignment: ChartAlignment.center,
-                    itemPadding: 20,
-                  ),
+                      isVisible: true,
+                      overflowMode: LegendItemOverflowMode.wrap,
+                      textStyle: TextStyle(color: Colors.white, fontSize: 10),
+                      alignment: ChartAlignment.center,
+                      itemPadding: 20,
+                      position: LegendPosition.right),
                   tooltipBehavior: _tooltipBehavior,
                   series: <CircularSeries>[
                     DoughnutSeries<GDPDatacromo, dynamic>(
@@ -372,12 +372,12 @@ class _AcompPageState extends State<AcompPage> {
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
-                    isVisible: true,
-                    overflowMode: LegendItemOverflowMode.wrap,
-                    textStyle: TextStyle(color: Colors.white),
-                    alignment: ChartAlignment.center,
-                    itemPadding: 20,
-                  ),
+                      isVisible: true,
+                      overflowMode: LegendItemOverflowMode.wrap,
+                      textStyle: TextStyle(color: Colors.white, fontSize: 10),
+                      alignment: ChartAlignment.center,
+                      itemPadding: 20,
+                      position: LegendPosition.right),
                   tooltipBehavior: _tooltipBehavior,
                   series: <CircularSeries>[
                     DoughnutSeries<GDPDatamusic, dynamic>(

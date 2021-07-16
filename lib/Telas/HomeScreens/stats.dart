@@ -94,19 +94,18 @@ class _StatsPageState extends State<StatsPage> {
                             textStyle: TextStyle(color: Colors.white),
                           ),
                           legend: Legend(
-                            title: LegendTitle(
-                              text: 'Emoções',
+                              title: LegendTitle(
+                                text: 'Emoções',
+                                textStyle: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                              isVisible: true,
+                              overflowMode: LegendItemOverflowMode.wrap,
                               textStyle:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                            isVisible: true,
-                            overflowMode: LegendItemOverflowMode.wrap,
-                            textStyle: TextStyle(
-                              color: Colors.white,
-                            ),
-                            alignment: ChartAlignment.center,
-                            itemPadding: 20,
-                          ),
+                                  TextStyle(color: Colors.white, fontSize: 10),
+                              alignment: ChartAlignment.center,
+                              itemPadding: 20,
+                              position: LegendPosition.right),
                           tooltipBehavior: _tooltipBehavior,
                           series: <CircularSeries>[
                             DoughnutSeries<GDPDatamedit, dynamic>(
@@ -131,12 +130,13 @@ class _StatsPageState extends State<StatsPage> {
                             textStyle: TextStyle(color: Colors.white),
                           ),
                           legend: Legend(
-                            isVisible: true,
-                            overflowMode: LegendItemOverflowMode.wrap,
-                            textStyle: TextStyle(color: Colors.white),
-                            alignment: ChartAlignment.center,
-                            itemPadding: 20,
-                          ),
+                              isVisible: true,
+                              overflowMode: LegendItemOverflowMode.wrap,
+                              textStyle:
+                                  TextStyle(color: Colors.white, fontSize: 10),
+                              alignment: ChartAlignment.center,
+                              itemPadding: 20,
+                              position: LegendPosition.right),
                           tooltipBehavior: _tooltipBehavior,
                           series: <CircularSeries>[
                             DoughnutSeries<GDPDatacromo, dynamic>(
@@ -163,10 +163,11 @@ class _StatsPageState extends State<StatsPage> {
                           legend: Legend(
                               isVisible: true,
                               overflowMode: LegendItemOverflowMode.wrap,
-                              textStyle: TextStyle(color: Colors.white),
+                              textStyle:
+                                  TextStyle(color: Colors.white, fontSize: 10),
                               alignment: ChartAlignment.center,
                               itemPadding: 20,
-                              position: LegendPosition.bottom),
+                              position: LegendPosition.right),
                           tooltipBehavior: _tooltipBehavior,
                           series: <CircularSeries>[
                             DoughnutSeries<GDPDatamusic, dynamic>(
