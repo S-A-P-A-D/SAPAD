@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                             style:
                                 TextStyle(fontSize: 25.0, color: Colors.white),
                           ),
-                          activeColor: Colors.purple[200],
+                          activeColor: Colors.red,
                           value: _medit,
                           onChanged: (bool? _newmed) {
                             setState(() {
@@ -196,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                             style:
                                 TextStyle(fontSize: 25.0, color: Colors.white),
                           ),
-                          activeColor: Colors.purple[200],
+                          activeColor: Colors.red,
                           value: _cromo,
                           onChanged: (bool? _newcromo) {
                             //_edited = true;
@@ -221,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                             style:
                                 TextStyle(fontSize: 25.0, color: Colors.white),
                           ),
-                          activeColor: Colors.purple[200],
+                          activeColor: Colors.red,
                           value: _music,
                           onChanged: (bool? _newmusic) {
                             //_edited = true;
@@ -294,7 +294,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 IconButton(
-                                  icon: Icon(Icons.settings),
+                                  icon: Icon(Icons.settings, color: Colors.red),
                                   onPressed: () {
                                     Navigator.push(
                                         context,
@@ -309,7 +309,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 IconButton(
-                                  icon: Icon(Icons.logout),
+                                  icon: Icon(Icons.logout, color: Colors.red),
                                   onPressed: () {
                                     final provider =
                                         Provider.of<GoogleSignInProvider>(

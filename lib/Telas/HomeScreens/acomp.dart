@@ -111,6 +111,7 @@ class _AcompPageState extends State<AcompPage> {
                                                 color: Colors.white,
                                                 fontSize: 20)),
                                       ),
+                                      keyboardType: TextInputType.emailAddress,
                                       controller: myController,
                                     ),
                                   ],
