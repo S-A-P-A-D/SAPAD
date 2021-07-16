@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 // ignore: unused_import
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
@@ -52,103 +53,143 @@ class _StatsPageState extends State<StatsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      backgroundColor: Colors.black87,
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: SfCircularChart(
-                title: ChartTitle(
-                  text:
-                      'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas: $contMedit',
-                  textStyle: TextStyle(color: Colors.white),
+    return Scaffold(
+        backgroundColor: Colors.black87,
+        body: SafeArea(
+          child: DefaultTabController(
+            length: 3,
+            initialIndex: 0,
+            child: Column(
+              children: [
+                TabBar(
+                  labelColor: Colors.black,
+                  indicatorColor: Colors.red,
+                  tabs: [
+                    Tab(
+                      icon:
+                          Icon(MdiIcons.headHeart, size: 50, color: Colors.red),
+                    ),
+                    Tab(
+                      icon: Icon(MdiIcons.palette, size: 50, color: Colors.red),
+                    ),
+                    Tab(
+                      icon:
+                          Icon(MdiIcons.musicBox, size: 50, color: Colors.red),
+                    )
+                  ],
                 ),
-                legend: Legend(
-                  isVisible: true,
-                  overflowMode: LegendItemOverflowMode.wrap,
-                  textStyle: TextStyle(color: Colors.white),
-                  alignment: ChartAlignment.center,
-                  itemPadding: 20,
+                Expanded(
+                  child: TabBarView(
+                    children: <Widget>[
+                      Container(
+                        child: SfCircularChart(
+                          title: ChartTitle(
+                            text:
+                                'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas: $contMedit',
+                            textStyle: TextStyle(color: Colors.white),
+                          ),
+                          legend: Legend(
+                            title: LegendTitle(
+                              text: 'Emoções',
+                              textStyle:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                            isVisible: true,
+                            overflowMode: LegendItemOverflowMode.wrap,
+                            textStyle: TextStyle(
+                              color: Colors.white,
+                            ),
+                            alignment: ChartAlignment.center,
+                            itemPadding: 20,
+                          ),
+                          tooltipBehavior: _tooltipBehavior,
+                          series: <CircularSeries>[
+                            DoughnutSeries<GDPDatamedit, dynamic>(
+                                dataSource: _chartDatamedit,
+                                xValueMapper: (GDPDatamedit data, _) =>
+                                    data.emoteBase,
+                                yValueMapper: (GDPDatamedit data, _) =>
+                                    data.contMedit,
+                                pointColorMapper: (GDPDatamedit data, _) =>
+                                    data.colorgraf,
+                                dataLabelSettings:
+                                    DataLabelSettings(isVisible: true),
+                                enableTooltip: true),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: SfCircularChart(
+                          title: ChartTitle(
+                            text:
+                                'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
+                            textStyle: TextStyle(color: Colors.white),
+                          ),
+                          legend: Legend(
+                            isVisible: true,
+                            overflowMode: LegendItemOverflowMode.wrap,
+                            textStyle: TextStyle(color: Colors.white),
+                            alignment: ChartAlignment.center,
+                            itemPadding: 20,
+                          ),
+                          tooltipBehavior: _tooltipBehavior,
+                          series: <CircularSeries>[
+                            DoughnutSeries<GDPDatacromo, dynamic>(
+                                dataSource: _chartDatacromo,
+                                xValueMapper: (GDPDatacromo data, _) =>
+                                    data.emoteBaseC,
+                                yValueMapper: (GDPDatacromo data, _) =>
+                                    data.contCromo,
+                                pointColorMapper: (GDPDatacromo data, _) =>
+                                    data.colorgraf,
+                                dataLabelSettings:
+                                    DataLabelSettings(isVisible: true),
+                                enableTooltip: true),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: SfCircularChart(
+                          title: ChartTitle(
+                            text:
+                                'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas: $contMusic',
+                            textStyle: TextStyle(color: Colors.white),
+                          ),
+                          legend: Legend(
+                              isVisible: true,
+                              overflowMode: LegendItemOverflowMode.wrap,
+                              textStyle: TextStyle(color: Colors.white),
+                              alignment: ChartAlignment.center,
+                              itemPadding: 20,
+                              position: LegendPosition.bottom),
+                          tooltipBehavior: _tooltipBehavior,
+                          series: <CircularSeries>[
+                            DoughnutSeries<GDPDatamusic, dynamic>(
+                                dataSource: _chartDatamusic,
+                                xValueMapper: (GDPDatamusic data, _) =>
+                                    data.emoteBaseM,
+                                yValueMapper: (GDPDatamusic data, _) =>
+                                    data.contMusic,
+                                pointColorMapper: (GDPDatamusic data, _) =>
+                                    data.colorgraf,
+                                dataLabelSettings:
+                                    DataLabelSettings(isVisible: true),
+                                enableTooltip: true),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                tooltipBehavior: _tooltipBehavior,
-                series: <CircularSeries>[
-                  DoughnutSeries<GDPDatamedit, dynamic>(
-                      dataSource: _chartDatamedit,
-                      xValueMapper: (GDPDatamedit data, _) => data.emoteBase,
-                      yValueMapper: (GDPDatamedit data, _) => data.contMedit,
-                      pointColorMapper: (GDPDatamedit data, _) =>
-                          data.colorgraf,
-                      dataLabelSettings: DataLabelSettings(isVisible: true),
-                      enableTooltip: true),
-                ],
-              ),
+              ],
             ),
-            Container(
-              child: SfCircularChart(
-                title: ChartTitle(
-                  text:
-                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
-                  textStyle: TextStyle(color: Colors.white),
-                ),
-                legend: Legend(
-                  isVisible: true,
-                  overflowMode: LegendItemOverflowMode.wrap,
-                  textStyle: TextStyle(color: Colors.white),
-                  alignment: ChartAlignment.center,
-                  itemPadding: 20,
-                ),
-                tooltipBehavior: _tooltipBehavior,
-                series: <CircularSeries>[
-                  DoughnutSeries<GDPDatacromo, dynamic>(
-                      dataSource: _chartDatacromo,
-                      xValueMapper: (GDPDatacromo data, _) => data.emoteBaseC,
-                      yValueMapper: (GDPDatacromo data, _) => data.contCromo,
-                      pointColorMapper: (GDPDatacromo data, _) =>
-                          data.colorgraf,
-                      dataLabelSettings: DataLabelSettings(isVisible: true),
-                      enableTooltip: true),
-                ],
-              ),
-            ),
-            Container(
-              child: SfCircularChart(
-                title: ChartTitle(
-                  text:
-                      'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas: $contMusic',
-                  textStyle: TextStyle(color: Colors.white),
-                ),
-                legend: Legend(
-                  isVisible: true,
-                  overflowMode: LegendItemOverflowMode.wrap,
-                  textStyle: TextStyle(color: Colors.white),
-                  alignment: ChartAlignment.center,
-                  itemPadding: 20,
-                ),
-                tooltipBehavior: _tooltipBehavior,
-                series: <CircularSeries>[
-                  DoughnutSeries<GDPDatamusic, dynamic>(
-                      dataSource: _chartDatamusic,
-                      xValueMapper: (GDPDatamusic data, _) => data.emoteBaseM,
-                      yValueMapper: (GDPDatamusic data, _) => data.contMusic,
-                      pointColorMapper: (GDPDatamusic data, _) =>
-                          data.colorgraf,
-                      dataLabelSettings: DataLabelSettings(isVisible: true),
-                      enableTooltip: true),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 
   List<GDPDatamedit> getChartDatamedit() {
     final List<GDPDatamedit> chartData = [];
     this.emotea.forEach((emoteBase) => {
-          print(emoteBase),
           if (emoteBase == 'Medo')
             {
               contMedit = contMeditmed,
@@ -186,7 +227,6 @@ class _StatsPageState extends State<StatsPage> {
   List<GDPDatacromo> getChartDatacromo() {
     final List<GDPDatacromo> chartData = [];
     this.emotea.forEach((emoteBaseC) => {
-          print(emoteBaseC),
           if (emoteBaseC == 'Medo')
             {
               contCromo = contCromomed,
@@ -224,7 +264,6 @@ class _StatsPageState extends State<StatsPage> {
   List<GDPDatamusic> getChartDatamusic() {
     final List<GDPDatamusic> chartData = [];
     this.emotea.forEach((emoteBaseM) => {
-          print(emoteBaseM),
           if (emoteBaseM == 'Medo')
             {
               contMusic = contMusicmed,
