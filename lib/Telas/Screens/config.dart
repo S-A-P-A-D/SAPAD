@@ -42,21 +42,73 @@ class _ConfigPageState extends State<ConfigPage> {
         centerTitle: true,
       ),
       backgroundColor: Colors.black87,
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(children: [
-          //Card 1
-          Card(
-            color: Colors.black38,
-            shadowColor: Colors.white,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0)),
-            child: Padding(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(children: [
+            //Card 1
+            Card(
+              color: Colors.black38,
+              shadowColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Musicoterapia Personalizada",
+                        style: GoogleFonts.merriweather(
+                          textStyle: TextStyle(
+                              fontSize: 25.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      TextField(
+                        autofocus: true,
+                        style: TextStyle(color: Colors.blue, fontSize: 30),
+                        decoration: InputDecoration(
+                          labelText: _urlmusic.toString(),
+                          labelStyle: TextStyle(color: Colors.black),
+                        ),
+                        controller: myController,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 5.0),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.save,
+                            color: Colors.white,
+                            size: 30.0,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _urlmusic = myController.text;
+                              db
+                                  .collection(user.email.toString())
+                                  .doc("Songs")
+                                  .update({"music": _urlmusic});
+                            });
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            SizedBox(height: 5),
+            //Card 2
+            Card(
+              color: Colors.black38,
+              shadowColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              child: Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
                   children: [
                     Text(
-                      "Musicoterapia Personalizada",
+                      "Meditação Personalizada",
                       style: GoogleFonts.merriweather(
                         textStyle: TextStyle(
                             fontSize: 25.0,
@@ -68,10 +120,10 @@ class _ConfigPageState extends State<ConfigPage> {
                       autofocus: true,
                       style: TextStyle(color: Colors.blue, fontSize: 30),
                       decoration: InputDecoration(
-                        labelText: _urlmusic.toString(),
+                        labelText: _urlmedit.toString(),
                         labelStyle: TextStyle(color: Colors.black),
                       ),
-                      controller: myController,
+                      controller: myController2,
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 5.0),
@@ -83,72 +135,22 @@ class _ConfigPageState extends State<ConfigPage> {
                         ),
                         onPressed: () {
                           setState(() {
-                            _urlmusic = myController.text;
+                            _urlmedit = myController2.text;
+
                             db
                                 .collection(user.email.toString())
-                                .doc("Songs")
-                                .update({"music": _urlmusic});
+                                .doc("001")
+                                .update({"video": _urlmedit});
                           });
                         },
                       ),
                     )
                   ],
-                )),
-          ),
-          SizedBox(height: 5),
-          //Card 2
-          Card(
-            color: Colors.black38,
-            shadowColor: Colors.white,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0)),
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Text(
-                    "Meditação Personalizada",
-                    style: GoogleFonts.merriweather(
-                      textStyle: TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  TextField(
-                    autofocus: true,
-                    style: TextStyle(color: Colors.blue, fontSize: 30),
-                    decoration: InputDecoration(
-                      labelText: _urlmedit.toString(),
-                      labelStyle: TextStyle(color: Colors.black),
-                    ),
-                    controller: myController2,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5.0),
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.save,
-                        color: Colors.white,
-                        size: 30.0,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _urlmedit = myController2.text;
-
-                          db
-                              .collection(user.email.toString())
-                              .doc("001")
-                              .update({"video": _urlmedit});
-                        });
-                      },
-                    ),
-                  )
-                ],
+                ),
               ),
             ),
-          ),
-        ]),
+          ]),
+        ),
       ),
     );
   }
