@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sapad_v3/FireBase/register_firebase.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -102,7 +103,7 @@ class _AcompPageState extends State<AcompPage> {
                                     TextField(
                                       autofocus: false,
                                       style: TextStyle(
-                                          color: Colors.blue, fontSize: 30),
+                                          color: Colors.white, fontSize: 30),
                                       decoration: InputDecoration(
                                         labelText:
                                             "Insira o E-mail de seu parceiro:",
@@ -123,176 +124,213 @@ class _AcompPageState extends State<AcompPage> {
               ),
             ),
 
-            //Card Meditação
+            //Dropdown Button
+            SizedBox(height: 10),
             Visibility(
-              child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Card(
-                  color: Colors.black38,
-                  shadowColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Card(
-                              color: Colors.black38,
-                              shadowColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("Meditação:",
-                                          style: GoogleFonts.lora(
-                                              textStyle: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20))),
-                                      Text(medit.toString(),
-                                          style: GoogleFonts.lora(
-                                              textStyle: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20))),
-                                    ],
-                                  )),
-                            ),
+              child: Card(
+                color: Colors.black38,
+                shadowColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Card(
+                            color: Colors.red,
+                            shadowColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                            child: Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12, vertical: 2),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.red,
+                                      ),
+                                      child: DropdownButton<String>(
+                                        focusColor: Colors.black,
+                                        dropdownColor: Colors.red,
+                                        value: value,
+                                        items: items
+                                            .map((item) =>
+                                                DropdownMenuItem<String>(
+                                                  child: Text(
+                                                    item,
+                                                    style: GoogleFonts.lora(
+                                                        textStyle: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 30,
+                                                            color:
+                                                                Colors.white)),
+                                                  ),
+                                                  value: item,
+                                                ))
+                                            .toList(),
+                                        onChanged: (value) => setState(() {
+                                          this.value = value!;
+                                        }),
+                                      ),
+                                    ),
+                                  ],
+                                )),
                           ),
-                        ],
-                      )),
-                ),
+                        ),
+                      ],
+                    )),
               ),
-              visible: emailParceiro.isEmpty ? false : true,
+              visible: emailParceiro.isNotEmpty ? true : false,
+            ),
+
+            //Card Meditação
+            SizedBox(height: 10),
+            Visibility(
+              child: Card(
+                color: Colors.black38,
+                shadowColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Card(
+                            color: Colors.black38,
+                            shadowColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                            child: Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Meditação:",
+                                        style: GoogleFonts.lora(
+                                            textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20))),
+                                    SizedBox(width: 10),
+                                    Text(medit.toString(),
+                                        style: GoogleFonts.lora(
+                                            textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20))),
+                                  ],
+                                )),
+                          ),
+                        ),
+                      ],
+                    )),
+              ),
+              visible: value.contains("Meditação") && emailParceiro.isNotEmpty
+                  ? true
+                  : false,
             ),
 
             //Card Cromoterapia
+            SizedBox(height: 10),
             Visibility(
-              child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Card(
-                  color: Colors.black38,
-                  shadowColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Card(
-                              color: Colors.black38,
-                              shadowColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("Cromoterapia:",
-                                          style: GoogleFonts.lora(
-                                              textStyle: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20))),
-                                      Text(cromo.toString(),
-                                          style: GoogleFonts.lora(
-                                              textStyle: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20))),
-                                    ],
-                                  )),
-                            ),
+              child: Card(
+                color: Colors.black38,
+                shadowColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Card(
+                            color: Colors.black38,
+                            shadowColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                            child: Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Cromoterapia:",
+                                        style: GoogleFonts.lora(
+                                            textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20))),
+                                    SizedBox(width: 10),
+                                    Text(cromo.toString(),
+                                        style: GoogleFonts.lora(
+                                            textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20))),
+                                  ],
+                                )),
                           ),
-                        ],
-                      )),
-                ),
+                        ),
+                      ],
+                    )),
               ),
-              visible: emailParceiro.isEmpty ? false : true,
+              visible:
+                  value.contains("Cromoterapia") && emailParceiro.isNotEmpty
+                      ? true
+                      : false,
             ),
 
             //Card Musicoterapia
+            SizedBox(height: 10),
             Visibility(
-              child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Card(
-                  color: Colors.black38,
-                  shadowColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Card(
-                              color: Colors.black38,
-                              shadowColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("Musicoterapia:",
-                                          style: GoogleFonts.lora(
-                                              textStyle: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20))),
-                                      Text(music.toString(),
-                                          style: GoogleFonts.lora(
-                                              textStyle: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20))),
-                                    ],
-                                  )),
-                            ),
+              child: Card(
+                color: Colors.black38,
+                shadowColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Card(
+                            color: Colors.black38,
+                            shadowColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                            child: Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Musicoterapia:",
+                                        style: GoogleFonts.lora(
+                                            textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20))),
+                                    SizedBox(width: 10),
+                                    Text(music.toString(),
+                                        style: GoogleFonts.lora(
+                                            textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20))),
+                                  ],
+                                )),
                           ),
-                        ],
-                      )),
-                ),
+                        ),
+                      ],
+                    )),
               ),
-              visible: emailParceiro.isEmpty ? false : true,
-            ),
-
-            //Dropdown Button
-            Visibility(
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.red,
-                    border: Border.all(color: Colors.white24)),
-                child: DropdownButton<String>(
-                  focusColor: Colors.black,
-                  dropdownColor: Colors.red,
-                  value: value,
-                  items: items
-                      .map((item) => DropdownMenuItem<String>(
-                            child: Text(
-                              item,
-                              style: GoogleFonts.lora(
-                                  textStyle: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                      color: Colors.white)),
-                            ),
-                            value: item,
-                          ))
-                      .toList(),
-                  onChanged: (value) => setState(() {
-                    this.value = value!;
-                  }),
-                ),
-              ),
-              visible: emailParceiro.isEmpty ? false : true,
+              visible:
+                  value.contains("Musicoterapia") && emailParceiro.isNotEmpty
+                      ? true
+                      : false,
             ),
 
             //Grafico Meditação
@@ -402,11 +440,13 @@ class _AcompPageState extends State<AcompPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 5.0, right: 40),
+                  padding: EdgeInsets.only(right: 40),
                   child: FloatingActionButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
                     backgroundColor: Colors.red,
                     child: Icon(
-                      Icons.play_circle,
+                      MdiIcons.accountSearch,
                       color: Colors.white,
                       size: 40.0,
                     ),
