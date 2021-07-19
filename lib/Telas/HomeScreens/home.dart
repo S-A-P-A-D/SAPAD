@@ -695,26 +695,26 @@ class _HomePageState extends State<HomePage> {
                                   contCromomed++;
                                   updateFirebase(
                                       "Stats", "contCromomed", contCromomed);
-                                  if (_raiva == true) {
-                                    contCromoraiva++;
-                                    updateFirebase("Stats", "contCromoraiva",
-                                        contCromoraiva);
-                                  }
-                                  if (_triste == true) {
-                                    contCromotriste++;
-                                    updateFirebase("Stats", "contCromotriste",
-                                        contCromotriste);
-                                  }
-                                  if (_stress == true) {
-                                    contCromostress++;
-                                    updateFirebase("Stats", "contCromostress",
-                                        contCromostress);
-                                  }
-                                  if (_ansi == true) {
-                                    contCromoansi++;
-                                    updateFirebase("Stats", "contCromoansi",
-                                        contCromoansi);
-                                  }
+                                }
+                                if (_raiva == true) {
+                                  contCromoraiva++;
+                                  updateFirebase("Stats", "contCromoraiva",
+                                      contCromoraiva);
+                                }
+                                if (_triste == true) {
+                                  contCromotriste++;
+                                  updateFirebase("Stats", "contCromotriste",
+                                      contCromotriste);
+                                }
+                                if (_stress == true) {
+                                  contCromostress++;
+                                  updateFirebase("Stats", "contCromostress",
+                                      contCromostress);
+                                }
+                                if (_ansi == true) {
+                                  contCromoansi++;
+                                  updateFirebase(
+                                      "Stats", "contCromoansi", contCromoansi);
                                 }
                                 contCromo++;
                                 updateFirebase("Stats", "contCromo", contCromo);
@@ -753,27 +753,28 @@ class _HomePageState extends State<HomePage> {
                                   contMusicmed++;
                                   updateFirebase(
                                       "Stats", "contMusicmed", contMusicmed);
-                                  if (_raiva == true) {
-                                    contMusicraiva++;
-                                    updateFirebase("Stats", "contMusicraiva",
-                                        contMusicraiva);
-                                    if (_triste == true) {
-                                      contMusictriste++;
-                                      updateFirebase("Stats", "contMusictriste",
-                                          contMusictriste);
-                                      if (_stress == true) {
-                                        contMusicstress++;
-                                        updateFirebase("Stats",
-                                            "contMusicstress", contMusicstress);
-                                        if (_ansi == true) {
-                                          contMusicansi++;
-                                          updateFirebase("Stats",
-                                              "contMusicansi", contMusicansi);
-                                        }
-                                      }
-                                    }
-                                  }
                                 }
+                                if (_raiva == true) {
+                                  contMusicraiva++;
+                                  updateFirebase("Stats", "contMusicraiva",
+                                      contMusicraiva);
+                                }
+                                if (_triste == true) {
+                                  contMusictriste++;
+                                  updateFirebase("Stats", "contMusictriste",
+                                      contMusictriste);
+                                }
+                                if (_stress == true) {
+                                  contMusicstress++;
+                                  updateFirebase("Stats", "contMusicstress",
+                                      contMusicstress);
+                                }
+                                if (_ansi == true) {
+                                  contMusicansi++;
+                                  updateFirebase(
+                                      "Stats", "contMusicansi", contMusicansi);
+                                }
+
                                 contMusic++;
                                 updateFirebase("Stats", "contMusic", contMusic);
                                 Navigator.push(
