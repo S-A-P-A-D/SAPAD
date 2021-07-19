@@ -159,7 +159,7 @@ class _InfoPageState extends State<InfoPage> {
                       padding: EdgeInsets.all(10.0),
                       child: Container(
                         child: Text(
-                          "Envie o seu FEEDBACK\nClicando Aqui!!",
+                          "Enviar Feedback",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white, fontSize: 20.0),
                         ),
@@ -189,7 +189,7 @@ class _InfoPageState extends State<InfoPage> {
                       padding: EdgeInsets.all(10.0),
                       child: Container(
                         child: Text(
-                          "Encontrou Algum BUG?\nClique Aqui!!",
+                          "Encontrou Algum BUG?\nNotifique-o Aqui",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white, fontSize: 20.0),
                         ),
@@ -219,7 +219,7 @@ class _InfoPageState extends State<InfoPage> {
               padding: EdgeInsets.all(10.0),
               child: Container(
                 child: Text(
-                    "Equipe de robotica de Blumenau - Santa Catarina - Brasil, teve total involvimento na elaboração da ideia deste projeto, o qual foi apresentado em competições de robotica levando no ano de 2019 o premio de ¨lugar em melhor projeto do mundo",
+                    "Equipe de robotica de Blumenau - Santa Catarina - Brasil, teve total envolvimento na elaboração da ideia deste projeto, o qual foi apresentado em competições de robotica levando no ano de 2019 o premio de 1° lugar em melhor projeto do mundo",
                     style: GoogleFonts.lora(
                         textStyle:
                             TextStyle(color: Colors.white, fontSize: 25)),
@@ -250,7 +250,7 @@ class _InfoPageState extends State<InfoPage> {
               padding: EdgeInsets.all(10.0),
               child: Container(
                 child: Text(
-                    "Um grupo de alunos do Instituto Federal de Santa Catarina Campus Gaspar, desenvolveu este projeto em um periodo de um ano",
+                    "Equipe composta por 4 alunos e 1 oriendador, do IFSC Campus Gaspar realizaram este projeto, vizando a práticidade e facilidade e benefícios que as aplicações podem ajudar no ambito psicológico",
                     style: GoogleFonts.lora(
                       textStyle: TextStyle(color: Colors.white, fontSize: 25),
                     ),

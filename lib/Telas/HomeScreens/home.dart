@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                         child: Container(
                             child: Text(
-                          "Praticas",
+                          "Práticas",
                           style: TextStyle(
                               fontSize: 30.0,
                               color: Colors.white,
@@ -259,7 +259,7 @@ class _HomePageState extends State<HomePage> {
                       padding: EdgeInsets.all(10.0),
                       child: Container(
                         child: Text(
-                          "Envie o seu FEEDBACK\nClicando Aqui!!",
+                          "Envie o seu Feedback\nClicando Aqui",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white, fontSize: 20.0),
                         ),
@@ -355,7 +355,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Text(
-                      "Como você esta hoje?",
+                      "Como você está hoje?",
                       style: GoogleFonts.lora(
                           textStyle: TextStyle(
                         fontSize: 30.0,
@@ -499,7 +499,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     children: [
                       Text(
-                        "Clique aqui para escolher uma terapia!!",
+                        "Clique aqui para escolher uma terapia",
                         style: GoogleFonts.lora(
                             textStyle: TextStyle(
                           fontSize: 30.0,

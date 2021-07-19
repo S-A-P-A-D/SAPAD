@@ -106,7 +106,7 @@ class _AcompPageState extends State<AcompPage> {
                                           color: Colors.white, fontSize: 30),
                                       decoration: InputDecoration(
                                         labelText:
-                                            "Insira o E-mail de seu parceiro:",
+                                            "Insira o E-mail de seu paciente:",
                                         labelStyle: GoogleFonts.lora(
                                             textStyle: TextStyle(
                                                 color: Colors.white,
@@ -266,7 +266,7 @@ class _AcompPageState extends State<AcompPage> {
                                             textStyle: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 20))),
-                                    SizedBox(width: 10),
+                                    SizedBox(width: 5),
                                     Text(cromo.toString(),
                                         style: GoogleFonts.lora(
                                             textStyle: TextStyle(
@@ -314,7 +314,7 @@ class _AcompPageState extends State<AcompPage> {
                                             textStyle: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 20))),
-                                    SizedBox(width: 10),
+                                    SizedBox(width: 0),
                                     Text(music.toString(),
                                         style: GoogleFonts.lora(
                                             textStyle: TextStyle(

@@ -100,14 +100,14 @@ class _SnakeGameAzulState extends State<SnakeGameAzul> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Game Over'),
+            title: Text('Acabou!'),
             content: Text(
-              'Score: ${snake.length - 2}',
+              'Pontuação: ${snake.length - 2}',
               style: TextStyle(fontSize: 20),
             ),
             actions: <Widget>[
               TextButton(
-                child: Text('Close'),
+                child: Text('Fechar'),
                 onPressed: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
@@ -120,7 +120,7 @@ class _SnakeGameAzulState extends State<SnakeGameAzul> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo[900],
+      backgroundColor: Colors.blue[300],
       body: Column(
         children: <Widget>[
           Expanded(
@@ -161,13 +161,13 @@ class _SnakeGameAzulState extends State<SnakeGameAzul> {
                       }
 
                       if (snake.first[0] == x && snake.first[1] == y) {
-                        color = Colors.blue[900];
+                        color = Colors.indigo[700];
                       } else if (isSnakeBody) {
-                        color = Colors.blue[200];
+                        color = Colors.indigoAccent[700];
                       } else if (food[0] == x && food[1] == y) {
-                        color = Colors.red;
+                        color = Colors.deepPurple[300];
                       } else {
-                        color = Colors.blue;
+                        color = Colors.blue[600];
                       }
 
                       return Container(
@@ -188,7 +188,7 @@ class _SnakeGameAzulState extends State<SnakeGameAzul> {
                 children: <Widget>[
                   TextButton(
                       child: Text(
-                        isPlaying ? 'End' : 'Start',
+                        isPlaying ? 'Fim' : 'Começar',
                         style: fontStyle,
                       ),
                       onPressed: () {
@@ -199,7 +199,7 @@ class _SnakeGameAzulState extends State<SnakeGameAzul> {
                         }
                       }),
                   Text(
-                    'Score: ${snake.length - 2}',
+                    'Pontuação: ${snake.length - 2}',
                     style: fontStyle,
                   ),
                 ],
