@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                                                   color: Colors.red),
                                               SizedBox(width: 20),
                                               Text(
-                                                "Login with Google",
+                                                "Login com Google",
                                                 style: GoogleFonts.lora(
                                                     textStyle: TextStyle(
                                                   fontSize: 30.0,

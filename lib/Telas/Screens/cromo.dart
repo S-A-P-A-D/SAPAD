@@ -59,7 +59,7 @@ class _CromoPageState extends State<CromoPage> {
                       children: [
                         Icon(MdiIcons.lavaLamp, size: 50, color: Colors.red),
                         Expanded(
-                          child: Text("Saiba mais sobre Cromoterapia!!",
+                          child: Text("Saiba mais sobre a Cromoterapia",
                               style: GoogleFonts.lora(
                                   textStyle: TextStyle(
                                       color: Colors.white, fontSize: 25))),
@@ -350,7 +350,7 @@ class _CromoPageState extends State<CromoPage> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("OK"))
+                  child: Text("OK", style: TextStyle(color: Colors.red)))
             ],
           );
         });
