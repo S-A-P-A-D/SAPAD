@@ -244,7 +244,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             //FeedBack Card
-
             Padding(
               padding: EdgeInsets.only(bottom: 5),
               child: GestureDetector(

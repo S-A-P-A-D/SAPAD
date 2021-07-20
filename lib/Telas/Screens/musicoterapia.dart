@@ -67,7 +67,7 @@ class _MusicPageState extends State<MusicPage> {
                             Icon(MdiIcons.bookmarkMusic,
                                 size: 50, color: Colors.red),
                             Expanded(
-                              child: Text("Saiba mais sobre musicoterapia!!",
+                              child: Text("Saiba mais sobre a Musicoterapia",
                                   style: GoogleFonts.lora(
                                       textStyle: TextStyle(
                                           color: Colors.white, fontSize: 25))),
@@ -93,7 +93,7 @@ class _MusicPageState extends State<MusicPage> {
                       Container(
                         child: Expanded(
                           child: Text(
-                            "Musica Classica",
+                            "Música Clássica",
                             style: GoogleFonts.lora(
                                 textStyle: TextStyle(
                                     color: Colors.white, fontSize: 25)),
@@ -145,7 +145,7 @@ class _MusicPageState extends State<MusicPage> {
                       Container(
                         child: Expanded(
                           child: Text(
-                            "Musica Personalizada",
+                            "Música Personalizada",
                             style: GoogleFonts.lora(
                                 textStyle: TextStyle(
                                     color: Colors.white, fontSize: 25)),
@@ -198,7 +198,7 @@ class _MusicPageState extends State<MusicPage> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("OK"))
+                  child: Text("OK", style: TextStyle(color: Colors.red)))
             ],
           );
         });

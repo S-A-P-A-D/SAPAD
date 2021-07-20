@@ -76,7 +76,7 @@ class _MeditationPageState extends State<MeditationPage> {
                                 size: 50, color: Colors.red),
                             SizedBox(width: 10),
                             Expanded(
-                              child: Text("Saiba mais sobre Meditação!!",
+                              child: Text("Saiba mais sobre a Meditação",
                                   style: GoogleFonts.lora(
                                       textStyle: TextStyle(
                                           color: Colors.white, fontSize: 25))),
@@ -162,7 +162,7 @@ class _MeditationPageState extends State<MeditationPage> {
                       Expanded(
                         child: Container(
                           child: Text(
-                            "Musica Personalizada",
+                            "Meditação Personalizada",
                             style: GoogleFonts.lora(
                                 textStyle: TextStyle(
                                     color: Colors.white, fontSize: 25)),
@@ -216,7 +216,7 @@ class _MeditationPageState extends State<MeditationPage> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("OK"))
+                  child: Text("OK", style: TextStyle(color: Colors.red)))
             ],
           );
         });
