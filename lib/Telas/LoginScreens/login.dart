@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                                     MediaQuery.of(context).size.height * 0.15,
                                 width: MediaQuery.of(context).size.width * 0.9,
                                 decoration: new BoxDecoration(
-                                    color: Colors.grey.withOpacity(0.7),
+                                    color: Colors.grey.withOpacity(0),
                                     borderRadius: BorderRadius.circular(12)),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 SizedBox(width: 20),
                                                 Expanded(
                                                   child: Text(
-                                                    "Login with Google",
+                                                    "Faça login com o Google",
                                                     style: GoogleFonts.lora(
                                                         textStyle: TextStyle(
                                                       fontSize: 25.0,
