@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 );
               } else if (snapshot.hasError) {
-                return Center(child: Text('Something Went Wrong'));
+                return Center(child: Text('Algo deu errado'));
               } else if (snapshot.hasData) {
                 return ControlPage();
               } else {
