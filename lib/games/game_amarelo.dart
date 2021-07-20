@@ -100,11 +100,7 @@ class _SnakeGameAmareloState extends State<SnakeGameAmarelo> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-<<<<<<< HEAD
             title: Text('Acabou!'),
-=======
-            title: Text('Acabou!!'),
->>>>>>> 309b539518953689346ec90746c15ed6ffa30d9b
             content: Text(
               'Pontuação: ${snake.length - 2}',
               style: TextStyle(fontSize: 20),
