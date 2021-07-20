@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 8),
                     Text(
                       user.displayName!,
-                      style: TextStyle(color: Colors.white, fontSize: 25),
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     SizedBox(height: 8),
                     Text(
