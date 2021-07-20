@@ -100,19 +100,26 @@ class _SnakeGameRoxoState extends State<SnakeGameRoxo> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Game Over'),
+            title: Text('Acabou!'),
             content: Text(
-              'Score: ${snake.length - 2}',
+              'Pontuação: ${snake.length - 2}',
               style: TextStyle(fontSize: 20),
             ),
             actions: <Widget>[
               TextButton(
-                child: Text('Close'),
+                child: Text('Fechar'),
                 onPressed: () {
+                  Navigator.of(context).pop();
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
                 },
               ),
+              TextButton(
+                child: Text('Jogar de novo'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
             ],
           );
         });
@@ -188,7 +195,7 @@ class _SnakeGameRoxoState extends State<SnakeGameRoxo> {
                 children: <Widget>[
                   TextButton(
                       child: Text(
-                        isPlaying ? 'End' : 'Start',
+                        isPlaying ? 'Fim' : 'Começar',
                         style: fontStyle,
                       ),
                       onPressed: () {
@@ -199,7 +206,7 @@ class _SnakeGameRoxoState extends State<SnakeGameRoxo> {
                         }
                       }),
                   Text(
-                    'Score: ${snake.length - 2}',
+                    'Pontuação: ${snake.length - 2}',
                     style: fontStyle,
                   ),
                 ],

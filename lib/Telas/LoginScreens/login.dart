@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -22,7 +25,15 @@ class _LoginPageState extends State<LoginPage> {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
+                return Center(
+                  child: Container(
+                    color: Colors.black,
+                    child: SpinKitRotatingCircle(
+                      color: Colors.white,
+                      size: 50.0,
+                    ),
+                  ),
+                );
               } else if (snapshot.hasError) {
                 return Center(child: Text('Something Went Wrong'));
               } else if (snapshot.hasData) {
@@ -38,11 +49,11 @@ class _LoginPageState extends State<LoginPage> {
                     child: SafeArea(
                       child: ListView(
                         padding: EdgeInsets.only(
-                            left: 10.0, right: 10.0, top: 20.0, bottom: 20.0),
+                            left: 10.0, right: 10.0, top: 5.0, bottom: 20.0),
                         children: [
                           Container(
                             alignment: Alignment.center,
-                            height: MediaQuery.of(context).size.height * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.40,
                             width: MediaQuery.of(context).size.width * 0.9,
                             decoration: new BoxDecoration(
                                 color: Colors.grey.withOpacity(0),
@@ -51,15 +62,18 @@ class _LoginPageState extends State<LoginPage> {
                               children: [
                                 SizedBox(height: 30),
                                 Expanded(
-                                  child: Text(
-                                    "Sistema de Ajuda a Pacientes com Ansiedade e Depressão",
-                                    style: GoogleFonts.lora(
-                                        textStyle: TextStyle(
-                                            color: Colors.white, fontSize: 30)),
-                                    textAlign: TextAlign.center,
+                                  child: Container(
+                                    child: Text(
+                                      "Sistema de Ajuda a Pacientes com Ansiedade e Depressão",
+                                      style: GoogleFonts.lora(
+                                          textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 30)),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 5),
                                 Expanded(
                                   child: Text(
                                     "S.A.P.A.D.",
@@ -75,62 +89,62 @@ class _LoginPageState extends State<LoginPage> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 100),
-                          Container(
-                              alignment: Alignment.center,
-                              height: MediaQuery.of(context).size.height * 0.4,
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              decoration: new BoxDecoration(
-                                  color: Colors.grey.withOpacity(0.7),
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: ListView(
-                                padding: EdgeInsets.only(
-                                    left: 10.0,
-                                    right: 10.0,
-                                    top: 20.0,
-                                    bottom: 20.0),
-                                children: [
-                                  Icon(MdiIcons.accountCircle,
-                                      size: 180, color: Colors.red[500]),
-                                  SizedBox(height: 60),
-                                  GestureDetector(
-                                    child: Card(
-                                        color: Colors.white,
-                                        shadowColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(FontAwesomeIcons.google,
-                                                  color: Colors.red),
-                                              SizedBox(width: 20),
-                                              Text(
-                                                "Login with Google",
-                                                style: GoogleFonts.lora(
-                                                    textStyle: TextStyle(
-                                                  fontSize: 30.0,
-                                                  color: Colors.red,
-                                                )),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ],
-                                          ),
-                                        )),
-                                    onTap: () {
-                                      final provider =
-                                          Provider.of<GoogleSignInProvider>(
-                                              context,
-                                              listen: false);
-                                      provider.googleLogin();
-                                    },
-                                  ),
-                                ],
-                              )),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.30),
+                          Expanded(
+                            child: Container(
+                                alignment: Alignment.bottomCenter,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.15,
+                                width: MediaQuery.of(context).size.width * 0.9,
+                                decoration: new BoxDecoration(
+                                    color: Colors.grey.withOpacity(0.7),
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    GestureDetector(
+                                      child: Card(
+                                          color: Colors.white,
+                                          shadowColor: Colors.white,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(FontAwesomeIcons.google,
+                                                    color: Colors.red),
+                                                SizedBox(width: 20),
+                                                Expanded(
+                                                  child: Text(
+                                                    "Login with Google",
+                                                    style: GoogleFonts.lora(
+                                                        textStyle: TextStyle(
+                                                      fontSize: 25.0,
+                                                      color: Colors.red,
+                                                    )),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )),
+                                      onTap: () {
+                                        final provider =
+                                            Provider.of<GoogleSignInProvider>(
+                                                context,
+                                                listen: false);
+                                        provider.googleLogin();
+                                      },
+                                    ),
+                                  ],
+                                )),
+                          ),
                         ],
                       ),
                     ),

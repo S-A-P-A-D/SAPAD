@@ -111,8 +111,15 @@ class _SnakeGameAzulState extends State<SnakeGameAzul> {
                 onPressed: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
+                  Navigator.of(context).pop();
                 },
               ),
+              TextButton(
+                child: Text('Jogar de novo'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
             ],
           );
         });

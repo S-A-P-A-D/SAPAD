@@ -218,12 +218,14 @@ class _InfoPageState extends State<InfoPage> {
             content: Padding(
               padding: EdgeInsets.all(10.0),
               child: Container(
-                child: Text(
-                    "Equipe de robotica de Blumenau - Santa Catarina - Brasil, teve total envolvimento na elaboração da ideia deste projeto, o qual foi apresentado em competições de robotica levando no ano de 2019 o premio de 1° lugar em melhor projeto do mundo",
-                    style: GoogleFonts.lora(
-                        textStyle:
-                            TextStyle(color: Colors.white, fontSize: 25)),
-                    textAlign: TextAlign.center),
+                child: SingleChildScrollView(
+                  child: Text(
+                      "Equipe de robotica de Blumenau - Santa Catarina - Brasil, teve total envolvimento na elaboração da ideia deste projeto, o qual foi apresentado em competições de robotica levando no ano de 2019 o premio de 1° lugar em melhor projeto do mundo",
+                      style: GoogleFonts.lora(
+                          textStyle:
+                              TextStyle(color: Colors.white, fontSize: 25)),
+                      textAlign: TextAlign.center),
+                ),
               ),
             ),
             actions: [
@@ -249,12 +251,14 @@ class _InfoPageState extends State<InfoPage> {
             content: Padding(
               padding: EdgeInsets.all(10.0),
               child: Container(
-                child: Text(
-                    "Equipe composta por 4 alunos e 1 oriendador, do IFSC Campus Gaspar realizaram este projeto, vizando a práticidade e facilidade e benefícios que as aplicações podem ajudar no ambito psicológico",
-                    style: GoogleFonts.lora(
-                      textStyle: TextStyle(color: Colors.white, fontSize: 25),
-                    ),
-                    textAlign: TextAlign.center),
+                child: SingleChildScrollView(
+                  child: Text(
+                      "Equipe composta por 4 alunos e 1 oriendador, do IFSC Campus Gaspar realizaram este projeto, vizando a práticidade e facilidade e benefícios que as aplicações podem ajudar no ambito psicológico",
+                      style: GoogleFonts.lora(
+                        textStyle: TextStyle(color: Colors.white, fontSize: 25),
+                      ),
+                      textAlign: TextAlign.center),
+                ),
               ),
             ),
             actions: [

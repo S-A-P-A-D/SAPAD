@@ -6,6 +6,7 @@ import 'package:sapad_v3/games/game_azul.dart';
 import 'package:sapad_v3/games/game_roxo.dart';
 import 'package:sapad_v3/games/game_verde.dart';
 import 'package:sapad_v3/games/game_vermelho.dart';
+import 'package:sapad_v3/helper.dart/popCores.dart';
 
 class CromoPage extends StatefulWidget {
   final bool? medo;
@@ -95,7 +96,7 @@ class _CromoPageState extends State<CromoPage> {
             ),
             visible: widget.isMarket == true ? false : true,
           ),
-          //Card 2
+          //Card Azul
           Visibility(
             child: Padding(
               padding: EdgeInsets.all(10.0),
@@ -130,8 +131,7 @@ class _CromoPageState extends State<CromoPage> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SnakeGameAzul()));
+                  requestPopAzul(context);
                 },
               ),
             ),
@@ -141,7 +141,7 @@ class _CromoPageState extends State<CromoPage> {
                 ? true
                 : false,
           ),
-          //Card 3
+          //Card Vermelho
           Visibility(
             child: Padding(
               padding: EdgeInsets.all(10.0),
@@ -172,16 +172,13 @@ class _CromoPageState extends State<CromoPage> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SnakeGameVermelho()));
+                  requestPopVermelho(context);
                 },
               ),
             ),
             visible: widget.triste == true ? true : false,
           ),
-          //Card 4
+          //Card Amarelo
           Visibility(
             child: Padding(
               padding: EdgeInsets.all(10.0),
@@ -217,10 +214,7 @@ class _CromoPageState extends State<CromoPage> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SnakeGameAmarelo()));
+                  requestPopAmarelo(context);
                 },
               ),
             ),
@@ -231,7 +225,7 @@ class _CromoPageState extends State<CromoPage> {
                 ? true
                 : false,
           ),
-          //Card 5
+          //Card Roxo
           Visibility(
             child: Padding(
               padding: EdgeInsets.all(10.0),
@@ -264,15 +258,14 @@ class _CromoPageState extends State<CromoPage> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SnakeGameRoxo()));
+                  requestPopRoxo(context);
                 },
               ),
             ),
             visible:
                 widget.stress == true || widget.raiva == true ? true : false,
           ),
-          //Card 6
+          //Card Verde
           Visibility(
             child: Padding(
               padding: EdgeInsets.all(10.0),
@@ -307,10 +300,7 @@ class _CromoPageState extends State<CromoPage> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SnakeGameVerde()));
+                  requestPopVerde(context);
                 },
               ),
             ),
