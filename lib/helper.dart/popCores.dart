@@ -34,12 +34,12 @@ requestPopAzul(context) {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SnakeGameAzul()));
                 },
-                child: Text("OK", style: TextStyle(color: Colors.white))),
+                child: Text("OK", style: TextStyle(color: Colors.red))),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text("Cancelar", style: TextStyle(color: Colors.white)))
+                child: Text("Cancelar", style: TextStyle(color: Colors.red)))
           ],
         );
       });
@@ -75,12 +75,12 @@ requestPopVermelho(context) {
                       MaterialPageRoute(
                           builder: (context) => SnakeGameVermelho()));
                 },
-                child: Text("OK", style: TextStyle(color: Colors.white))),
+                child: Text("OK", style: TextStyle(color: Colors.red))),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text("Cancelar", style: TextStyle(color: Colors.white)))
+                child: Text("Cancelar", style: TextStyle(color: Colors.red)))
           ],
         );
       });
@@ -116,12 +116,12 @@ requestPopAmarelo(context) {
                       MaterialPageRoute(
                           builder: (context) => SnakeGameAmarelo()));
                 },
-                child: Text("OK", style: TextStyle(color: Colors.white))),
+                child: Text("OK", style: TextStyle(color: Colors.red))),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text("Cancelar", style: TextStyle(color: Colors.white)))
+                child: Text("Cancelar", style: TextStyle(color: Colors.red)))
           ],
         );
       });
@@ -157,13 +157,13 @@ requestPopRoxo(context) {
                 },
                 child: Text(
                   "OK",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.red),
                 )),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text("Cancelar", style: TextStyle(color: Colors.white)))
+                child: Text("Cancelar", style: TextStyle(color: Colors.red)))
           ],
         );
       });
@@ -199,12 +199,12 @@ requestPopVerde(context) {
                       MaterialPageRoute(
                           builder: (context) => SnakeGameVerde()));
                 },
-                child: Text("OK", style: TextStyle(color: Colors.white))),
+                child: Text("OK", style: TextStyle(color: Colors.red))),
             TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text("Cancelar", style: TextStyle(color: Colors.white)))
+                child: Text("Cancelar", style: TextStyle(color: Colors.red)))
           ],
         );
       });
