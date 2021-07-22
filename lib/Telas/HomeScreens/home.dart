@@ -86,7 +86,8 @@ class _HomePageState extends State<HomePage> {
   bool? isChanged = false;
 
   IconData _seta = Icons.keyboard_arrow_up;
-
+  DateTime data = DateTime.now();
+  print(data);
   GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
   // ignore: unused_field
@@ -127,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 8),
                     Text(
                       user.displayName!,
-                      style: TextStyle(color: Colors.white, fontSize: 25),
+                      style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     SizedBox(height: 8),
                     Text(
@@ -856,6 +857,13 @@ class _HomePageState extends State<HomePage> {
           );
         });
   }
+
+  noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+class Data {
+  var data;
+  Data(this.data);
 }
 
 class Item1 extends StatelessWidget {

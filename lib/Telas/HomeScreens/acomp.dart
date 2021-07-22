@@ -19,18 +19,21 @@ class _AcompPageState extends State<AcompPage> {
   late List<GDPDatacromo> _chartDatacromo = [];
   late List<GDPDatamusic> _chartDatamusic = [];
   late TooltipBehavior _tooltipBehavior;
+  late int _contMedit = 0;
   late int contMedit = 0;
   late int contMeditmed = 0;
   late int contMeditansi = 0;
   late int contMeditraiva = 0;
   late int contMeditstress = 0;
   late int contMedittriste = 0;
+  late int _contCromo = 0;
   late int contCromo = 0;
   late int contCromomed = 0;
   late int contCromoansi = 0;
   late int contCromoraiva = 0;
   late int contCromostress = 0;
   late int contCromotriste = 0;
+  late int _contMusic = 0;
   late int contMusic = 0;
   late int contMusicmed = 0;
   late int contMusicansi = 0;
@@ -338,7 +341,7 @@ class _AcompPageState extends State<AcompPage> {
               child: SfCircularChart(
                 title: ChartTitle(
                   text:
-                      'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n Total de Meditações realizadas: $contMedit',
+                      'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n Total de Meditações realizadas: $_contMedit',
                   textStyle: TextStyle(color: Colors.white),
                 ),
                 legend: Legend(
@@ -371,7 +374,7 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
+                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $_contCromo',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
@@ -406,7 +409,7 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas: $contMusic',
+                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas: $_contMusic',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(

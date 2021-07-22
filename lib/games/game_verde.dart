@@ -127,7 +127,7 @@ class _SnakeGameVerdeState extends State<SnakeGameVerde> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[900],
+      backgroundColor: Colors.greenAccent,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -168,13 +168,13 @@ class _SnakeGameVerdeState extends State<SnakeGameVerde> {
                       }
 
                       if (snake.first[0] == x && snake.first[1] == y) {
-                        color = Colors.greenAccent[400];
-                      } else if (isSnakeBody) {
-                        color = Colors.greenAccent;
-                      } else if (food[0] == x && food[1] == y) {
-                        color = Colors.red;
-                      } else {
                         color = Colors.green[700];
+                      } else if (isSnakeBody) {
+                        color = Colors.greenAccent[700];
+                      } else if (food[0] == x && food[1] == y) {
+                        color = Colors.lime[900];
+                      } else {
+                        color = Colors.green[300];
                       }
 
                       return Container(
