@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sapad_v3/FireBase/register_firebase.dart';
+import 'package:sapad_v3/Telas/HomeScreens/stats.dart';
 import 'package:sapad_v3/Telas/LoginScreens/google_sign_in.dart';
 import 'package:sapad_v3/Telas/Screens/config.dart';
 import 'package:sapad_v3/Telas/Screens/cromo.dart';
@@ -638,28 +639,43 @@ class _HomePageState extends State<HomePage> {
                               if (isChanged == true) {
                                 if (_med == true) {
                                   contMeditmed++;
-                                  updateFirebase(
-                                      "Stats", "contMeditmed", contMeditmed);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Meditacao",
+                                      EmotionStats("medo", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_raiva == true) {
                                   contMeditraiva++;
-                                  updateFirebase("Stats", "contMeditraiva",
-                                      contMeditraiva);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Meditacao",
+                                      EmotionStats("raiva", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_triste == true) {
                                   contMedittriste++;
-                                  updateFirebase("Stats", "contMedittriste",
-                                      contMedittriste);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Meditacao",
+                                      EmotionStats("triste", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_stress == true) {
                                   contMeditstress++;
-                                  updateFirebase("Stats", "contMeditstress",
-                                      contMeditstress);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Meditacao",
+                                      EmotionStats("stress", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_ansi == true) {
                                   contMeditansi++;
-                                  updateFirebase(
-                                      "Stats", "contMeditansi", contMeditansi);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Meditacao",
+                                      EmotionStats("ansiedade", Timestamp.now())
+                                          .toJson());
                                 }
                                 contMedit++;
                                 updateFirebase("Stats", "contMedit", contMedit);
@@ -692,28 +708,43 @@ class _HomePageState extends State<HomePage> {
                               if (isChanged == true) {
                                 if (_med == true) {
                                   contCromomed++;
-                                  updateFirebase(
-                                      "Stats", "contCromomed", contCromomed);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Cromoterapia",
+                                      EmotionStats("medo", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_raiva == true) {
                                   contCromoraiva++;
-                                  updateFirebase("Stats", "contCromoraiva",
-                                      contCromoraiva);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Cromoterapia",
+                                      EmotionStats("raiva", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_triste == true) {
                                   contCromotriste++;
-                                  updateFirebase("Stats", "contCromotriste",
-                                      contCromotriste);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Cromoterapia",
+                                      EmotionStats("triste", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_stress == true) {
                                   contCromostress++;
-                                  updateFirebase("Stats", "contCromostress",
-                                      contCromostress);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Cromoterapia",
+                                      EmotionStats("stress", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_ansi == true) {
                                   contCromoansi++;
-                                  updateFirebase(
-                                      "Stats", "contCromoansi", contCromoansi);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Cromoterapia",
+                                      EmotionStats("ansiedade", Timestamp.now())
+                                          .toJson());
                                 }
                                 contCromo++;
                                 updateFirebase("Stats", "contCromo", contCromo);
@@ -750,28 +781,43 @@ class _HomePageState extends State<HomePage> {
                               if (isChanged == true) {
                                 if (_med == true) {
                                   contMusicmed++;
-                                  updateFirebase(
-                                      "Stats", "contMusicmed", contMusicmed);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Musicoterapia",
+                                      EmotionStats("medo", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_raiva == true) {
                                   contMusicraiva++;
-                                  updateFirebase("Stats", "contMusicraiva",
-                                      contMusicraiva);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Musicoterapia",
+                                      EmotionStats("raiva", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_triste == true) {
                                   contMusictriste++;
-                                  updateFirebase("Stats", "contMusictriste",
-                                      contMusictriste);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Musicoterapia",
+                                      EmotionStats("triste", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_stress == true) {
                                   contMusicstress++;
-                                  updateFirebase("Stats", "contMusicstress",
-                                      contMusicstress);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Musicoterapia",
+                                      EmotionStats("stress", Timestamp.now())
+                                          .toJson());
                                 }
                                 if (_ansi == true) {
                                   contMusicansi++;
-                                  updateFirebase(
-                                      "Stats", "contMusicansi", contMusicansi);
+                                  updateFirebaseArray(
+                                      "EmotionStats",
+                                      "Musicoterapia",
+                                      EmotionStats("ansiedade", Timestamp.now())
+                                          .toJson());
                                 }
 
                                 contMusic++;

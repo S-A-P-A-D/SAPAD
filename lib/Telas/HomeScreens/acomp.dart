@@ -581,29 +581,44 @@ class _AcompPageState extends State<AcompPage> {
   readFirebase() async {
     var tec = await FirebaseFirestore.instance
         .collection(emailParceiro)
+        .doc('EmotionStats')
+        .get();
+    List<dynamic> listMedit = (tec.data()?['Meditacao']);
+    var listMedit2 = listMedit.map((e) => EmotionStats.fromJson(e)).toList();
+    var listMeditOver = listMedit2.groupBy((m) => m.emotion);
+    List<dynamic> listCromo = (tec.data()?['Cromoterapia']);
+    var listCromo2 = listCromo.map((e) => EmotionStats.fromJson(e)).toList();
+    var listCromoOver = listCromo2.groupBy((m) => m.emotion);
+    List<dynamic> listMusic = (tec.data()?['Musicoterapia']);
+    var listMusic2 = listMusic.map((e) => EmotionStats.fromJson(e)).toList();
+    var listMusicOver = listMusic2.groupBy((m) => m.emotion);
+
+    contMeditansi = listMeditOver['ansiedade']?.length ?? 0;
+    contMeditmed = listMeditOver['medo']?.length ?? 0;
+    contMeditraiva = listMeditOver['raiva']?.length ?? 0;
+    contMeditstress = listMeditOver['stress']?.length ?? 0;
+    contMedittriste = listMeditOver['triste']?.length ?? 0;
+
+    contCromoansi = listCromoOver['ansiedade']?.length ?? 0;
+    contCromomed = listCromoOver['medo']?.length ?? 0;
+    contCromoraiva = listCromoOver['raiva']?.length ?? 0;
+    contCromostress = listCromoOver['stress']?.length ?? 0;
+    contCromotriste = listCromoOver['triste']?.length ?? 0;
+
+    contMusicansi = listMusicOver['ansiedade']?.length ?? 0;
+    contMusicmed = listMusicOver['medo']?.length ?? 0;
+    contMusicraiva = listMusicOver['raiva']?.length ?? 0;
+    contMusicstress = listMusicOver['stress']?.length ?? 0;
+    contMusictriste = listMusicOver['triste']?.length ?? 0;
+
+    var cont = await FirebaseFirestore.instance
+        .collection(user.email.toString())
         .doc('Stats')
         .get();
-    cromo = tec.data()?['contCromo'];
-    medit = tec.data()?['contMedit'];
-    music = tec.data()?['contMusic'];
-    contCromo = tec.data()?['contCromo'];
-    contMedit = tec.data()?['contMedit'];
-    contMusic = tec.data()?['contMusic'];
-    contMeditansi = tec.data()?['contMeditansi'];
-    contMeditmed = tec.data()?['contMeditmed'];
-    contMeditraiva = tec.data()?['contMeditraiva'];
-    contMeditstress = tec.data()?['contMeditstress'];
-    contMedittriste = tec.data()?['contMedittriste'];
-    contCromoansi = tec.data()?['contCromoansi'];
-    contCromomed = tec.data()?['contCromomed'];
-    contCromoraiva = tec.data()?['contCromoraiva'];
-    contCromostress = tec.data()?['contCromostress'];
-    contCromotriste = tec.data()?['contCromotriste'];
-    contMusicansi = tec.data()?['contMusicansi'];
-    contMusicmed = tec.data()?['contMusicmed'];
-    contMusicraiva = tec.data()?['contMusicraiva'];
-    contMusicstress = tec.data()?['contMusicstress'];
-    contMusictriste = tec.data()?['contMusictriste'];
+
+    cromo = cont.data()?["contCromo"];
+    music = cont.data()?["contMusic"];
+    medit = cont.data()?["contMedit"];
 
     List<String> emotea = [];
 
@@ -660,4 +675,25 @@ class GDPDatamusic {
   String toString() {
     return emoteBaseM + contMusic.toString();
   }
+}
+
+class EmotionStats {
+  final String emotion;
+  final Timestamp date;
+
+  EmotionStats(this.emotion, this.date);
+  Map<String, dynamic> toJson() {
+    return {"date": this.date, "emotion": this.emotion};
+  }
+
+  EmotionStats.fromJson(Map json)
+      : emotion = json['emotion'],
+        date = json['date'];
+}
+
+extension Iterables<E> on Iterable<E> {
+  Map<K, List<E>> groupBy<K>(K Function(E) keyFunction) => fold(
+      <K, List<E>>{},
+      (Map<K, List<E>> map, E element) =>
+          map..putIfAbsent(keyFunction(element), () => <E>[]).add(element));
 }

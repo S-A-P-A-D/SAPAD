@@ -1,5 +1,8 @@
+//import 'dart:html';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 // ignore: unused_import
@@ -51,6 +54,9 @@ class _StatsPageState extends State<StatsPage> {
     super.initState();
   }
 
+  static final List<String> items = <String>['15 dias', '3 meses', 'Geral'];
+  late String value = items.first;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,103 +92,342 @@ class _StatsPageState extends State<StatsPage> {
                 Expanded(
                   child: TabBarView(
                     children: <Widget>[
-                      Container(
-                        child: SfCircularChart(
-                          title: ChartTitle(
-                            text:
-                                'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas: $contMedit',
-                            textStyle: TextStyle(color: Colors.white),
-                          ),
-                          legend: Legend(
-                              title: LegendTitle(
-                                text: 'Emoções',
-                                textStyle: TextStyle(
-                                    color: Colors.white, fontSize: 20),
+                      //Medit Grafico
+                      ListView(padding: EdgeInsets.all(5), children: [
+                        Card(
+                          color: Colors.black38,
+                          shadowColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                          child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Card(
+                                      color: Colors.red,
+                                      shadowColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20.0)),
+                                      child: Padding(
+                                          padding: EdgeInsets.all(10.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 12,
+                                                        vertical: 2),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  color: Colors.red,
+                                                ),
+                                                child: DropdownButton<String>(
+                                                  focusColor: Colors.black,
+                                                  dropdownColor: Colors.red,
+                                                  value: value,
+                                                  items: items
+                                                      .map(
+                                                          (item) =>
+                                                              DropdownMenuItem<
+                                                                  String>(
+                                                                child: Text(
+                                                                  item,
+                                                                  style: GoogleFonts.lora(
+                                                                      textStyle: TextStyle(
+                                                                          fontWeight: FontWeight
+                                                                              .bold,
+                                                                          fontSize:
+                                                                              30,
+                                                                          color:
+                                                                              Colors.white)),
+                                                                ),
+                                                                value: item,
+                                                              ))
+                                                      .toList(),
+                                                  onChanged: (value) =>
+                                                      setState(() {
+                                                    this.value = value!;
+                                                  }),
+                                                ),
+                                              ),
+                                            ],
+                                          )),
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ),
+
+                        //Medit Grafico
+                        Visibility(
+                          child: Container(
+                            child: SfCircularChart(
+                              title: ChartTitle(
+                                text:
+                                    'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas: $contMedit',
+                                textStyle: TextStyle(color: Colors.white),
                               ),
-                              isVisible: true,
-                              overflowMode: LegendItemOverflowMode.wrap,
-                              textStyle:
-                                  TextStyle(color: Colors.white, fontSize: 10),
-                              alignment: ChartAlignment.center,
-                              itemPadding: 20,
-                              position: LegendPosition.right),
-                          tooltipBehavior: _tooltipBehavior,
-                          series: <CircularSeries>[
-                            DoughnutSeries<GDPDatamedit, dynamic>(
-                                dataSource: _chartDatamedit,
-                                xValueMapper: (GDPDatamedit data, _) =>
-                                    data.emoteBase,
-                                yValueMapper: (GDPDatamedit data, _) =>
-                                    data.contMedit,
-                                pointColorMapper: (GDPDatamedit data, _) =>
-                                    data.colorgraf,
-                                dataLabelSettings:
-                                    DataLabelSettings(isVisible: true),
-                                enableTooltip: true),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        child: SfCircularChart(
-                          title: ChartTitle(
-                            text:
-                                'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
-                            textStyle: TextStyle(color: Colors.white),
+                              legend: Legend(
+                                  title: LegendTitle(
+                                    text: 'Emoções',
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                  isVisible: true,
+                                  overflowMode: LegendItemOverflowMode.wrap,
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 10),
+                                  alignment: ChartAlignment.center,
+                                  itemPadding: 20,
+                                  position: LegendPosition.right),
+                              tooltipBehavior: _tooltipBehavior,
+                              series: <CircularSeries>[
+                                DoughnutSeries<GDPDatamedit, dynamic>(
+                                    dataSource: _chartDatamedit,
+                                    xValueMapper: (GDPDatamedit data, _) =>
+                                        data.emoteBase,
+                                    yValueMapper: (GDPDatamedit data, _) =>
+                                        data.contMedit,
+                                    pointColorMapper: (GDPDatamedit data, _) =>
+                                        data.colorgraf,
+                                    dataLabelSettings:
+                                        DataLabelSettings(isVisible: true),
+                                    enableTooltip: true),
+                              ],
+                            ),
                           ),
-                          legend: Legend(
-                              isVisible: true,
-                              overflowMode: LegendItemOverflowMode.wrap,
-                              textStyle:
-                                  TextStyle(color: Colors.white, fontSize: 10),
-                              alignment: ChartAlignment.center,
-                              itemPadding: 20,
-                              position: LegendPosition.right),
-                          tooltipBehavior: _tooltipBehavior,
-                          series: <CircularSeries>[
-                            DoughnutSeries<GDPDatacromo, dynamic>(
-                                dataSource: _chartDatacromo,
-                                xValueMapper: (GDPDatacromo data, _) =>
-                                    data.emoteBaseC,
-                                yValueMapper: (GDPDatacromo data, _) =>
-                                    data.contCromo,
-                                pointColorMapper: (GDPDatacromo data, _) =>
-                                    data.colorgraf,
-                                dataLabelSettings:
-                                    DataLabelSettings(isVisible: true),
-                                enableTooltip: true),
-                          ],
+                          visible: value.contains("Geral") ? true : false,
                         ),
-                      ),
-                      Container(
-                        child: SfCircularChart(
-                          title: ChartTitle(
-                            text:
-                                'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas: $contMusic',
-                            textStyle: TextStyle(color: Colors.white),
+                      ]),
+
+                      //Cromo Grafico
+                      ListView(
+                        padding: EdgeInsets.all(5),
+                        children: [
+                          Card(
+                            color: Colors.black38,
+                            shadowColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                            child: Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Card(
+                                        color: Colors.red,
+                                        shadowColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0)),
+                                        child: Padding(
+                                            padding: EdgeInsets.all(10.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 12,
+                                                      vertical: 2),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    color: Colors.red,
+                                                  ),
+                                                  child: DropdownButton<String>(
+                                                    focusColor: Colors.black,
+                                                    dropdownColor: Colors.red,
+                                                    value: value,
+                                                    items: items
+                                                        .map((item) =>
+                                                            DropdownMenuItem<
+                                                                String>(
+                                                              child: Text(
+                                                                item,
+                                                                style: GoogleFonts.lora(
+                                                                    textStyle: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            30,
+                                                                        color: Colors
+                                                                            .white)),
+                                                              ),
+                                                              value: item,
+                                                            ))
+                                                        .toList(),
+                                                    onChanged: (value) =>
+                                                        setState(() {
+                                                      this.value = value!;
+                                                    }),
+                                                  ),
+                                                ),
+                                              ],
+                                            )),
+                                      ),
+                                    ),
+                                  ],
+                                )),
                           ),
-                          legend: Legend(
-                              isVisible: true,
-                              overflowMode: LegendItemOverflowMode.wrap,
-                              textStyle:
-                                  TextStyle(color: Colors.white, fontSize: 10),
-                              alignment: ChartAlignment.center,
-                              itemPadding: 20,
-                              position: LegendPosition.right),
-                          tooltipBehavior: _tooltipBehavior,
-                          series: <CircularSeries>[
-                            DoughnutSeries<GDPDatamusic, dynamic>(
-                                dataSource: _chartDatamusic,
-                                xValueMapper: (GDPDatamusic data, _) =>
-                                    data.emoteBaseM,
-                                yValueMapper: (GDPDatamusic data, _) =>
-                                    data.contMusic,
-                                pointColorMapper: (GDPDatamusic data, _) =>
-                                    data.colorgraf,
-                                dataLabelSettings:
-                                    DataLabelSettings(isVisible: true),
-                                enableTooltip: true),
-                          ],
-                        ),
+                          Visibility(
+                            child: Container(
+                              child: SfCircularChart(
+                                title: ChartTitle(
+                                  text:
+                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
+                                  textStyle: TextStyle(color: Colors.white),
+                                ),
+                                legend: Legend(
+                                    isVisible: true,
+                                    overflowMode: LegendItemOverflowMode.wrap,
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 10),
+                                    alignment: ChartAlignment.center,
+                                    itemPadding: 20,
+                                    position: LegendPosition.right),
+                                tooltipBehavior: _tooltipBehavior,
+                                series: <CircularSeries>[
+                                  DoughnutSeries<GDPDatacromo, dynamic>(
+                                      dataSource: _chartDatacromo,
+                                      xValueMapper: (GDPDatacromo data, _) =>
+                                          data.emoteBaseC,
+                                      yValueMapper: (GDPDatacromo data, _) =>
+                                          data.contCromo,
+                                      pointColorMapper:
+                                          (GDPDatacromo data, _) =>
+                                              data.colorgraf,
+                                      dataLabelSettings:
+                                          DataLabelSettings(isVisible: true),
+                                      enableTooltip: true),
+                                ],
+                              ),
+                            ),
+                            visible: value.contains("Geral") ? true : false,
+                          ),
+                        ],
+                      ),
+
+                      //Music Grafico
+                      ListView(
+                        padding: EdgeInsets.all(5),
+                        children: [
+                          Card(
+                            color: Colors.black38,
+                            shadowColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                            child: Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Card(
+                                        color: Colors.red,
+                                        shadowColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0)),
+                                        child: Padding(
+                                            padding: EdgeInsets.all(10.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 12,
+                                                      vertical: 2),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    color: Colors.red,
+                                                  ),
+                                                  child: DropdownButton<String>(
+                                                    focusColor: Colors.black,
+                                                    dropdownColor: Colors.red,
+                                                    value: value,
+                                                    items: items
+                                                        .map((item) =>
+                                                            DropdownMenuItem<
+                                                                String>(
+                                                              child: Text(
+                                                                item,
+                                                                style: GoogleFonts.lora(
+                                                                    textStyle: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            30,
+                                                                        color: Colors
+                                                                            .white)),
+                                                              ),
+                                                              value: item,
+                                                            ))
+                                                        .toList(),
+                                                    onChanged: (value) =>
+                                                        setState(() {
+                                                      this.value = value!;
+                                                    }),
+                                                  ),
+                                                ),
+                                              ],
+                                            )),
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                          ),
+                          Visibility(
+                            child: Container(
+                              child: SfCircularChart(
+                                title: ChartTitle(
+                                  text:
+                                      'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas: $contMusic',
+                                  textStyle: TextStyle(color: Colors.white),
+                                ),
+                                legend: Legend(
+                                    isVisible: true,
+                                    overflowMode: LegendItemOverflowMode.wrap,
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 10),
+                                    alignment: ChartAlignment.center,
+                                    itemPadding: 20,
+                                    position: LegendPosition.right),
+                                tooltipBehavior: _tooltipBehavior,
+                                series: <CircularSeries>[
+                                  DoughnutSeries<GDPDatamusic, dynamic>(
+                                      dataSource: _chartDatamusic,
+                                      xValueMapper: (GDPDatamusic data, _) =>
+                                          data.emoteBaseM,
+                                      yValueMapper: (GDPDatamusic data, _) =>
+                                          data.contMusic,
+                                      pointColorMapper:
+                                          (GDPDatamusic data, _) =>
+                                              data.colorgraf,
+                                      dataLabelSettings:
+                                          DataLabelSettings(isVisible: true),
+                                      enableTooltip: true),
+                                ],
+                              ),
+                            ),
+                            visible: value.contains("Geral") ? true : false,
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -308,26 +553,37 @@ class _StatsPageState extends State<StatsPage> {
   readFirebase() async {
     var tec = await FirebaseFirestore.instance
         .collection(user.email.toString())
-        .doc('Stats')
+        .doc('EmotionStats')
         .get();
-    contCromo = tec.data()?['contCromo'];
-    contMedit = tec.data()?['contMedit'];
-    contMusic = tec.data()?['contMusic'];
-    contMeditansi = tec.data()?['contMeditansi'];
-    contMeditmed = tec.data()?['contMeditmed'];
-    contMeditraiva = tec.data()?['contMeditraiva'];
-    contMeditstress = tec.data()?['contMeditstress'];
-    contMedittriste = tec.data()?['contMedittriste'];
-    contCromoansi = tec.data()?['contCromoansi'];
-    contCromomed = tec.data()?['contCromomed'];
-    contCromoraiva = tec.data()?['contCromoraiva'];
-    contCromostress = tec.data()?['contCromostress'];
-    contCromotriste = tec.data()?['contCromotriste'];
-    contMusicansi = tec.data()?['contMusicansi'];
-    contMusicmed = tec.data()?['contMusicmed'];
-    contMusicraiva = tec.data()?['contMusicraiva'];
-    contMusicstress = tec.data()?['contMusicstress'];
-    contMusictriste = tec.data()?['contMusictriste'];
+    List<dynamic> listMedit = (tec.data()?['Meditacao']);
+    var listMedit2 = listMedit.map((e) => EmotionStats.fromJson(e)).toList();
+    var listMeditOver = listMedit2.groupBy((m) => m.emotion);
+
+    List<dynamic> listCromo = (tec.data()?['Cromoterapia']);
+    var listCromo2 = listCromo.map((e) => EmotionStats.fromJson(e)).toList();
+    var listCromoOver = listCromo2.groupBy((m) => m.emotion);
+
+    List<dynamic> listMusic = (tec.data()?['Musicoterapia']);
+    var listMusic2 = listMusic.map((e) => EmotionStats.fromJson(e)).toList();
+    var listMusicOver = listMusic2.groupBy((m) => m.emotion);
+
+    contMeditansi = listMeditOver['ansiedade']?.length ?? 0;
+    contMeditmed = listMeditOver['medo']?.length ?? 0;
+    contMeditraiva = listMeditOver['raiva']?.length ?? 0;
+    contMeditstress = listMeditOver['stress']?.length ?? 0;
+    contMedittriste = listMeditOver['triste']?.length ?? 0;
+
+    contCromoansi = listCromoOver['ansiedade']?.length ?? 0;
+    contCromomed = listCromoOver['medo']?.length ?? 0;
+    contCromoraiva = listCromoOver['raiva']?.length ?? 0;
+    contCromostress = listCromoOver['stress']?.length ?? 0;
+    contCromotriste = listCromoOver['triste']?.length ?? 0;
+
+    contMusicansi = listMusicOver['ansiedade']?.length ?? 0;
+    contMusicmed = listMusicOver['medo']?.length ?? 0;
+    contMusicraiva = listMusicOver['raiva']?.length ?? 0;
+    contMusicstress = listMusicOver['stress']?.length ?? 0;
+    contMusictriste = listMusicOver['triste']?.length ?? 0;
 
     List<String> emotea = [];
     emotea.add('Medo');
@@ -377,4 +633,25 @@ class GDPDatamusic {
   String toString() {
     return emoteBaseM + contMusic.toString();
   }
+}
+
+class EmotionStats {
+  final String emotion;
+  final Timestamp date;
+
+  EmotionStats(this.emotion, this.date);
+  Map<String, dynamic> toJson() {
+    return {"date": this.date, "emotion": this.emotion};
+  }
+
+  EmotionStats.fromJson(Map json)
+      : emotion = json['emotion'],
+        date = json['date'];
+}
+
+extension Iterables<E> on Iterable<E> {
+  Map<K, List<E>> groupBy<K>(K Function(E) keyFunction) => fold(
+      <K, List<E>>{},
+      (Map<K, List<E>> map, E element) =>
+          map..putIfAbsent(keyFunction(element), () => <E>[]).add(element));
 }
