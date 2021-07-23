@@ -319,40 +319,36 @@ class _StatsPageState extends State<StatsPage> {
                                   ],
                                 )),
                           ),
-                          Visibility(
-                            child: Container(
-                              child: SfCircularChart(
-                                title: ChartTitle(
-                                  text:
-                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
-                                  textStyle: TextStyle(color: Colors.white),
-                                ),
-                                legend: Legend(
-                                    isVisible: true,
-                                    overflowMode: LegendItemOverflowMode.wrap,
-                                    textStyle: TextStyle(
-                                        color: Colors.white, fontSize: 10),
-                                    alignment: ChartAlignment.center,
-                                    itemPadding: 20,
-                                    position: LegendPosition.right),
-                                tooltipBehavior: _tooltipBehavior,
-                                series: <CircularSeries>[
-                                  DoughnutSeries<GDPDatacromo, dynamic>(
-                                      dataSource: _chartDatacromo,
-                                      xValueMapper: (GDPDatacromo data, _) =>
-                                          data.emoteBaseC,
-                                      yValueMapper: (GDPDatacromo data, _) =>
-                                          data.contCromo,
-                                      pointColorMapper:
-                                          (GDPDatacromo data, _) =>
-                                              data.colorgraf,
-                                      dataLabelSettings:
-                                          DataLabelSettings(isVisible: true),
-                                      enableTooltip: true),
-                                ],
+                          Container(
+                            child: SfCircularChart(
+                              title: ChartTitle(
+                                text:
+                                    'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
+                                textStyle: TextStyle(color: Colors.white),
                               ),
+                              legend: Legend(
+                                  isVisible: true,
+                                  overflowMode: LegendItemOverflowMode.wrap,
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 10),
+                                  alignment: ChartAlignment.center,
+                                  itemPadding: 20,
+                                  position: LegendPosition.right),
+                              tooltipBehavior: _tooltipBehavior,
+                              series: <CircularSeries>[
+                                DoughnutSeries<GDPDatacromo, dynamic>(
+                                    dataSource: _chartDatacromo,
+                                    xValueMapper: (GDPDatacromo data, _) =>
+                                        data.emoteBaseC,
+                                    yValueMapper: (GDPDatacromo data, _) =>
+                                        data.contCromo,
+                                    pointColorMapper: (GDPDatacromo data, _) =>
+                                        data.colorgraf,
+                                    dataLabelSettings:
+                                        DataLabelSettings(isVisible: true),
+                                    enableTooltip: true),
+                              ],
                             ),
-                            visible: value.contains("Geral") ? true : false,
                           ),
                         ],
                       ),
