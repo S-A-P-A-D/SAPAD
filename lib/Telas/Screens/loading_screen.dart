@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:sapad_v3/Telas/HomeScreens/home.dart';
 import 'package:sapad_v3/control/control_page.dart';
 
 class LoadingPage extends StatefulWidget {

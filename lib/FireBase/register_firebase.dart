@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:sapad_v3/Telas/HomeScreens/stats.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
 final user = FirebaseAuth.instance.currentUser!;

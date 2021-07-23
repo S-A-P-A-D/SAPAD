@@ -24,27 +24,63 @@ class _StatsPageState extends State<StatsPage> {
   late List<GDPDatacromo> _chartDatacromo = [];
   late List<GDPDatamusic> _chartDatamusic = [];
   late TooltipBehavior _tooltipBehavior;
-  late int _contMedit = 0;
   late int contMedit = 0;
   late int contMeditmed = 0;
   late int contMeditansi = 0;
   late int contMeditraiva = 0;
   late int contMeditstress = 0;
   late int contMedittriste = 0;
-  late int _contCromo = 0;
+
   late int contCromo = 0;
   late int contCromomed = 0;
   late int contCromoansi = 0;
   late int contCromoraiva = 0;
   late int contCromostress = 0;
   late int contCromotriste = 0;
-  late int _contMusic = 0;
+
   late int contMusic = 0;
   late int contMusicmed = 0;
   late int contMusicansi = 0;
   late int contMusicraiva = 0;
   late int contMusicstress = 0;
   late int contMusictriste = 0;
+
+  late int quinzeMeditansi = 0;
+  late int quinzeMeditmed = 0;
+  late int quinzeMeditraiva = 0;
+  late int quinzeMeditstress = 0;
+  late int quinzeMedittriste = 0;
+
+  late int quinzeMusicansi = 0;
+  late int quinzeMusicmed = 0;
+  late int quinzeMusicraiva = 0;
+  late int quinzeMusicstress = 0;
+  late int quinzeMusictriste = 0;
+
+  late int quinzeCromoansi = 0;
+  late int quinzeCromomed = 0;
+  late int quinzeCromoraiva = 0;
+  late int quinzeCromostress = 0;
+  late int quinzeCromotriste = 0;
+
+  late int mesMeditansi = 0;
+  late int mesMeditmed = 0;
+  late int mesMeditraiva = 0;
+  late int mesMeditstress = 0;
+  late int mesMedittriste = 0;
+
+  late int mesMusicansi = 0;
+  late int mesMusicmed = 0;
+  late int mesMusicraiva = 0;
+  late int mesMusicstress = 0;
+  late int mesMusictriste = 0;
+
+  late int mesCromoansi = 0;
+  late int mesCromomed = 0;
+  late int mesCromoraiva = 0;
+  late int mesCromostress = 0;
+  late int mesCromotriste = 0;
+
   late List<String> emotea = [];
   late String emoteBase;
   late String emoteBaseC;
@@ -552,23 +588,20 @@ class _StatsPageState extends State<StatsPage> {
     return chartData;
   }
 
-//
   readFirebase() async {
     var tec = await FirebaseFirestore.instance
         .collection(user.email.toString())
         .doc('EmotionStats')
         .get();
+    DateTime today = DateTime.now();
+    DateTime twoweeks = today.subtract(const Duration(days: 15));
+    DateTime monthAgo = today.subtract(const Duration(days: 30));
+
+    //Medit ----------------------------
+    //Medit GroupBy
     List<dynamic> listMedit = (tec.data()?['Meditacao']);
     var listMedit2 = listMedit.map((e) => EmotionStats.fromJson(e)).toList();
     var listMeditOver = listMedit2.groupBy((m) => m.emotion);
-
-    List<dynamic> listCromo = (tec.data()?['Cromoterapia']);
-    var listCromo2 = listCromo.map((e) => EmotionStats.fromJson(e)).toList();
-    var listCromoOver = listCromo2.groupBy((m) => m.emotion);
-
-    List<dynamic> listMusic = (tec.data()?['Musicoterapia']);
-    var listMusic2 = listMusic.map((e) => EmotionStats.fromJson(e)).toList();
-    var listMusicOver = listMusic2.groupBy((m) => m.emotion);
 
     contMeditansi = listMeditOver['ansiedade']?.length ?? 0;
     contMeditmed = listMeditOver['medo']?.length ?? 0;
@@ -576,17 +609,106 @@ class _StatsPageState extends State<StatsPage> {
     contMeditstress = listMeditOver['stress']?.length ?? 0;
     contMedittriste = listMeditOver['triste']?.length ?? 0;
 
+    //Medit 15 dias
+    var quinze = listMedit2
+        .where((element) =>
+            element.date.compareTo(Timestamp.fromDate(twoweeks)) >= 0)
+        .toList();
+    var quinzeListMedit = quinze.groupBy((m) => m.emotion);
+
+    quinzeMeditansi = quinzeListMedit['ansiedade']?.length ?? 0;
+    quinzeMeditmed = quinzeListMedit['medo']?.length ?? 0;
+    quinzeMeditraiva = quinzeListMedit['raiva']?.length ?? 0;
+    quinzeMeditstress = quinzeListMedit['stress']?.length ?? 0;
+    quinzeMedittriste = quinzeListMedit['triste']?.length ?? 0;
+
+    //Medit mes
+    var mes = listMedit2
+        .where((element) =>
+            element.date.compareTo(Timestamp.fromDate(monthAgo)) >= 0)
+        .toList();
+    var mesListMedit = mes.groupBy((m) => m.emotion);
+
+    mesMeditansi = mesListMedit['ansiedade']?.length ?? 0;
+    mesMeditmed = mesListMedit['medo']?.length ?? 0;
+    mesMeditraiva = mesListMedit['raiva']?.length ?? 0;
+    mesMeditstress = mesListMedit['stress']?.length ?? 0;
+    mesMedittriste = mesListMedit['triste']?.length ?? 0;
+
+    //Cromo ----------------------------
+    //Cromo GroupBy
+    List<dynamic> listCromo = (tec.data()?['Cromoterapia']);
+    var listCromo2 = listCromo.map((e) => EmotionStats.fromJson(e)).toList();
+    var listCromoOver = listCromo2.groupBy((m) => m.emotion);
+
     contCromoansi = listCromoOver['ansiedade']?.length ?? 0;
     contCromomed = listCromoOver['medo']?.length ?? 0;
     contCromoraiva = listCromoOver['raiva']?.length ?? 0;
     contCromostress = listCromoOver['stress']?.length ?? 0;
     contCromotriste = listCromoOver['triste']?.length ?? 0;
 
+    //Cromo 15 dias
+    var quinzeCromo = listMedit2
+        .where((element) =>
+            element.date.compareTo(Timestamp.fromDate(twoweeks)) >= 0)
+        .toList();
+    var quinzeListCromo = quinzeCromo.groupBy((m) => m.emotion);
+
+    quinzeCromoansi = quinzeListCromo['ansiedade']?.length ?? 0;
+    quinzeCromomed = quinzeListCromo['medo']?.length ?? 0;
+    quinzeCromoraiva = quinzeListCromo['raiva']?.length ?? 0;
+    quinzeCromostress = quinzeListCromo['stress']?.length ?? 0;
+    quinzeCromotriste = quinzeListCromo['triste']?.length ?? 0;
+
+    //Cromo mes
+    var mesCromo = listMedit2
+        .where((element) =>
+            element.date.compareTo(Timestamp.fromDate(monthAgo)) >= 0)
+        .toList();
+    var mesListCromo = mesCromo.groupBy((m) => m.emotion);
+
+    mesCromoansi = mesListCromo['ansiedade']?.length ?? 0;
+    mesCromomed = mesListCromo['medo']?.length ?? 0;
+    mesCromoraiva = mesListCromo['raiva']?.length ?? 0;
+    mesCromostress = mesListCromo['stress']?.length ?? 0;
+    mesCromotriste = mesListCromo['triste']?.length ?? 0;
+
+    //Music ----------------------------
+    //Music GroupBy
+    List<dynamic> listMusic = (tec.data()?['Musicoterapia']);
+    var listMusic2 = listMusic.map((e) => EmotionStats.fromJson(e)).toList();
+    var listMusicOver = listMusic2.groupBy((m) => m.emotion);
+
     contMusicansi = listMusicOver['ansiedade']?.length ?? 0;
     contMusicmed = listMusicOver['medo']?.length ?? 0;
     contMusicraiva = listMusicOver['raiva']?.length ?? 0;
     contMusicstress = listMusicOver['stress']?.length ?? 0;
     contMusictriste = listMusicOver['triste']?.length ?? 0;
+    //Music 15 dias
+    var quinzeMusic = listMusic2
+        .where((element) =>
+            element.date.compareTo(Timestamp.fromDate(twoweeks)) >= 0)
+        .toList();
+    var quinzeListMusic = quinzeMusic.groupBy((m) => m.emotion);
+
+    quinzeMusicansi = quinzeListMusic['ansiedade']?.length ?? 0;
+    quinzeMusicmed = quinzeListMusic['medo']?.length ?? 0;
+    quinzeMusicraiva = quinzeListMusic['raiva']?.length ?? 0;
+    quinzeMusicstress = quinzeListMusic['stress']?.length ?? 0;
+    quinzeMusictriste = quinzeListMusic['triste']?.length ?? 0;
+
+    //Music 15 dias
+    var mesMusic = listMusic2
+        .where((element) =>
+            element.date.compareTo(Timestamp.fromDate(monthAgo)) >= 0)
+        .toList();
+    var mesListMusic = mesMusic.groupBy((m) => m.emotion);
+
+    mesMusicansi = mesListMusic['ansiedade']?.length ?? 0;
+    mesMusicmed = mesListMusic['medo']?.length ?? 0;
+    mesMusicraiva = mesListMusic['raiva']?.length ?? 0;
+    mesMusicstress = mesListMusic['stress']?.length ?? 0;
+    mesMusictriste = mesListMusic['triste']?.length ?? 0;
 
     List<String> emotea = [];
     emotea.add('Medo');
