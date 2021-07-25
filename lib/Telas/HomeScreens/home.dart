@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -8,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:sapad_v3/FireBase/register_firebase.dart';
 import 'package:sapad_v3/Telas/HomeScreens/stats.dart';
 import 'package:sapad_v3/Telas/LoginScreens/google_sign_in.dart';
+import 'package:sapad_v3/Telas/Screens/breath.dart';
 import 'package:sapad_v3/Telas/Screens/config.dart';
 import 'package:sapad_v3/Telas/Screens/cromo.dart';
 import 'package:sapad_v3/Telas/Screens/meditation.dart';
@@ -52,6 +54,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     _readData();
     readFirebase();
+    changeIndex();
     super.initState();
   }
 
@@ -84,6 +87,15 @@ class _HomePageState extends State<HomePage> {
   bool? _cromo = true;
   bool? _medit = true;
   bool? isChanged = false;
+
+  List colors = [Colors.cyanAccent, Colors.red, Colors.yellowAccent];
+  Random random = new Random();
+
+  int index = 0;
+
+  void changeIndex() {
+    setState(() => index = random.nextInt(3));
+  }
 
   IconData _seta = Icons.keyboard_arrow_up;
   DateTime data = DateTime.now();
@@ -174,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                             style:
                                 TextStyle(fontSize: 25.0, color: Colors.white),
                           ),
-                          activeColor: Colors.red,
+                          activeColor: colors[index],
                           value: _medit,
                           onChanged: (bool? _newmed) {
                             setState(() {
@@ -198,7 +210,7 @@ class _HomePageState extends State<HomePage> {
                             style:
                                 TextStyle(fontSize: 25.0, color: Colors.white),
                           ),
-                          activeColor: Colors.red,
+                          activeColor: colors[index],
                           value: _cromo,
                           onChanged: (bool? _newcromo) {
                             //_edited = true;
@@ -223,7 +235,7 @@ class _HomePageState extends State<HomePage> {
                             style:
                                 TextStyle(fontSize: 25.0, color: Colors.white),
                           ),
-                          activeColor: Colors.red,
+                          activeColor: colors[index],
                           value: _music,
                           onChanged: (bool? _newmusic) {
                             //_edited = true;
@@ -295,7 +307,8 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 IconButton(
-                                  icon: Icon(Icons.settings, color: Colors.red),
+                                  icon: Icon(Icons.settings,
+                                      color: colors[index]),
                                   onPressed: () {
                                     Navigator.push(
                                         context,
@@ -310,7 +323,8 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 IconButton(
-                                  icon: Icon(Icons.logout, color: Colors.red),
+                                  icon:
+                                      Icon(Icons.logout, color: colors[index]),
                                   onPressed: () {
                                     final provider =
                                         Provider.of<GoogleSignInProvider>(
@@ -388,7 +402,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                       )),
                     ),
-                    activeColor: Colors.red,
+                    activeColor: colors[index],
                     value: _med,
                     onChanged: (bool? _newmed) {
                       setState(() {
@@ -409,7 +423,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                       )),
                     ),
-                    activeColor: Colors.red,
+                    activeColor: colors[index],
                     value: _ansi,
                     onChanged: (bool? _newansi) {
                       setState(() {
@@ -430,7 +444,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                       )),
                     ),
-                    activeColor: Colors.red,
+                    activeColor: colors[index],
                     value: _triste,
                     onChanged: (bool? _newtriste) {
                       setState(() {
@@ -451,7 +465,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                       )),
                     ),
-                    activeColor: Colors.red,
+                    activeColor: colors[index],
                     value: _raiva,
                     onChanged: (bool? _newraiva) {
                       setState(() {
@@ -472,7 +486,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                       )),
                     ),
-                    activeColor: Colors.red,
+                    activeColor: colors[index],
                     value: _stress,
                     onChanged: (bool? _newstress) {
                       setState(() {
@@ -509,7 +523,8 @@ class _HomePageState extends State<HomePage> {
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: 3),
-                      Container(child: Icon(_seta, size: 70, color: Colors.red))
+                      Container(
+                          child: Icon(_seta, size: 70, color: colors[index]))
                     ],
                   ),
                 )),
@@ -520,6 +535,33 @@ class _HomePageState extends State<HomePage> {
             },
           ),
 
+          //Respiração
+          GestureDetector(
+              child: Card(
+                  color: Colors.black54,
+                  shadowColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Text(
+                          "Clique aqui para respirar melhor",
+                          style: GoogleFonts.lora(
+                              textStyle: TextStyle(
+                            fontSize: 30.0,
+                            color: Colors.white,
+                          )),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  )),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => VideoBreathPage()));
+              }),
           //Carousel
           Padding(
             padding: EdgeInsets.only(top: 1.0),
@@ -626,7 +668,7 @@ class _HomePageState extends State<HomePage> {
                       Visibility(
                         child: ListTile(
                             leading: Icon(MdiIcons.headHeart,
-                                size: 50, color: Colors.red),
+                                size: 50, color: colors[index]),
                             title: Text(
                               "Meditação",
                               style: GoogleFonts.lora(
@@ -695,7 +737,7 @@ class _HomePageState extends State<HomePage> {
                       Visibility(
                         child: ListTile(
                             leading: Icon(MdiIcons.palette,
-                                size: 50, color: Colors.red),
+                                size: 50, color: colors[index]),
                             title: Text(
                               "Cromoterapia",
                               style: GoogleFonts.lora(
@@ -768,7 +810,7 @@ class _HomePageState extends State<HomePage> {
                       Visibility(
                         child: ListTile(
                             leading: Icon(MdiIcons.musicBox,
-                                size: 50, color: Colors.red),
+                                size: 50, color: colors[index]),
                             title: Text(
                               "Musicoterapia",
                               style: GoogleFonts.lora(
@@ -835,8 +877,8 @@ class _HomePageState extends State<HomePage> {
                       //Card Alerta
                       Visibility(
                         child: ListTile(
-                          leading:
-                              Icon(MdiIcons.alert, size: 50, color: Colors.red),
+                          leading: Icon(MdiIcons.alert,
+                              size: 50, color: colors[index]),
                           title: Text(
                             "Você precisa selecionar uma emoção",
                             style: GoogleFonts.lora(

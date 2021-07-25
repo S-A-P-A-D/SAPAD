@@ -25,11 +25,9 @@ class _AcompPageState extends State<AcompPage> {
   late List<GDPDatacromo30> _chartDatacromo30 = [];
   late List<GDPDatamusic30> _chartDatamusic30 = [];
   late TooltipBehavior _tooltipBehavior;
-  late int _contMedit = 0;
 
-  late int _contCromo = 0;
-
-  late int _contMusic = 0;
+  //Medit --------------------------------
+  late int _meditOver = 0;
   late int contMedit = 0;
   late int contMeditmed = 0;
   late int contMeditansi = 0;
@@ -37,20 +35,7 @@ class _AcompPageState extends State<AcompPage> {
   late int contMeditstress = 0;
   late int contMedittriste = 0;
 
-  late int contCromo = 0;
-  late int contCromomed = 0;
-  late int contCromoansi = 0;
-  late int contCromoraiva = 0;
-  late int contCromostress = 0;
-  late int contCromotriste = 0;
-
-  late int contMusic = 0;
-  late int contMusicmed = 0;
-  late int contMusicansi = 0;
-  late int contMusicraiva = 0;
-  late int contMusicstress = 0;
-  late int contMusictriste = 0;
-
+  late int _meditquinze = 0;
   late int quinzecontMedit;
   late int quinzeMeditansi = 0;
   late int quinzeMeditmed = 0;
@@ -58,20 +43,7 @@ class _AcompPageState extends State<AcompPage> {
   late int quinzeMeditstress = 0;
   late int quinzeMedittriste = 0;
 
-  late int quinzecontMusic = 0;
-  late int quinzeMusicansi = 0;
-  late int quinzeMusicmed = 0;
-  late int quinzeMusicraiva = 0;
-  late int quinzeMusicstress = 0;
-  late int quinzeMusictriste = 0;
-
-  late int quinzecontCromo = 0;
-  late int quinzeCromoansi = 0;
-  late int quinzeCromomed = 0;
-  late int quinzeCromoraiva = 0;
-  late int quinzeCromostress = 0;
-  late int quinzeCromotriste = 0;
-
+  late int _meditmes = 0;
   late int mescontMedit = 0;
   late int mesMeditansi = 0;
   late int mesMeditmed = 0;
@@ -79,19 +51,55 @@ class _AcompPageState extends State<AcompPage> {
   late int mesMeditstress = 0;
   late int mesMedittriste = 0;
 
-  late int mescontMusic = 0;
-  late int mesMusicansi = 0;
-  late int mesMusicmed = 0;
-  late int mesMusicraiva = 0;
-  late int mesMusicstress = 0;
-  late int mesMusictriste = 0;
+  //Cromo --------------------------------
+  late int _cromoOver = 0;
+  late int contCromo = 0;
+  late int contCromomed = 0;
+  late int contCromoansi = 0;
+  late int contCromoraiva = 0;
+  late int contCromostress = 0;
+  late int contCromotriste = 0;
 
+  late int _cromoquinze = 0;
+  late int quinzecontCromo = 0;
+  late int quinzeCromoansi = 0;
+  late int quinzeCromomed = 0;
+  late int quinzeCromoraiva = 0;
+  late int quinzeCromostress = 0;
+  late int quinzeCromotriste = 0;
+
+  late int _cromomes = 0;
   late int mescontCromo = 0;
   late int mesCromoansi = 0;
   late int mesCromomed = 0;
   late int mesCromoraiva = 0;
   late int mesCromostress = 0;
   late int mesCromotriste = 0;
+
+  //Music --------------------------------
+  late int _musicOver = 0;
+  late int contMusic = 0;
+  late int contMusicmed = 0;
+  late int contMusicansi = 0;
+  late int contMusicraiva = 0;
+  late int contMusicstress = 0;
+  late int contMusictriste = 0;
+
+  late int _musicquinze = 0;
+  late int quinzecontMusic = 0;
+  late int quinzeMusicansi = 0;
+  late int quinzeMusicmed = 0;
+  late int quinzeMusicraiva = 0;
+  late int quinzeMusicstress = 0;
+  late int quinzeMusictriste = 0;
+
+  late int _musicmes = 0;
+  late int mescontMusic = 0;
+  late int mesMusicansi = 0;
+  late int mesMusicmed = 0;
+  late int mesMusicraiva = 0;
+  late int mesMusicstress = 0;
+  late int mesMusictriste = 0;
   late List<String> emotea = [];
   late String emoteBase;
   late String emoteBaseC;
@@ -138,326 +146,138 @@ class _AcompPageState extends State<AcompPage> {
         body: SingleChildScrollView(
           child: Column(children: [
             //Card 1
-            Padding(
-              padding: EdgeInsets.all(0),
-              child: Card(
-                color: Colors.black38,
-                shadowColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Card(
-                            color: Colors.black38,
-                            shadowColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0)),
-                            child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    TextField(
-                                      autofocus: false,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 30),
-                                      decoration: InputDecoration(
-                                        labelText:
-                                            "Insira o E-mail de seu paciente:",
-                                        labelStyle: GoogleFonts.lora(
-                                            textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20)),
-                                      ),
-                                      keyboardType: TextInputType.emailAddress,
-                                      controller: myController,
-                                    ),
-                                  ],
-                                )),
+            Column(
+              children: [
+                Card(
+                  color: Colors.black38,
+                  shadowColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
+                  child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextField(
+                            autofocus: false,
+                            style: TextStyle(color: Colors.white, fontSize: 30),
+                            decoration: InputDecoration(
+                              labelText: "Insira o E-mail de seu paciente:",
+                              labelStyle: GoogleFonts.lora(
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 20)),
+                            ),
+                            keyboardType: TextInputType.emailAddress,
+                            controller: myController,
                           ),
-                        ),
-                      ],
-                    )),
-              ),
+                        ],
+                      )),
+                ),
+              ],
             ),
 
             //Dropdown Button
-            SizedBox(height: 10),
+            SizedBox(height: 2),
             Visibility(
-              child: Card(
-                color: Colors.black38,
-                shadowColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Card(
-                            color: Colors.red,
-                            shadowColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0)),
-                            child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 12, vertical: 2),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.red,
-                                      ),
-                                      child: DropdownButton<String>(
-                                        focusColor: Colors.black,
-                                        dropdownColor: Colors.red,
-                                        value: value,
-                                        items: items
-                                            .map((item) =>
-                                                DropdownMenuItem<String>(
-                                                  child: Text(
-                                                    item,
-                                                    style: GoogleFonts.lora(
-                                                        textStyle: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 30,
-                                                            color:
-                                                                Colors.white)),
-                                                  ),
-                                                  value: item,
-                                                ))
-                                            .toList(),
-                                        onChanged: (value) => setState(() {
-                                          this.value = value!;
-                                        }),
-                                      ),
+              child: Padding(
+                  padding: EdgeInsets.all(2.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Card(
+                          color: Colors.red,
+                          shadowColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                          child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12, vertical: 2),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.red,
                                     ),
-                                  ],
-                                )),
-                          ),
+                                    child: DropdownButton<String>(
+                                      focusColor: Colors.black,
+                                      dropdownColor: Colors.red,
+                                      value: value,
+                                      items: items
+                                          .map((item) =>
+                                              DropdownMenuItem<String>(
+                                                child: Text(
+                                                  item,
+                                                  style: GoogleFonts.lora(
+                                                      textStyle: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 30,
+                                                          color: Colors.white)),
+                                                ),
+                                                value: item,
+                                              ))
+                                          .toList(),
+                                      onChanged: (value) => setState(() {
+                                        this.value = value!;
+                                      }),
+                                    ),
+                                  ),
+                                ],
+                              )),
                         ),
-                      ],
-                    )),
-              ),
+                      ),
+                    ],
+                  )),
               visible: emailParceiro.isNotEmpty ? true : false,
             ),
 
-            //Card Meditação
-            SizedBox(height: 10),
-            Visibility(
-              child: Card(
-                color: Colors.black38,
-                shadowColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Card(
-                            color: Colors.black38,
-                            shadowColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0)),
-                            child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("Meditação:",
-                                        style: GoogleFonts.lora(
-                                            textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20))),
-                                    SizedBox(width: 10),
-                                    Text(medit.toString(),
-                                        style: GoogleFonts.lora(
-                                            textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20))),
-                                  ],
-                                )),
-                          ),
-                        ),
-                      ],
-                    )),
-              ),
-              visible: value.contains("Meditação") && emailParceiro.isNotEmpty
-                  ? true
-                  : false,
-            ),
-
-            //Card Cromoterapia
-            SizedBox(height: 10),
-            Visibility(
-              child: Card(
-                color: Colors.black38,
-                shadowColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Card(
-                            color: Colors.black38,
-                            shadowColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0)),
-                            child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("Cromoterapia:",
-                                        style: GoogleFonts.lora(
-                                            textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20))),
-                                    SizedBox(width: 5),
-                                    Text(cromo.toString(),
-                                        style: GoogleFonts.lora(
-                                            textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20))),
-                                  ],
-                                )),
-                          ),
-                        ),
-                      ],
-                    )),
-              ),
-              visible:
-                  value.contains("Cromoterapia") && emailParceiro.isNotEmpty
-                      ? true
-                      : false,
-            ),
-
-            //Card Musicoterapia
-            SizedBox(height: 10),
-            Visibility(
-              child: Card(
-                color: Colors.black38,
-                shadowColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Card(
-                            color: Colors.black38,
-                            shadowColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0)),
-                            child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("Musicoterapia:",
-                                        style: GoogleFonts.lora(
-                                            textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20))),
-                                    SizedBox(width: 0),
-                                    Text(music.toString(),
-                                        style: GoogleFonts.lora(
-                                            textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20))),
-                                  ],
-                                )),
-                          ),
-                        ),
-                      ],
-                    )),
-              ),
-              visible:
-                  value.contains("Musicoterapia") && emailParceiro.isNotEmpty
-                      ? true
-                      : false,
-            ),
-
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             //Filtro
             Visibility(
-              child: Card(
-                color: Colors.black38,
-                shadowColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Card(
-                            color: Colors.red,
-                            shadowColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0)),
-                            child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 12, vertical: 2),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.red,
-                                      ),
-                                      child: DropdownButton<String>(
-                                        focusColor: Colors.black,
-                                        dropdownColor: Colors.red,
-                                        value: valueFiltro,
-                                        items: itemsFiltro
-                                            .map((itemFiltro) =>
-                                                DropdownMenuItem<String>(
-                                                  child: Text(
-                                                    itemFiltro,
-                                                    style: GoogleFonts.lora(
-                                                        textStyle: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 30,
-                                                            color:
-                                                                Colors.white)),
-                                                  ),
-                                                  value: itemFiltro,
-                                                ))
-                                            .toList(),
-                                        onChanged: (valueFiltro) =>
-                                            setState(() {
-                                          this.valueFiltro = valueFiltro!;
-                                        }),
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                          ),
+              child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 2),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.black,
                         ),
-                      ],
-                    )),
-              ),
+                        child: DropdownButton<String>(
+                          focusColor: Colors.black,
+                          dropdownColor: Colors.black,
+                          underline: Container(
+                            color: Colors.red,
+                            height: 1,
+                          ),
+                          value: valueFiltro,
+                          items: itemsFiltro
+                              .map((itemFiltro) => DropdownMenuItem<String>(
+                                    child: Text(
+                                      itemFiltro,
+                                      style: GoogleFonts.lora(
+                                          textStyle: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 30,
+                                              color: Colors.red)),
+                                    ),
+                                    value: itemFiltro,
+                                  ))
+                              .toList(),
+                          onChanged: (valueFiltro) => setState(() {
+                            this.valueFiltro = valueFiltro!;
+                          }),
+                        ),
+                      ),
+                    ],
+                  )),
               visible: emailParceiro.isEmpty ? false : true,
             ),
 
@@ -466,7 +286,7 @@ class _AcompPageState extends State<AcompPage> {
               child: SfCircularChart(
                 title: ChartTitle(
                   text:
-                      'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n Total de Meditações realizadas: $_contMedit',
+                      'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n Total de Meditações realizadas: $_meditOver',
                   textStyle: TextStyle(color: Colors.white),
                 ),
                 legend: Legend(
@@ -501,7 +321,7 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas nos ultimos 15 dias: $contMedit',
+                        'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas nos ultimos 15 dias: $_meditquinze',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
@@ -543,7 +363,7 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas nos ultimos 30 dias: $contMedit',
+                        'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas nos ultimos 30 dias: $_meditmes',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
@@ -585,7 +405,7 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $_contCromo',
+                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $_cromoOver',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
@@ -621,7 +441,7 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
+                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas nos ultimos 15 dias: $_cromoquinze',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
@@ -659,7 +479,7 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
+                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas nos ultimos 30 dias: $_cromomes',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
@@ -697,7 +517,7 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas: $_contMusic',
+                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas: $_musicOver',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
@@ -733,7 +553,7 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas nos ultimos 15 dias: $contMusic',
+                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas nos ultimos 15 dias: $_musicquinze',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
@@ -765,13 +585,13 @@ class _AcompPageState extends State<AcompPage> {
                   : false,
             ),
 
-            //Geral 30 dias
+            //Graffico Musicoterapia 30 dias
             Visibility(
               child: Container(
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas nos últimos 30 dias: $contMusic',
+                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas nos últimos 30 dias: $_musicmes',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
@@ -1186,11 +1006,13 @@ class _AcompPageState extends State<AcompPage> {
     DateTime monthAgo = today.subtract(const Duration(days: 30));
 
     //Medit ----------------------------
+
     //Medit GroupBy
     List<dynamic> listMedit = (tec.data()?['Meditacao']);
     var listMedit2 = listMedit.map((e) => EmotionStats.fromJson(e)).toList();
     var listMeditOver = listMedit2.groupBy((m) => m.emotion);
 
+    _meditOver = listMedit2.length;
     contMeditansi = listMeditOver['ansiedade']?.length ?? 0;
     contMeditmed = listMeditOver['medo']?.length ?? 0;
     contMeditraiva = listMeditOver['raiva']?.length ?? 0;
@@ -1204,6 +1026,7 @@ class _AcompPageState extends State<AcompPage> {
         .toList();
     var quinzeListMedit = quinze.groupBy((m) => m.emotion);
 
+    _meditquinze = quinze.length;
     quinzeMeditansi = quinzeListMedit['ansiedade']?.length ?? 0;
     quinzeMeditmed = quinzeListMedit['medo']?.length ?? 0;
     quinzeMeditraiva = quinzeListMedit['raiva']?.length ?? 0;
@@ -1217,6 +1040,7 @@ class _AcompPageState extends State<AcompPage> {
         .toList();
     var mesListMedit = mes.groupBy((m) => m.emotion);
 
+    _meditmes = mes.length;
     mesMeditansi = mesListMedit['ansiedade']?.length ?? 0;
     mesMeditmed = mesListMedit['medo']?.length ?? 0;
     mesMeditraiva = mesListMedit['raiva']?.length ?? 0;
@@ -1229,6 +1053,7 @@ class _AcompPageState extends State<AcompPage> {
     var listCromo2 = listCromo.map((e) => EmotionStats.fromJson(e)).toList();
     var listCromoOver = listCromo2.groupBy((m) => m.emotion);
 
+    _cromoOver = listCromo2.length;
     contCromoansi = listCromoOver['ansiedade']?.length ?? 0;
     contCromomed = listCromoOver['medo']?.length ?? 0;
     contCromoraiva = listCromoOver['raiva']?.length ?? 0;
@@ -1242,6 +1067,7 @@ class _AcompPageState extends State<AcompPage> {
         .toList();
     var quinzeListCromo = quinzeCromo.groupBy((m) => m.emotion);
 
+    _cromoquinze = quinzeCromo.length;
     quinzeCromoansi = quinzeListCromo['ansiedade']?.length ?? 0;
     quinzeCromomed = quinzeListCromo['medo']?.length ?? 0;
     quinzeCromoraiva = quinzeListCromo['raiva']?.length ?? 0;
@@ -1255,6 +1081,7 @@ class _AcompPageState extends State<AcompPage> {
         .toList();
     var mesListCromo = mesCromo.groupBy((m) => m.emotion);
 
+    _cromomes = mesCromo.length;
     mesCromoansi = mesListCromo['ansiedade']?.length ?? 0;
     mesCromomed = mesListCromo['medo']?.length ?? 0;
     mesCromoraiva = mesListCromo['raiva']?.length ?? 0;
@@ -1267,6 +1094,7 @@ class _AcompPageState extends State<AcompPage> {
     var listMusic2 = listMusic.map((e) => EmotionStats.fromJson(e)).toList();
     var listMusicOver = listMusic2.groupBy((m) => m.emotion);
 
+    _musicOver = listMusic2.length;
     contMusicansi = listMusicOver['ansiedade']?.length ?? 0;
     contMusicmed = listMusicOver['medo']?.length ?? 0;
     contMusicraiva = listMusicOver['raiva']?.length ?? 0;
@@ -1279,6 +1107,7 @@ class _AcompPageState extends State<AcompPage> {
         .toList();
     var quinzeListMusic = quinzeMusic.groupBy((m) => m.emotion);
 
+    _musicquinze = quinzeMusic.length;
     quinzeMusicansi = quinzeListMusic['ansiedade']?.length ?? 0;
     quinzeMusicmed = quinzeListMusic['medo']?.length ?? 0;
     quinzeMusicraiva = quinzeListMusic['raiva']?.length ?? 0;
@@ -1292,20 +1121,12 @@ class _AcompPageState extends State<AcompPage> {
         .toList();
     var mesListMusic = mesMusic.groupBy((m) => m.emotion);
 
+    _musicmes = mesMusic.length;
     mesMusicansi = mesListMusic['ansiedade']?.length ?? 0;
     mesMusicmed = mesListMusic['medo']?.length ?? 0;
     mesMusicraiva = mesListMusic['raiva']?.length ?? 0;
     mesMusicstress = mesListMusic['stress']?.length ?? 0;
     mesMusictriste = mesListMusic['triste']?.length ?? 0;
-
-    var cont = await FirebaseFirestore.instance
-        .collection(emailParceiro)
-        .doc('Stats')
-        .get();
-
-    cromo = cont.data()?["contCromo"];
-    music = cont.data()?["contMusic"];
-    medit = cont.data()?["contMedit"];
 
     List<String> emotea = [];
 

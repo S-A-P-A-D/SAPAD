@@ -52,7 +52,7 @@ dependencies:
   #Videos
   youtube_player_flutter: ^8.0.0
   another_flushbar: ^1.10.23
-  video_player: ^2.1.6
+  video_player: ^2.1.12
   #Charts
   charts_flutter: ^0.11.0
   #Loading Screen
@@ -91,6 +91,7 @@ flutter:
     - assets/Guitar.png
     - assets/meditFundo.jpg
     - assets/cardInfoMedit.png
+    - assets/breathe.mp4
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
