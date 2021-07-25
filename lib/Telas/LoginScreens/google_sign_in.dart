@@ -46,6 +46,8 @@ class GoogleSignInProvider extends ChangeNotifier {
           "music": true,
         });
 
+        db.collection(user.email.toString()).doc("EmotionStats").set({});
+
         db.collection(user.email.toString()).doc("Stats").set({
           "contMedit": 1,
           "contCromo": 1,

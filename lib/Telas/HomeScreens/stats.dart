@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// ignore: unused_import
+import 'package:sapad_v3/helper.dart/stats_helper.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 // ignore: unused_import
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
@@ -23,6 +25,12 @@ class _StatsPageState extends State<StatsPage> {
   late List<GDPDatamedit> _chartDatamedit = [];
   late List<GDPDatacromo> _chartDatacromo = [];
   late List<GDPDatamusic> _chartDatamusic = [];
+  late List<GDPDatamedit15> _chartDatamedit15 = [];
+  late List<GDPDatacromo15> _chartDatacromo15 = [];
+  late List<GDPDatamusic15> _chartDatamusic15 = [];
+  late List<GDPDatamedit30> _chartDatamedit30 = [];
+  late List<GDPDatacromo30> _chartDatacromo30 = [];
+  late List<GDPDatamusic30> _chartDatamusic30 = [];
   late TooltipBehavior _tooltipBehavior;
   late int contMedit = 0;
   late int contMeditmed = 0;
@@ -45,36 +53,42 @@ class _StatsPageState extends State<StatsPage> {
   late int contMusicstress = 0;
   late int contMusictriste = 0;
 
+  late int quinzecontMedit;
   late int quinzeMeditansi = 0;
   late int quinzeMeditmed = 0;
   late int quinzeMeditraiva = 0;
   late int quinzeMeditstress = 0;
   late int quinzeMedittriste = 0;
 
+  late int quinzecontMusic = 0;
   late int quinzeMusicansi = 0;
   late int quinzeMusicmed = 0;
   late int quinzeMusicraiva = 0;
   late int quinzeMusicstress = 0;
   late int quinzeMusictriste = 0;
 
+  late int quinzecontCromo = 0;
   late int quinzeCromoansi = 0;
   late int quinzeCromomed = 0;
   late int quinzeCromoraiva = 0;
   late int quinzeCromostress = 0;
   late int quinzeCromotriste = 0;
 
+  late int mescontMedit = 0;
   late int mesMeditansi = 0;
   late int mesMeditmed = 0;
   late int mesMeditraiva = 0;
   late int mesMeditstress = 0;
   late int mesMedittriste = 0;
 
+  late int mescontMusic = 0;
   late int mesMusicansi = 0;
   late int mesMusicmed = 0;
   late int mesMusicraiva = 0;
   late int mesMusicstress = 0;
   late int mesMusictriste = 0;
 
+  late int mescontCromo = 0;
   late int mesCromoansi = 0;
   late int mesCromomed = 0;
   late int mesCromoraiva = 0;
@@ -85,6 +99,12 @@ class _StatsPageState extends State<StatsPage> {
   late String emoteBase;
   late String emoteBaseC;
   late String emoteBaseM;
+  /* late String emoteBase15;
+  late String emoteBaseC15;
+  late String emoteBaseM15;
+  late String emoteBase30;
+  late String emoteBaseC30;
+  late String emoteBaseM30; */
 
   @override
   void initState() {
@@ -93,7 +113,7 @@ class _StatsPageState extends State<StatsPage> {
     super.initState();
   }
 
-  static final List<String> items = <String>['15 dias', '3 meses', 'Geral'];
+  static final List<String> items = <String>['15 dias', '30 dias', 'Geral'];
   late String value = items.first;
 
   @override
@@ -203,7 +223,8 @@ class _StatsPageState extends State<StatsPage> {
                               )),
                         ),
 
-                        //Medit Grafico
+                        //Medit Graficos
+                        //Gráfico geral
                         Visibility(
                           child: Container(
                             child: SfCircularChart(
@@ -242,6 +263,89 @@ class _StatsPageState extends State<StatsPage> {
                             ),
                           ),
                           visible: value.contains("Geral") ? true : false,
+                        ),
+
+                        //Gráfico 15 dias
+                        Visibility(
+                          child: Container(
+                            child: SfCircularChart(
+                              title: ChartTitle(
+                                text:
+                                    'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas nos ultimos 15 dias: $contMedit',
+                                textStyle: TextStyle(color: Colors.white),
+                              ),
+                              legend: Legend(
+                                  title: LegendTitle(
+                                    text: 'Emoções',
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                  isVisible: true,
+                                  overflowMode: LegendItemOverflowMode.wrap,
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 10),
+                                  alignment: ChartAlignment.center,
+                                  itemPadding: 20,
+                                  position: LegendPosition.right),
+                              tooltipBehavior: _tooltipBehavior,
+                              series: <CircularSeries>[
+                                DoughnutSeries<GDPDatamedit15, dynamic>(
+                                    dataSource: _chartDatamedit15,
+                                    xValueMapper: (GDPDatamedit15 data, _) =>
+                                        data.emoteBase,
+                                    yValueMapper: (GDPDatamedit15 data, _) =>
+                                        data.quinzecontMedit,
+                                    pointColorMapper:
+                                        (GDPDatamedit15 data, _) =>
+                                            data.colorgraf,
+                                    dataLabelSettings:
+                                        DataLabelSettings(isVisible: true),
+                                    enableTooltip: true),
+                              ],
+                            ),
+                          ),
+                          visible: value.contains("15") ? true : false,
+                        ),
+                        //Gráfico 30 dias
+                        Visibility(
+                          child: Container(
+                            child: SfCircularChart(
+                              title: ChartTitle(
+                                text:
+                                    'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas nos ultimos 30 dias: $contMedit',
+                                textStyle: TextStyle(color: Colors.white),
+                              ),
+                              legend: Legend(
+                                  title: LegendTitle(
+                                    text: 'Emoções',
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                  isVisible: true,
+                                  overflowMode: LegendItemOverflowMode.wrap,
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 10),
+                                  alignment: ChartAlignment.center,
+                                  itemPadding: 20,
+                                  position: LegendPosition.right),
+                              tooltipBehavior: _tooltipBehavior,
+                              series: <CircularSeries>[
+                                DoughnutSeries<GDPDatamedit30, dynamic>(
+                                    dataSource: _chartDatamedit30,
+                                    xValueMapper: (GDPDatamedit30 data, _) =>
+                                        data.emoteBase,
+                                    yValueMapper: (GDPDatamedit30 data, _) =>
+                                        data.mescontMedit,
+                                    pointColorMapper:
+                                        (GDPDatamedit30 data, _) =>
+                                            data.colorgraf,
+                                    dataLabelSettings:
+                                        DataLabelSettings(isVisible: true),
+                                    enableTooltip: true),
+                              ],
+                            ),
+                          ),
+                          visible: value.contains("30") ? true : false,
                         ),
                       ]),
 
@@ -319,36 +423,114 @@ class _StatsPageState extends State<StatsPage> {
                                   ],
                                 )),
                           ),
-                          Container(
-                            child: SfCircularChart(
-                              title: ChartTitle(
-                                text:
-                                    'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
-                                textStyle: TextStyle(color: Colors.white),
+
+                          //Grafico Geral
+                          Visibility(
+                            child: Container(
+                              child: SfCircularChart(
+                                title: ChartTitle(
+                                  text:
+                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
+                                  textStyle: TextStyle(color: Colors.white),
+                                ),
+                                legend: Legend(
+                                    isVisible: true,
+                                    overflowMode: LegendItemOverflowMode.wrap,
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 10),
+                                    alignment: ChartAlignment.center,
+                                    itemPadding: 20,
+                                    position: LegendPosition.right),
+                                tooltipBehavior: _tooltipBehavior,
+                                series: <CircularSeries>[
+                                  DoughnutSeries<GDPDatacromo, dynamic>(
+                                      dataSource: _chartDatacromo,
+                                      xValueMapper: (GDPDatacromo data, _) =>
+                                          data.emoteBaseC,
+                                      yValueMapper: (GDPDatacromo data, _) =>
+                                          data.contCromo,
+                                      pointColorMapper:
+                                          (GDPDatacromo data, _) =>
+                                              data.colorgraf,
+                                      dataLabelSettings:
+                                          DataLabelSettings(isVisible: true),
+                                      enableTooltip: true),
+                                ],
                               ),
-                              legend: Legend(
-                                  isVisible: true,
-                                  overflowMode: LegendItemOverflowMode.wrap,
-                                  textStyle: TextStyle(
-                                      color: Colors.white, fontSize: 10),
-                                  alignment: ChartAlignment.center,
-                                  itemPadding: 20,
-                                  position: LegendPosition.right),
-                              tooltipBehavior: _tooltipBehavior,
-                              series: <CircularSeries>[
-                                DoughnutSeries<GDPDatacromo, dynamic>(
-                                    dataSource: _chartDatacromo,
-                                    xValueMapper: (GDPDatacromo data, _) =>
-                                        data.emoteBaseC,
-                                    yValueMapper: (GDPDatacromo data, _) =>
-                                        data.contCromo,
-                                    pointColorMapper: (GDPDatacromo data, _) =>
-                                        data.colorgraf,
-                                    dataLabelSettings:
-                                        DataLabelSettings(isVisible: true),
-                                    enableTooltip: true),
-                              ],
                             ),
+                            visible: value.contains("Geral") ? true : false,
+                          ),
+                          //Grafico 15 dias
+                          Visibility(
+                            child: Container(
+                              child: SfCircularChart(
+                                title: ChartTitle(
+                                  text:
+                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
+                                  textStyle: TextStyle(color: Colors.white),
+                                ),
+                                legend: Legend(
+                                    isVisible: true,
+                                    overflowMode: LegendItemOverflowMode.wrap,
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 10),
+                                    alignment: ChartAlignment.center,
+                                    itemPadding: 20,
+                                    position: LegendPosition.right),
+                                tooltipBehavior: _tooltipBehavior,
+                                series: <CircularSeries>[
+                                  DoughnutSeries<GDPDatacromo15, dynamic>(
+                                      dataSource: _chartDatacromo15,
+                                      xValueMapper: (GDPDatacromo15 data, _) =>
+                                          data.emoteBaseC,
+                                      yValueMapper: (GDPDatacromo15 data, _) =>
+                                          data.quinzecontCromo,
+                                      pointColorMapper:
+                                          (GDPDatacromo15 data, _) =>
+                                              data.colorgraf,
+                                      dataLabelSettings:
+                                          DataLabelSettings(isVisible: true),
+                                      enableTooltip: true),
+                                ],
+                              ),
+                            ),
+                            visible: value.contains("15") ? true : false,
+                          ),
+                          //Grafico 30 dias
+                          Visibility(
+                            child: Container(
+                              child: SfCircularChart(
+                                title: ChartTitle(
+                                  text:
+                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $contCromo',
+                                  textStyle: TextStyle(color: Colors.white),
+                                ),
+                                legend: Legend(
+                                    isVisible: true,
+                                    overflowMode: LegendItemOverflowMode.wrap,
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 10),
+                                    alignment: ChartAlignment.center,
+                                    itemPadding: 20,
+                                    position: LegendPosition.right),
+                                tooltipBehavior: _tooltipBehavior,
+                                series: <CircularSeries>[
+                                  DoughnutSeries<GDPDatacromo30, dynamic>(
+                                      dataSource: _chartDatacromo30,
+                                      xValueMapper: (GDPDatacromo30 data, _) =>
+                                          data.emoteBaseC,
+                                      yValueMapper: (GDPDatacromo30 data, _) =>
+                                          data.mescontCromo,
+                                      pointColorMapper:
+                                          (GDPDatacromo30 data, _) =>
+                                              data.colorgraf,
+                                      dataLabelSettings:
+                                          DataLabelSettings(isVisible: true),
+                                      enableTooltip: true),
+                                ],
+                              ),
+                            ),
+                            visible: value.contains("30") ? true : false,
                           ),
                         ],
                       ),
@@ -427,6 +609,8 @@ class _StatsPageState extends State<StatsPage> {
                                   ],
                                 )),
                           ),
+
+                          //Grafico Geral
                           Visibility(
                             child: Container(
                               child: SfCircularChart(
@@ -462,17 +646,90 @@ class _StatsPageState extends State<StatsPage> {
                             ),
                             visible: value.contains("Geral") ? true : false,
                           ),
+                          //Grafico 15 dias
+                          Visibility(
+                            child: Container(
+                              child: SfCircularChart(
+                                title: ChartTitle(
+                                  text:
+                                      'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas nos ultimos 15 dias: $contMusic',
+                                  textStyle: TextStyle(color: Colors.white),
+                                ),
+                                legend: Legend(
+                                    isVisible: true,
+                                    overflowMode: LegendItemOverflowMode.wrap,
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 10),
+                                    alignment: ChartAlignment.center,
+                                    itemPadding: 20,
+                                    position: LegendPosition.right),
+                                tooltipBehavior: _tooltipBehavior,
+                                series: <CircularSeries>[
+                                  DoughnutSeries<GDPDatamusic15, dynamic>(
+                                      dataSource: _chartDatamusic15,
+                                      xValueMapper: (GDPDatamusic15 data, _) =>
+                                          data.emoteBaseM,
+                                      yValueMapper: (GDPDatamusic15 data, _) =>
+                                          data.quinzecontMusic,
+                                      pointColorMapper:
+                                          (GDPDatamusic15 data, _) =>
+                                              data.colorgraf,
+                                      dataLabelSettings:
+                                          DataLabelSettings(isVisible: true),
+                                      enableTooltip: true),
+                                ],
+                              ),
+                            ),
+                            visible: value.contains("15") ? true : false,
+                          ),
+                          //Geral 30 dias
+                          Visibility(
+                            child: Container(
+                              child: SfCircularChart(
+                                title: ChartTitle(
+                                  text:
+                                      'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas nos últimos 30 dias: $contMusic',
+                                  textStyle: TextStyle(color: Colors.white),
+                                ),
+                                legend: Legend(
+                                    isVisible: true,
+                                    overflowMode: LegendItemOverflowMode.wrap,
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 10),
+                                    alignment: ChartAlignment.center,
+                                    itemPadding: 20,
+                                    position: LegendPosition.right),
+                                tooltipBehavior: _tooltipBehavior,
+                                series: <CircularSeries>[
+                                  DoughnutSeries<GDPDatamusic30, dynamic>(
+                                      dataSource: _chartDatamusic30,
+                                      xValueMapper: (GDPDatamusic30 data, _) =>
+                                          data.emoteBaseM,
+                                      yValueMapper: (GDPDatamusic30 data, _) =>
+                                          data.mescontMusic,
+                                      pointColorMapper:
+                                          (GDPDatamusic30 data, _) =>
+                                              data.colorgraf,
+                                      dataLabelSettings:
+                                          DataLabelSettings(isVisible: true),
+                                      enableTooltip: true),
+                                ],
+                              ),
+                            ),
+                            visible: value.contains("30") ? true : false,
+                          ),
                         ],
                       ),
                     ],
                   ),
-                ),
+                )
               ],
             ),
           ),
         ));
   }
 
+  //Montagem do Gráfico de meditação geral
   List<GDPDatamedit> getChartDatamedit() {
     final List<GDPDatamedit> chartData = [];
     this.emotea.forEach((emoteBase) => {
@@ -510,6 +767,83 @@ class _StatsPageState extends State<StatsPage> {
     return chartData;
   }
 
+  //Montagem do Gráfico de meditação 15 dias
+  List<GDPDatamedit15> getChartDatamedit15() {
+    final List<GDPDatamedit15> chartData = [];
+    this.emotea.forEach((emoteBase) => {
+          if (emoteBase == 'Medo')
+            {
+              quinzecontMedit = quinzeMeditmed,
+              chartData.add(new GDPDatamedit15(
+                  'Medo', quinzecontMedit, Color(0xff3366cc))),
+            }
+          else if (emoteBase == 'Raiva')
+            {
+              quinzecontMedit = quinzeMeditraiva,
+              chartData.add(new GDPDatamedit15(
+                  'Raiva', quinzecontMedit, Color(0xFFF06292))),
+            }
+          else if (emoteBase == 'Ansiedade')
+            {
+              quinzecontMedit = quinzeMeditansi,
+              chartData.add(new GDPDatamedit15(
+                  'Ansiedade', quinzecontMedit, Color(0xFF512DA8))),
+            }
+          else if (emoteBase == 'Triste')
+            {
+              quinzecontMedit = quinzeMedittriste,
+              chartData.add(new GDPDatamedit15(
+                  'Triste', quinzecontMedit, Color(0xffEF9A9A))),
+            }
+          else if (emoteBase == 'Estresse')
+            {
+              quinzecontMedit = quinzeMeditstress,
+              chartData.add(new GDPDatamedit15(
+                  'Estresse', quinzecontMedit, Color(0xffff9900))),
+            }
+        });
+    return chartData;
+  }
+
+  //Montagem do Gráfico de meditação 30 dias
+  List<GDPDatamedit30> getChartDatamedit30() {
+    final List<GDPDatamedit30> chartData = [];
+    this.emotea.forEach((emoteBase) => {
+          if (emoteBase == 'Medo')
+            {
+              mescontMedit = mesMeditmed,
+              chartData.add(
+                  new GDPDatamedit30('Medo', mescontMedit, Color(0xff3366cc))),
+            }
+          else if (emoteBase == 'Raiva')
+            {
+              mescontMedit = mesMeditraiva,
+              chartData.add(
+                  new GDPDatamedit30('Raiva', mescontMedit, Color(0xFFF06292))),
+            }
+          else if (emoteBase == 'Ansiedade')
+            {
+              mescontMedit = mesMeditansi,
+              chartData.add(new GDPDatamedit30(
+                  'Ansiedade', mescontMedit, Color(0xFF512DA8))),
+            }
+          else if (emoteBase == 'Triste')
+            {
+              mescontMedit = mesMedittriste,
+              chartData.add(new GDPDatamedit30(
+                  'Triste', mescontMedit, Color(0xffEF9A9A))),
+            }
+          else if (emoteBase == 'Estresse')
+            {
+              mescontMedit = mesMeditstress,
+              chartData.add(new GDPDatamedit30(
+                  'Estresse', mescontMedit, Color(0xffff9900))),
+            }
+        });
+    return chartData;
+  }
+
+  //Montagem do Gráfico de cromoterapia geral
   List<GDPDatacromo> getChartDatacromo() {
     final List<GDPDatacromo> chartData = [];
     this.emotea.forEach((emoteBaseC) => {
@@ -547,6 +881,83 @@ class _StatsPageState extends State<StatsPage> {
     return chartData;
   }
 
+  //Montagem do Gráfico de cromoterapia 15 dias
+  List<GDPDatacromo15> getChartDatacromo15() {
+    final List<GDPDatacromo15> chartData = [];
+    this.emotea.forEach((emoteBaseC) => {
+          if (emoteBaseC == 'Medo')
+            {
+              contCromo = quinzeCromomed,
+              chartData.add(
+                  new GDPDatacromo15('Medo', contCromo, Color(0xff3366cc))),
+            }
+          else if (emoteBaseC == 'Raiva')
+            {
+              contCromo = quinzeCromoraiva,
+              chartData.add(
+                  new GDPDatacromo15('Raiva', contCromo, Color(0xFFF06292))),
+            }
+          else if (emoteBaseC == 'Ansiedade')
+            {
+              contCromo = quinzeCromoansi,
+              chartData.add(new GDPDatacromo15(
+                  'Ansiedade', contCromo, Color(0xFF512DA8))),
+            }
+          else if (emoteBaseC == 'Triste')
+            {
+              contCromo = quinzeCromotriste,
+              chartData.add(
+                  new GDPDatacromo15('Triste', contCromo, Color(0xffEF9A9A))),
+            }
+          else if (emoteBaseC == 'Estresse')
+            {
+              contCromo = quinzeCromostress,
+              chartData.add(
+                  new GDPDatacromo15('Estresse', contCromo, Color(0xffff9900))),
+            }
+        });
+    return chartData;
+  }
+
+  //Montagem do Gráfico de cromoterapia 30 dias
+  List<GDPDatacromo30> getChartDatacromo30() {
+    final List<GDPDatacromo30> chartData = [];
+    this.emotea.forEach((emoteBaseC) => {
+          if (emoteBaseC == 'Medo')
+            {
+              contCromo = mesCromomed,
+              chartData.add(
+                  new GDPDatacromo30('Medo', contCromo, Color(0xff3366cc))),
+            }
+          else if (emoteBaseC == 'Raiva')
+            {
+              contCromo = mesCromoraiva,
+              chartData.add(
+                  new GDPDatacromo30('Raiva', contCromo, Color(0xFFF06292))),
+            }
+          else if (emoteBaseC == 'Ansiedade')
+            {
+              contCromo = mesCromoansi,
+              chartData.add(new GDPDatacromo30(
+                  'Ansiedade', contCromo, Color(0xFF512DA8))),
+            }
+          else if (emoteBaseC == 'Triste')
+            {
+              contCromo = mesCromotriste,
+              chartData.add(
+                  new GDPDatacromo30('Triste', contCromo, Color(0xffEF9A9A))),
+            }
+          else if (emoteBaseC == 'Estresse')
+            {
+              contCromo = mesCromostress,
+              chartData.add(
+                  new GDPDatacromo30('Estresse', contCromo, Color(0xffff9900))),
+            }
+        });
+    return chartData;
+  }
+
+  //Montagem do gráfico de musicoterapia geral
   List<GDPDatamusic> getChartDatamusic() {
     final List<GDPDatamusic> chartData = [];
     this.emotea.forEach((emoteBaseM) => {
@@ -579,6 +990,82 @@ class _StatsPageState extends State<StatsPage> {
               contMusic = contMusicstress,
               chartData.add(
                   new GDPDatamusic('Estresse', contMusic, Color(0xffff9900))),
+            }
+        });
+    return chartData;
+  }
+
+  //Montagem do gráfico de musicoterapia 15 dias
+  List<GDPDatamusic15> getChartDatamusic15() {
+    final List<GDPDatamusic15> chartData = [];
+    this.emotea.forEach((emoteBaseM) => {
+          if (emoteBaseM == 'Medo')
+            {
+              contMusic = quinzeMusicmed,
+              chartData.add(
+                  new GDPDatamusic15('Medo', contMusic, Color(0xff3366cc))),
+            }
+          else if (emoteBaseM == 'Raiva')
+            {
+              contMusic = quinzeMusicraiva,
+              chartData.add(
+                  new GDPDatamusic15('Raiva', contMusic, Color(0xFFF06292))),
+            }
+          else if (emoteBaseM == 'Ansiedade')
+            {
+              contMusic = quinzeMusicansi,
+              chartData.add(new GDPDatamusic15(
+                  'Ansiedade', contMusic, Color(0xFF512DA8))),
+            }
+          else if (emoteBaseM == 'Triste')
+            {
+              contMusic = quinzeMusictriste,
+              chartData.add(
+                  new GDPDatamusic15('Triste', contMusic, Color(0xffEF9A9A))),
+            }
+          else if (emoteBaseM == 'Estresse')
+            {
+              contMusic = quinzeMusicstress,
+              chartData.add(
+                  new GDPDatamusic15('Estresse', contMusic, Color(0xffff9900))),
+            }
+        });
+    return chartData;
+  }
+
+  //Montagem do gráfico de musicoterapia 30 dias
+  List<GDPDatamusic30> getChartDatamusic30() {
+    final List<GDPDatamusic30> chartData = [];
+    this.emotea.forEach((emoteBaseM) => {
+          if (emoteBaseM == 'Medo')
+            {
+              contMusic = mesMusicmed,
+              chartData.add(
+                  new GDPDatamusic30('Medo', contMusic, Color(0xff3366cc))),
+            }
+          else if (emoteBaseM == 'Raiva')
+            {
+              contMusic = mesMusicraiva,
+              chartData.add(
+                  new GDPDatamusic30('Raiva', contMusic, Color(0xFFF06292))),
+            }
+          else if (emoteBaseM == 'Ansiedade')
+            {
+              contMusic = mesMusicansi,
+              chartData.add(new GDPDatamusic30(
+                  'Ansiedade', contMusic, Color(0xFF512DA8))),
+            }
+          else if (emoteBaseM == 'Triste')
+            {
+              contMusic = mesMusictriste,
+              chartData.add(
+                  new GDPDatamusic30('Triste', contMusic, Color(0xffEF9A9A))),
+            }
+          else if (emoteBaseM == 'Estresse')
+            {
+              contMusic = mesMusicstress,
+              chartData.add(
+                  new GDPDatamusic30('Estresse', contMusic, Color(0xffff9900))),
             }
         });
     return chartData;
@@ -644,7 +1131,7 @@ class _StatsPageState extends State<StatsPage> {
     contCromotriste = listCromoOver['triste']?.length ?? 0;
 
     //Cromo 15 dias
-    var quinzeCromo = listMedit2
+    var quinzeCromo = listCromo2
         .where((element) =>
             element.date.compareTo(Timestamp.fromDate(twoweeks)) >= 0)
         .toList();
@@ -657,7 +1144,7 @@ class _StatsPageState extends State<StatsPage> {
     quinzeCromotriste = quinzeListCromo['triste']?.length ?? 0;
 
     //Cromo mes
-    var mesCromo = listMedit2
+    var mesCromo = listCromo2
         .where((element) =>
             element.date.compareTo(Timestamp.fromDate(monthAgo)) >= 0)
         .toList();
@@ -716,6 +1203,12 @@ class _StatsPageState extends State<StatsPage> {
     _chartDatamedit = getChartDatamedit();
     _chartDatacromo = getChartDatacromo();
     _chartDatamusic = getChartDatamusic();
+    _chartDatamedit15 = getChartDatamedit15();
+    _chartDatacromo15 = getChartDatacromo15();
+    _chartDatamusic15 = getChartDatamusic15();
+    _chartDatamedit30 = getChartDatamedit30();
+    _chartDatacromo30 = getChartDatacromo30();
+    _chartDatamusic30 = getChartDatamusic30();
     setState(() {});
   }
 }
@@ -732,6 +1225,30 @@ class GDPDatamedit {
   }
 }
 
+class GDPDatamedit15 {
+  final String emoteBase;
+  final int quinzecontMedit;
+  final Color colorgraf;
+  GDPDatamedit15(this.emoteBase, this.quinzecontMedit, this.colorgraf);
+
+  @override
+  String toString() {
+    return emoteBase + quinzecontMedit.toString();
+  }
+}
+
+class GDPDatamedit30 {
+  final String emoteBase;
+  final int mescontMedit;
+  final Color colorgraf;
+  GDPDatamedit30(this.emoteBase, this.mescontMedit, this.colorgraf);
+
+  @override
+  String toString() {
+    return emoteBase + mescontMedit.toString();
+  }
+}
+
 class GDPDatacromo {
   final String emoteBaseC;
   final int contCromo;
@@ -744,6 +1261,30 @@ class GDPDatacromo {
   }
 }
 
+class GDPDatacromo15 {
+  final String emoteBaseC;
+  final int quinzecontCromo;
+  final Color colorgraf;
+
+  GDPDatacromo15(this.emoteBaseC, this.quinzecontCromo, this.colorgraf);
+  @override
+  String toString() {
+    return emoteBaseC + quinzecontCromo.toString();
+  }
+}
+
+class GDPDatacromo30 {
+  final String emoteBaseC;
+  final int mescontCromo;
+  final Color colorgraf;
+
+  GDPDatacromo30(this.emoteBaseC, this.mescontCromo, this.colorgraf);
+  @override
+  String toString() {
+    return emoteBaseC + mescontCromo.toString();
+  }
+}
+
 class GDPDatamusic {
   final String emoteBaseM;
   final int contMusic;
@@ -753,6 +1294,30 @@ class GDPDatamusic {
   @override
   String toString() {
     return emoteBaseM + contMusic.toString();
+  }
+}
+
+class GDPDatamusic15 {
+  final String emoteBaseM;
+  final int quinzecontMusic;
+  final Color colorgraf;
+
+  GDPDatamusic15(this.emoteBaseM, this.quinzecontMusic, this.colorgraf);
+  @override
+  String toString() {
+    return emoteBaseM + quinzecontMusic.toString();
+  }
+}
+
+class GDPDatamusic30 {
+  final String emoteBaseM;
+  final int mescontMusic;
+  final Color colorgraf;
+
+  GDPDatamusic30(this.emoteBaseM, this.mescontMusic, this.colorgraf);
+  @override
+  String toString() {
+    return emoteBaseM + mescontMusic.toString();
   }
 }
 

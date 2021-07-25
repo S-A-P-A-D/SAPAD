@@ -15,16 +15,3 @@ updateFirebaseArray(String doc, String campo, dynamic values) {
     campo: FieldValue.arrayUnion([values]),
   });
 }
-
-/* Future<void> appendToArray(String id, dynamic element) async {
-  _firestore.collection(RootKey).doc(id).update({
-    'myArrayField': FieldValue.arrayUnion([element]),
-  });
-}
-
-Future<void> removeFromArray(String id, dynamic element) async {
-  _firestore.collection(RootKey).doc(id).update({
-    'myArrayField': FieldValue.arrayRemove([element]),
-  });
-}
- */
