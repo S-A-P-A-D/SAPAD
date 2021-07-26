@@ -35,6 +35,7 @@ class _StatsPageState extends State<StatsPage> {
   late List<GDPDatamusic30> _chartDatamusic30 = [];
   late TooltipBehavior _tooltipBehavior;
   //Medit --------------------------------
+  bool? _meditNull = false;
   late int _meditOver = 0;
   late int contMedit = 0;
   late int contMeditmed = 0;
@@ -60,6 +61,7 @@ class _StatsPageState extends State<StatsPage> {
   late int mesMedittriste = 0;
 
   //Cromo --------------------------------
+  bool? _cromoNull = false;
   late int _cromoOver = 0;
   late int contCromo = 0;
   late int contCromomed = 0;
@@ -85,6 +87,7 @@ class _StatsPageState extends State<StatsPage> {
   late int mesCromotriste = 0;
 
   //Music --------------------------------
+  bool? _musicNull = false;
   late int _musicOver = 0;
   late int contMusic = 0;
   late int contMusicmed = 0;
@@ -177,6 +180,30 @@ class _StatsPageState extends State<StatsPage> {
                     children: <Widget>[
                       //Medit Grafico
                       ListView(padding: EdgeInsets.all(5), children: [
+                        Visibility(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 40.0),
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Icon(Icons.info_outline,
+                                        size: 200.0, color: Colors.white60),
+                                  ),
+                                  Text(
+                                    "Para ter acesso aos graficos você precisa ter usado alguma meditação na pagina principal",
+                                    style: TextStyle(
+                                        color: Colors.white60, fontSize: 25.0),
+                                    textAlign: TextAlign.center,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          visible: _meditNull == false ? false : true,
+                        ),
                         Padding(
                             padding: EdgeInsets.all(10.0),
                             child: Row(
@@ -262,7 +289,10 @@ class _StatsPageState extends State<StatsPage> {
                               ),
                             ),
                           ),
-                          visible: value.contains("Geral") ? true : false,
+                          visible:
+                              value.contains("Geral") && _meditNull == false
+                                  ? true
+                                  : false,
                         ),
 
                         //Gráfico 15 dias
@@ -304,7 +334,9 @@ class _StatsPageState extends State<StatsPage> {
                               ],
                             ),
                           ),
-                          visible: value.contains("15") ? true : false,
+                          visible: value.contains("15") && _meditNull == false
+                              ? true
+                              : false,
                         ),
                         //Gráfico 30 dias
                         Visibility(
@@ -345,7 +377,9 @@ class _StatsPageState extends State<StatsPage> {
                               ],
                             ),
                           ),
-                          visible: value.contains("30") ? true : false,
+                          visible: value.contains("30") && _meditNull == false
+                              ? true
+                              : false,
                         ),
                       ]),
 
@@ -353,6 +387,31 @@ class _StatsPageState extends State<StatsPage> {
                       ListView(
                         padding: EdgeInsets.all(5),
                         children: [
+                          Visibility(
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 40.0),
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Icon(Icons.info_outline,
+                                          size: 200.0, color: Colors.white60),
+                                    ),
+                                    Text(
+                                      "Para ter acesso aos graficos você precisa ter usado alguma meditação na pagina principal",
+                                      style: TextStyle(
+                                          color: Colors.white60,
+                                          fontSize: 25.0),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            visible: _cromoNull == false ? false : true,
+                          ),
                           Padding(
                               padding: EdgeInsets.all(10.0),
                               child: Row(
@@ -431,7 +490,10 @@ class _StatsPageState extends State<StatsPage> {
                                 ],
                               ),
                             ),
-                            visible: value.contains("Geral") ? true : false,
+                            visible:
+                                value.contains("Geral") && _cromoNull == false
+                                    ? true
+                                    : false,
                           ),
                           //Grafico 15 dias
                           Visibility(
@@ -467,7 +529,9 @@ class _StatsPageState extends State<StatsPage> {
                                 ],
                               ),
                             ),
-                            visible: value.contains("15") ? true : false,
+                            visible: value.contains("15") && _cromoNull == false
+                                ? true
+                                : false,
                           ),
                           //Grafico 30 dias
                           Visibility(
@@ -503,7 +567,9 @@ class _StatsPageState extends State<StatsPage> {
                                 ],
                               ),
                             ),
-                            visible: value.contains("30") ? true : false,
+                            visible: value.contains("30") && _cromoNull == false
+                                ? true
+                                : false,
                           ),
                         ],
                       ),
@@ -512,6 +578,32 @@ class _StatsPageState extends State<StatsPage> {
                       ListView(
                         padding: EdgeInsets.all(5),
                         children: [
+                          //Card Alerta
+                          Visibility(
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 40.0),
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Icon(Icons.info_outline,
+                                          size: 200.0, color: Colors.white60),
+                                    ),
+                                    Text(
+                                      "Para ter acesso aos graficos você precisa ter usado alguma meditação na pagina principal",
+                                      style: TextStyle(
+                                          color: Colors.white60,
+                                          fontSize: 25.0),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            visible: _musicNull == false ? false : true,
+                          ),
                           Padding(
                               padding: EdgeInsets.all(10.0),
                               child: Row(
@@ -590,7 +682,10 @@ class _StatsPageState extends State<StatsPage> {
                                 ],
                               ),
                             ),
-                            visible: value.contains("Geral") ? true : false,
+                            visible:
+                                value.contains("Geral") && _musicNull == false
+                                    ? true
+                                    : false,
                           ),
                           //Grafico 15 dias
                           Visibility(
@@ -626,7 +721,9 @@ class _StatsPageState extends State<StatsPage> {
                                 ],
                               ),
                             ),
-                            visible: value.contains("15") ? true : false,
+                            visible: value.contains("15") && _musicNull == false
+                                ? true
+                                : false,
                           ),
                           //Geral 30 dias
                           Visibility(
@@ -662,7 +759,9 @@ class _StatsPageState extends State<StatsPage> {
                                 ],
                               ),
                             ),
-                            visible: value.contains("30") ? true : false,
+                            visible: value.contains("30") && _musicNull == false
+                                ? true
+                                : false,
                           ),
                         ],
                       ),
@@ -1026,128 +1125,137 @@ class _StatsPageState extends State<StatsPage> {
     DateTime twoweeks = today.subtract(const Duration(days: 15));
     DateTime monthAgo = today.subtract(const Duration(days: 30));
 
-    //Medit ----------------------------
+    try {
+      //Medit ----------------------------
 
-    //Medit GroupBy
-    List<dynamic> listMedit = (tec.data()?['Meditacao']);
-    var listMedit2 = listMedit.map((e) => EmotionStats.fromJson(e)).toList();
-    var listMeditOver = listMedit2.groupBy((m) => m.emotion);
+      //Medit GroupBy
+      List<dynamic> listMedit = (tec.data()?['Meditacao']);
+      var listMedit2 = listMedit.map((e) => EmotionStats.fromJson(e)).toList();
+      var listMeditOver = listMedit2.groupBy((m) => m.emotion);
 
-    _meditOver = listMedit2.length;
-    contMeditansi = listMeditOver['ansiedade']?.length ?? 0;
-    contMeditmed = listMeditOver['medo']?.length ?? 0;
-    contMeditraiva = listMeditOver['raiva']?.length ?? 0;
-    contMeditstress = listMeditOver['stress']?.length ?? 0;
-    contMedittriste = listMeditOver['triste']?.length ?? 0;
+      _meditOver = listMedit2.length;
+      contMeditansi = listMeditOver['ansiedade']?.length ?? 0;
+      contMeditmed = listMeditOver['medo']?.length ?? 0;
+      contMeditraiva = listMeditOver['raiva']?.length ?? 0;
+      contMeditstress = listMeditOver['stress']?.length ?? 0;
+      contMedittriste = listMeditOver['triste']?.length ?? 0;
 
-    //Medit 15 dias
-    var quinze = listMedit2
-        .where((element) =>
-            element.date.compareTo(Timestamp.fromDate(twoweeks)) >= 0)
-        .toList();
-    var quinzeListMedit = quinze.groupBy((m) => m.emotion);
+      //Medit 15 dias
+      var quinze = listMedit2
+          .where((element) =>
+              element.date.compareTo(Timestamp.fromDate(twoweeks)) >= 0)
+          .toList();
+      var quinzeListMedit = quinze.groupBy((m) => m.emotion);
 
-    _meditquinze = quinze.length;
-    quinzeMeditansi = quinzeListMedit['ansiedade']?.length ?? 0;
-    quinzeMeditmed = quinzeListMedit['medo']?.length ?? 0;
-    quinzeMeditraiva = quinzeListMedit['raiva']?.length ?? 0;
-    quinzeMeditstress = quinzeListMedit['stress']?.length ?? 0;
-    quinzeMedittriste = quinzeListMedit['triste']?.length ?? 0;
+      _meditquinze = quinze.length;
+      quinzeMeditansi = quinzeListMedit['ansiedade']?.length ?? 0;
+      quinzeMeditmed = quinzeListMedit['medo']?.length ?? 0;
+      quinzeMeditraiva = quinzeListMedit['raiva']?.length ?? 0;
+      quinzeMeditstress = quinzeListMedit['stress']?.length ?? 0;
+      quinzeMedittriste = quinzeListMedit['triste']?.length ?? 0;
 
-    //Medit mes
-    var mes = listMedit2
-        .where((element) =>
-            element.date.compareTo(Timestamp.fromDate(monthAgo)) >= 0)
-        .toList();
-    var mesListMedit = mes.groupBy((m) => m.emotion);
+      //Medit mes
+      var mes = listMedit2
+          .where((element) =>
+              element.date.compareTo(Timestamp.fromDate(monthAgo)) >= 0)
+          .toList();
+      var mesListMedit = mes.groupBy((m) => m.emotion);
 
-    _meditmes = mes.length;
-    mesMeditansi = mesListMedit['ansiedade']?.length ?? 0;
-    mesMeditmed = mesListMedit['medo']?.length ?? 0;
-    mesMeditraiva = mesListMedit['raiva']?.length ?? 0;
-    mesMeditstress = mesListMedit['stress']?.length ?? 0;
-    mesMedittriste = mesListMedit['triste']?.length ?? 0;
+      _meditmes = mes.length;
+      mesMeditansi = mesListMedit['ansiedade']?.length ?? 0;
+      mesMeditmed = mesListMedit['medo']?.length ?? 0;
+      mesMeditraiva = mesListMedit['raiva']?.length ?? 0;
+      mesMeditstress = mesListMedit['stress']?.length ?? 0;
+      mesMedittriste = mesListMedit['triste']?.length ?? 0;
 
-    //Cromo ----------------------------
-    //Cromo GroupBy
-    List<dynamic> listCromo = (tec.data()?['Cromoterapia']);
-    var listCromo2 = listCromo.map((e) => EmotionStats.fromJson(e)).toList();
-    var listCromoOver = listCromo2.groupBy((m) => m.emotion);
+      //Cromo ----------------------------
+      //Cromo GroupBy
+      List<dynamic> listCromo = (tec.data()?['Cromoterapia']);
+      var listCromo2 = listCromo.map((e) => EmotionStats.fromJson(e)).toList();
+      var listCromoOver = listCromo2.groupBy((m) => m.emotion);
 
-    _cromoOver = listCromo2.length;
-    contCromoansi = listCromoOver['ansiedade']?.length ?? 0;
-    contCromomed = listCromoOver['medo']?.length ?? 0;
-    contCromoraiva = listCromoOver['raiva']?.length ?? 0;
-    contCromostress = listCromoOver['stress']?.length ?? 0;
-    contCromotriste = listCromoOver['triste']?.length ?? 0;
+      _cromoOver = listCromo2.length;
+      contCromoansi = listCromoOver['ansiedade']?.length ?? 0;
+      contCromomed = listCromoOver['medo']?.length ?? 0;
+      contCromoraiva = listCromoOver['raiva']?.length ?? 0;
+      contCromostress = listCromoOver['stress']?.length ?? 0;
+      contCromotriste = listCromoOver['triste']?.length ?? 0;
 
-    //Cromo 15 dias
-    var quinzeCromo = listCromo2
-        .where((element) =>
-            element.date.compareTo(Timestamp.fromDate(twoweeks)) >= 0)
-        .toList();
-    var quinzeListCromo = quinzeCromo.groupBy((m) => m.emotion);
+      //Cromo 15 dias
+      var quinzeCromo = listCromo2
+          .where((element) =>
+              element.date.compareTo(Timestamp.fromDate(twoweeks)) >= 0)
+          .toList();
+      var quinzeListCromo = quinzeCromo.groupBy((m) => m.emotion);
 
-    _cromoquinze = quinzeCromo.length;
-    quinzeCromoansi = quinzeListCromo['ansiedade']?.length ?? 0;
-    quinzeCromomed = quinzeListCromo['medo']?.length ?? 0;
-    quinzeCromoraiva = quinzeListCromo['raiva']?.length ?? 0;
-    quinzeCromostress = quinzeListCromo['stress']?.length ?? 0;
-    quinzeCromotriste = quinzeListCromo['triste']?.length ?? 0;
+      _cromoquinze = quinzeCromo.length;
+      quinzeCromoansi = quinzeListCromo['ansiedade']?.length ?? 0;
+      quinzeCromomed = quinzeListCromo['medo']?.length ?? 0;
+      quinzeCromoraiva = quinzeListCromo['raiva']?.length ?? 0;
+      quinzeCromostress = quinzeListCromo['stress']?.length ?? 0;
+      quinzeCromotriste = quinzeListCromo['triste']?.length ?? 0;
 
-    //Cromo mes
-    var mesCromo = listCromo2
-        .where((element) =>
-            element.date.compareTo(Timestamp.fromDate(monthAgo)) >= 0)
-        .toList();
-    var mesListCromo = mesCromo.groupBy((m) => m.emotion);
+      //Cromo mes
+      var mesCromo = listCromo2
+          .where((element) =>
+              element.date.compareTo(Timestamp.fromDate(monthAgo)) >= 0)
+          .toList();
+      var mesListCromo = mesCromo.groupBy((m) => m.emotion);
 
-    _cromomes = mesCromo.length;
-    mesCromoansi = mesListCromo['ansiedade']?.length ?? 0;
-    mesCromomed = mesListCromo['medo']?.length ?? 0;
-    mesCromoraiva = mesListCromo['raiva']?.length ?? 0;
-    mesCromostress = mesListCromo['stress']?.length ?? 0;
-    mesCromotriste = mesListCromo['triste']?.length ?? 0;
+      _cromomes = mesCromo.length;
+      mesCromoansi = mesListCromo['ansiedade']?.length ?? 0;
+      mesCromomed = mesListCromo['medo']?.length ?? 0;
+      mesCromoraiva = mesListCromo['raiva']?.length ?? 0;
+      mesCromostress = mesListCromo['stress']?.length ?? 0;
+      mesCromotriste = mesListCromo['triste']?.length ?? 0;
 
-    //Music ----------------------------
-    //Music GroupBy
-    List<dynamic> listMusic = (tec.data()?['Musicoterapia']);
-    var listMusic2 = listMusic.map((e) => EmotionStats.fromJson(e)).toList();
-    var listMusicOver = listMusic2.groupBy((m) => m.emotion);
+      //Music ----------------------------
+      //Music GroupBy
+      List<dynamic> listMusic = (tec.data()?['Musicoterapia']);
+      var listMusic2 = listMusic.map((e) => EmotionStats.fromJson(e)).toList();
+      var listMusicOver = listMusic2.groupBy((m) => m.emotion);
 
-    _musicOver = listMusic2.length;
-    contMusicansi = listMusicOver['ansiedade']?.length ?? 0;
-    contMusicmed = listMusicOver['medo']?.length ?? 0;
-    contMusicraiva = listMusicOver['raiva']?.length ?? 0;
-    contMusicstress = listMusicOver['stress']?.length ?? 0;
-    contMusictriste = listMusicOver['triste']?.length ?? 0;
-    //Music 15 dias
-    var quinzeMusic = listMusic2
-        .where((element) =>
-            element.date.compareTo(Timestamp.fromDate(twoweeks)) >= 0)
-        .toList();
-    var quinzeListMusic = quinzeMusic.groupBy((m) => m.emotion);
+      _musicOver = listMusic2.length;
+      contMusicansi = listMusicOver['ansiedade']?.length ?? 0;
+      contMusicmed = listMusicOver['medo']?.length ?? 0;
+      contMusicraiva = listMusicOver['raiva']?.length ?? 0;
+      contMusicstress = listMusicOver['stress']?.length ?? 0;
+      contMusictriste = listMusicOver['triste']?.length ?? 0;
+      //Music 15 dias
+      var quinzeMusic = listMusic2
+          .where((element) =>
+              element.date.compareTo(Timestamp.fromDate(twoweeks)) >= 0)
+          .toList();
+      var quinzeListMusic = quinzeMusic.groupBy((m) => m.emotion);
 
-    _musicquinze = quinzeMusic.length;
-    quinzeMusicansi = quinzeListMusic['ansiedade']?.length ?? 0;
-    quinzeMusicmed = quinzeListMusic['medo']?.length ?? 0;
-    quinzeMusicraiva = quinzeListMusic['raiva']?.length ?? 0;
-    quinzeMusicstress = quinzeListMusic['stress']?.length ?? 0;
-    quinzeMusictriste = quinzeListMusic['triste']?.length ?? 0;
+      _musicquinze = quinzeMusic.length;
+      quinzeMusicansi = quinzeListMusic['ansiedade']?.length ?? 0;
+      quinzeMusicmed = quinzeListMusic['medo']?.length ?? 0;
+      quinzeMusicraiva = quinzeListMusic['raiva']?.length ?? 0;
+      quinzeMusicstress = quinzeListMusic['stress']?.length ?? 0;
+      quinzeMusictriste = quinzeListMusic['triste']?.length ?? 0;
 
-    //Music 15 dias
-    var mesMusic = listMusic2
-        .where((element) =>
-            element.date.compareTo(Timestamp.fromDate(monthAgo)) >= 0)
-        .toList();
-    var mesListMusic = mesMusic.groupBy((m) => m.emotion);
+      //Music 15 dias
+      var mesMusic = listMusic2
+          .where((element) =>
+              element.date.compareTo(Timestamp.fromDate(monthAgo)) >= 0)
+          .toList();
+      var mesListMusic = mesMusic.groupBy((m) => m.emotion);
 
-    _musicmes = mesMusic.length;
-    mesMusicansi = mesListMusic['ansiedade']?.length ?? 0;
-    mesMusicmed = mesListMusic['medo']?.length ?? 0;
-    mesMusicraiva = mesListMusic['raiva']?.length ?? 0;
-    mesMusicstress = mesListMusic['stress']?.length ?? 0;
-    mesMusictriste = mesListMusic['triste']?.length ?? 0;
+      _musicmes = mesMusic.length;
+      mesMusicansi = mesListMusic['ansiedade']?.length ?? 0;
+      mesMusicmed = mesListMusic['medo']?.length ?? 0;
+      mesMusicraiva = mesListMusic['raiva']?.length ?? 0;
+      mesMusicstress = mesListMusic['stress']?.length ?? 0;
+      mesMusictriste = mesListMusic['triste']?.length ?? 0;
+    } catch (e) {
+      setState(() {
+        _meditNull = true;
+        _cromoNull = true;
+        _musicNull = true;
+      });
+      print(e);
+    }
 
     List<String> emotea = [];
     emotea.add('Medo');
