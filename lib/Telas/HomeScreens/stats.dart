@@ -1,5 +1,7 @@
 //import 'dart:html';
 
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -99,6 +101,7 @@ class _StatsPageState extends State<StatsPage> {
   late int quinzeMusicstress = 0;
   late int quinzeMusictriste = 0;
 
+  // ignore: unused_field
   late int _musicmes = 0;
   late int mescontMusic = 0;
   late int mesMusicansi = 0;
@@ -122,7 +125,15 @@ class _StatsPageState extends State<StatsPage> {
   void initState() {
     readFirebase();
     _tooltipBehavior = TooltipBehavior(enable: true);
+    changeIndex();
     super.initState();
+  }
+
+  List colors = [Colors.cyanAccent, Colors.red, Colors.yellowAccent];
+  Random random = new Random();
+  int index = 0;
+  void changeIndex() {
+    setState(() => index = random.nextInt(3));
   }
 
   static final List<String> items = <String>['15 dias', '30 dias', 'Geral'];
@@ -145,18 +156,19 @@ class _StatsPageState extends State<StatsPage> {
               children: [
                 TabBar(
                   labelColor: Colors.black,
-                  indicatorColor: Colors.red,
+                  indicatorColor: colors[index],
                   tabs: [
                     Tab(
-                      icon:
-                          Icon(MdiIcons.headHeart, size: 50, color: Colors.red),
+                      icon: Icon(MdiIcons.headHeart,
+                          size: 50, color: colors[index]),
                     ),
                     Tab(
-                      icon: Icon(MdiIcons.palette, size: 50, color: Colors.red),
+                      icon: Icon(MdiIcons.palette,
+                          size: 50, color: colors[index]),
                     ),
                     Tab(
-                      icon:
-                          Icon(MdiIcons.musicBox, size: 50, color: Colors.red),
+                      icon: Icon(MdiIcons.musicBox,
+                          size: 50, color: colors[index]),
                     )
                   ],
                 ),
@@ -181,7 +193,7 @@ class _StatsPageState extends State<StatsPage> {
                                     focusColor: Colors.black,
                                     dropdownColor: Colors.black,
                                     underline: Container(
-                                      color: Colors.red,
+                                      color: colors[index],
                                       height: 1,
                                     ),
                                     value: value,
@@ -195,7 +207,7 @@ class _StatsPageState extends State<StatsPage> {
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         fontSize: 30,
-                                                        color: Colors.red)),
+                                                        color: colors[index])),
                                               ),
                                               value: itemFiltro,
                                             ))
@@ -212,39 +224,42 @@ class _StatsPageState extends State<StatsPage> {
                         //Gráfico geral
                         Visibility(
                           child: Container(
-                            child: SfCircularChart(
-                              title: ChartTitle(
-                                text:
-                                    'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas: $_meditOver',
-                                textStyle: TextStyle(color: Colors.white),
-                              ),
-                              legend: Legend(
-                                  title: LegendTitle(
-                                    text: 'Emoções',
+                            child: Center(
+                              child: SfCircularChart(
+                                title: ChartTitle(
+                                  text:
+                                      'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas: $_meditOver',
+                                  textStyle: TextStyle(color: Colors.white),
+                                ),
+                                legend: Legend(
+                                    title: LegendTitle(
+                                      text: 'Emoções',
+                                      textStyle: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
+                                    isVisible: true,
+                                    overflowMode: LegendItemOverflowMode.wrap,
                                     textStyle: TextStyle(
-                                        color: Colors.white, fontSize: 20),
-                                  ),
-                                  isVisible: true,
-                                  overflowMode: LegendItemOverflowMode.wrap,
-                                  textStyle: TextStyle(
-                                      color: Colors.white, fontSize: 10),
-                                  alignment: ChartAlignment.center,
-                                  itemPadding: 20,
-                                  position: LegendPosition.right),
-                              tooltipBehavior: _tooltipBehavior,
-                              series: <CircularSeries>[
-                                DoughnutSeries<GDPDatamedit, dynamic>(
-                                    dataSource: _chartDatamedit,
-                                    xValueMapper: (GDPDatamedit data, _) =>
-                                        data.emoteBase,
-                                    yValueMapper: (GDPDatamedit data, _) =>
-                                        data.contMedit,
-                                    pointColorMapper: (GDPDatamedit data, _) =>
-                                        data.colorgraf,
-                                    dataLabelSettings:
-                                        DataLabelSettings(isVisible: true),
-                                    enableTooltip: true),
-                              ],
+                                        color: Colors.white, fontSize: 10),
+                                    alignment: ChartAlignment.center,
+                                    itemPadding: 20,
+                                    position: LegendPosition.right),
+                                tooltipBehavior: _tooltipBehavior,
+                                series: <CircularSeries>[
+                                  DoughnutSeries<GDPDatamedit, dynamic>(
+                                      dataSource: _chartDatamedit,
+                                      xValueMapper: (GDPDatamedit data, _) =>
+                                          data.emoteBase,
+                                      yValueMapper: (GDPDatamedit data, _) =>
+                                          data.contMedit,
+                                      pointColorMapper:
+                                          (GDPDatamedit data, _) =>
+                                              data.colorgraf,
+                                      dataLabelSettings:
+                                          DataLabelSettings(isVisible: true),
+                                      enableTooltip: true),
+                                ],
+                              ),
                             ),
                           ),
                           visible: value.contains("Geral") ? true : false,
@@ -354,7 +369,7 @@ class _StatsPageState extends State<StatsPage> {
                                       focusColor: Colors.black,
                                       dropdownColor: Colors.black,
                                       underline: Container(
-                                        color: Colors.red,
+                                        color: colors[index],
                                         height: 1,
                                       ),
                                       value: value,
@@ -368,7 +383,8 @@ class _StatsPageState extends State<StatsPage> {
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           fontSize: 30,
-                                                          color: Colors.red)),
+                                                          color:
+                                                              colors[index])),
                                                 ),
                                                 value: itemFiltro,
                                               ))
@@ -512,7 +528,7 @@ class _StatsPageState extends State<StatsPage> {
                                       focusColor: Colors.black,
                                       dropdownColor: Colors.black,
                                       underline: Container(
-                                        color: Colors.red,
+                                        color: colors[index],
                                         height: 1,
                                       ),
                                       value: value,
@@ -526,7 +542,8 @@ class _StatsPageState extends State<StatsPage> {
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           fontSize: 30,
-                                                          color: Colors.red)),
+                                                          color:
+                                                              colors[index])),
                                                 ),
                                                 value: itemFiltro,
                                               ))
