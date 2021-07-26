@@ -255,22 +255,26 @@ class _StatsPageState extends State<StatsPage> {
                               child: SfCircularChart(
                                 title: ChartTitle(
                                   text:
-                                      'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas: $_meditOver',
+                                      'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\nTotal de Meditações realizadas: $_meditOver\n\n',
                                   textStyle: TextStyle(color: Colors.white),
                                 ),
                                 legend: Legend(
-                                    title: LegendTitle(
-                                      text: 'Emoções',
-                                      textStyle: TextStyle(
-                                          color: Colors.white, fontSize: 20),
-                                    ),
-                                    isVisible: true,
-                                    overflowMode: LegendItemOverflowMode.wrap,
+                                  title: LegendTitle(
+                                    text: 'Emoções',
                                     textStyle: TextStyle(
-                                        color: Colors.white, fontSize: 10),
-                                    alignment: ChartAlignment.center,
-                                    itemPadding: 20,
-                                    position: LegendPosition.right),
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  padding: 10,
+                                  isVisible: true,
+                                  position: LegendPosition.right,
+                                  overflowMode: LegendItemOverflowMode.wrap,
+                                  textStyle: TextStyle(
+                                      color: Colors.white, fontSize: 10),
+                                  alignment: ChartAlignment.center,
+                                  itemPadding: 7,
+                                ),
                                 tooltipBehavior: _tooltipBehavior,
                                 series: <CircularSeries>[
                                   DoughnutSeries<GDPDatamedit, dynamic>(
@@ -282,6 +286,7 @@ class _StatsPageState extends State<StatsPage> {
                                       pointColorMapper:
                                           (GDPDatamedit data, _) =>
                                               data.colorgraf,
+                                      radius: '180%',
                                       dataLabelSettings:
                                           DataLabelSettings(isVisible: true),
                                       enableTooltip: true),
@@ -301,21 +306,22 @@ class _StatsPageState extends State<StatsPage> {
                             child: SfCircularChart(
                               title: ChartTitle(
                                 text:
-                                    'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas nos ultimos 15 dias: $_meditquinze',
+                                    'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n Total de Meditações nos ultimos 15 dias: $_meditquinze\n\n',
                                 textStyle: TextStyle(color: Colors.white),
                               ),
                               legend: Legend(
                                   title: LegendTitle(
                                     text: 'Emoções',
                                     textStyle: TextStyle(
-                                        color: Colors.white, fontSize: 20),
+                                        color: Colors.white, fontSize: 18),
                                   ),
+                                  padding: 10,
                                   isVisible: true,
                                   overflowMode: LegendItemOverflowMode.wrap,
                                   textStyle: TextStyle(
                                       color: Colors.white, fontSize: 10),
                                   alignment: ChartAlignment.center,
-                                  itemPadding: 20,
+                                  itemPadding: 7,
                                   position: LegendPosition.right),
                               tooltipBehavior: _tooltipBehavior,
                               series: <CircularSeries>[
@@ -328,6 +334,7 @@ class _StatsPageState extends State<StatsPage> {
                                     pointColorMapper:
                                         (GDPDatamedit15 data, _) =>
                                             data.colorgraf,
+                                    radius: '180%',
                                     dataLabelSettings:
                                         DataLabelSettings(isVisible: true),
                                     enableTooltip: true),
@@ -344,21 +351,22 @@ class _StatsPageState extends State<StatsPage> {
                             child: SfCircularChart(
                               title: ChartTitle(
                                 text:
-                                    'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas nos ultimos 30 dias: $_meditmes',
+                                    'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n Total de Meditações nos ultimos 30 dias: $_meditmes\n\n',
                                 textStyle: TextStyle(color: Colors.white),
                               ),
                               legend: Legend(
                                   title: LegendTitle(
                                     text: 'Emoções',
                                     textStyle: TextStyle(
-                                        color: Colors.white, fontSize: 20),
+                                        color: Colors.white, fontSize: 18),
                                   ),
                                   isVisible: true,
+                                  padding: 10,
                                   overflowMode: LegendItemOverflowMode.wrap,
                                   textStyle: TextStyle(
                                       color: Colors.white, fontSize: 10),
                                   alignment: ChartAlignment.center,
-                                  itemPadding: 20,
+                                  itemPadding: 7,
                                   position: LegendPosition.right),
                               tooltipBehavior: _tooltipBehavior,
                               series: <CircularSeries>[
@@ -371,6 +379,7 @@ class _StatsPageState extends State<StatsPage> {
                                     pointColorMapper:
                                         (GDPDatamedit30 data, _) =>
                                             data.colorgraf,
+                                    radius: '180%',
                                     dataLabelSettings:
                                         DataLabelSettings(isVisible: true),
                                     enableTooltip: true),
@@ -462,16 +471,22 @@ class _StatsPageState extends State<StatsPage> {
                               child: SfCircularChart(
                                 title: ChartTitle(
                                   text:
-                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas: $_cromoOver',
+                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n Total de Cromaterapias realizadas: $_cromoOver\n\n',
                                   textStyle: TextStyle(color: Colors.white),
                                 ),
                                 legend: Legend(
+                                    title: LegendTitle(
+                                      text: 'Emoções',
+                                      textStyle: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                    padding: 10,
                                     isVisible: true,
                                     overflowMode: LegendItemOverflowMode.wrap,
                                     textStyle: TextStyle(
                                         color: Colors.white, fontSize: 10),
                                     alignment: ChartAlignment.center,
-                                    itemPadding: 20,
+                                    itemPadding: 7,
                                     position: LegendPosition.right),
                                 tooltipBehavior: _tooltipBehavior,
                                 series: <CircularSeries>[
@@ -484,6 +499,7 @@ class _StatsPageState extends State<StatsPage> {
                                       pointColorMapper:
                                           (GDPDatacromo data, _) =>
                                               data.colorgraf,
+                                      radius: '180%',
                                       dataLabelSettings:
                                           DataLabelSettings(isVisible: true),
                                       enableTooltip: true),
@@ -501,16 +517,22 @@ class _StatsPageState extends State<StatsPage> {
                               child: SfCircularChart(
                                 title: ChartTitle(
                                   text:
-                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas nos ultimos 15 dias: $_cromoquinze',
+                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n Total de Cromaterapias nos ultimos 15 dias: $_cromoquinze\n\n',
                                   textStyle: TextStyle(color: Colors.white),
                                 ),
                                 legend: Legend(
+                                    title: LegendTitle(
+                                      text: 'Emoções',
+                                      textStyle: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                    padding: 10,
                                     isVisible: true,
                                     overflowMode: LegendItemOverflowMode.wrap,
                                     textStyle: TextStyle(
                                         color: Colors.white, fontSize: 10),
                                     alignment: ChartAlignment.center,
-                                    itemPadding: 20,
+                                    itemPadding: 7,
                                     position: LegendPosition.right),
                                 tooltipBehavior: _tooltipBehavior,
                                 series: <CircularSeries>[
@@ -523,6 +545,7 @@ class _StatsPageState extends State<StatsPage> {
                                       pointColorMapper:
                                           (GDPDatacromo15 data, _) =>
                                               data.colorgraf,
+                                      radius: '180%',
                                       dataLabelSettings:
                                           DataLabelSettings(isVisible: true),
                                       enableTooltip: true),
@@ -539,16 +562,22 @@ class _StatsPageState extends State<StatsPage> {
                               child: SfCircularChart(
                                 title: ChartTitle(
                                   text:
-                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas nos ultimos 30 dias: $_cromomes',
+                                      'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n Total de Cromaterapias nos ultimos 30 dias: $_cromomes\n\n',
                                   textStyle: TextStyle(color: Colors.white),
                                 ),
                                 legend: Legend(
+                                    title: LegendTitle(
+                                      text: 'Emoções',
+                                      textStyle: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                    padding: 10,
                                     isVisible: true,
                                     overflowMode: LegendItemOverflowMode.wrap,
                                     textStyle: TextStyle(
                                         color: Colors.white, fontSize: 10),
                                     alignment: ChartAlignment.center,
-                                    itemPadding: 20,
+                                    itemPadding: 7,
                                     position: LegendPosition.right),
                                 tooltipBehavior: _tooltipBehavior,
                                 series: <CircularSeries>[
@@ -561,6 +590,7 @@ class _StatsPageState extends State<StatsPage> {
                                       pointColorMapper:
                                           (GDPDatacromo30 data, _) =>
                                               data.colorgraf,
+                                      radius: '180%',
                                       dataLabelSettings:
                                           DataLabelSettings(isVisible: true),
                                       enableTooltip: true),
@@ -654,16 +684,22 @@ class _StatsPageState extends State<StatsPage> {
                               child: SfCircularChart(
                                 title: ChartTitle(
                                   text:
-                                      'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas: $_musicOver',
+                                      'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n Total de Musicoterapia realizadas: $_musicOver\n\n',
                                   textStyle: TextStyle(color: Colors.white),
                                 ),
                                 legend: Legend(
+                                    title: LegendTitle(
+                                      text: 'Emoções',
+                                      textStyle: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                    padding: 10,
                                     isVisible: true,
                                     overflowMode: LegendItemOverflowMode.wrap,
                                     textStyle: TextStyle(
                                         color: Colors.white, fontSize: 10),
                                     alignment: ChartAlignment.center,
-                                    itemPadding: 20,
+                                    itemPadding: 7,
                                     position: LegendPosition.right),
                                 tooltipBehavior: _tooltipBehavior,
                                 series: <CircularSeries>[
@@ -676,6 +712,7 @@ class _StatsPageState extends State<StatsPage> {
                                       pointColorMapper:
                                           (GDPDatamusic data, _) =>
                                               data.colorgraf,
+                                      radius: '180%',
                                       dataLabelSettings:
                                           DataLabelSettings(isVisible: true),
                                       enableTooltip: true),
@@ -693,16 +730,22 @@ class _StatsPageState extends State<StatsPage> {
                               child: SfCircularChart(
                                 title: ChartTitle(
                                   text:
-                                      'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas nos ultimos 15 dias: $_musicquinze',
+                                      'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n Total de Musicoterapia nos ultimos 15 dias: $_musicquinze\n\n',
                                   textStyle: TextStyle(color: Colors.white),
                                 ),
                                 legend: Legend(
+                                    title: LegendTitle(
+                                      text: 'Emoções',
+                                      textStyle: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                    padding: 10,
                                     isVisible: true,
                                     overflowMode: LegendItemOverflowMode.wrap,
                                     textStyle: TextStyle(
                                         color: Colors.white, fontSize: 10),
                                     alignment: ChartAlignment.center,
-                                    itemPadding: 20,
+                                    itemPadding: 7,
                                     position: LegendPosition.right),
                                 tooltipBehavior: _tooltipBehavior,
                                 series: <CircularSeries>[
@@ -715,6 +758,7 @@ class _StatsPageState extends State<StatsPage> {
                                       pointColorMapper:
                                           (GDPDatamusic15 data, _) =>
                                               data.colorgraf,
+                                      radius: '180%',
                                       dataLabelSettings:
                                           DataLabelSettings(isVisible: true),
                                       enableTooltip: true),
@@ -731,16 +775,22 @@ class _StatsPageState extends State<StatsPage> {
                               child: SfCircularChart(
                                 title: ChartTitle(
                                   text:
-                                      'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas nos últimos 30 dias: $_musicOver',
+                                      'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n Total de Musicoterapia nos últimos 30 dias: $_musicOver\n\n',
                                   textStyle: TextStyle(color: Colors.white),
                                 ),
                                 legend: Legend(
+                                    title: LegendTitle(
+                                      text: 'Emoções',
+                                      textStyle: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                    padding: 10,
                                     isVisible: true,
                                     overflowMode: LegendItemOverflowMode.wrap,
                                     textStyle: TextStyle(
                                         color: Colors.white, fontSize: 10),
                                     alignment: ChartAlignment.center,
-                                    itemPadding: 20,
+                                    itemPadding: 7,
                                     position: LegendPosition.right),
                                 tooltipBehavior: _tooltipBehavior,
                                 series: <CircularSeries>[
@@ -753,6 +803,7 @@ class _StatsPageState extends State<StatsPage> {
                                       pointColorMapper:
                                           (GDPDatamusic30 data, _) =>
                                               data.colorgraf,
+                                      radius: '180%',
                                       dataLabelSettings:
                                           DataLabelSettings(isVisible: true),
                                       enableTooltip: true),

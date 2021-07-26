@@ -88,13 +88,22 @@ class _HomePageState extends State<HomePage> {
   bool? _medit = true;
   bool? isChanged = false;
 
-  List colors = [Colors.cyanAccent, Colors.red, Colors.yellowAccent];
+  List colors = [
+    Colors.cyan[700],
+    Colors.red[600],
+    Colors.purpleAccent[700],
+    Colors.deepOrange,
+    Colors.green[700],
+    Color(0xffEF9A9A),
+    Color(0xFFF06292),
+    Color(0xff3366cc)
+  ];
   Random random = new Random();
 
   int index = 0;
 
   void changeIndex() {
-    setState(() => index = random.nextInt(3));
+    setState(() => index = random.nextInt(8));
   }
 
   IconData _seta = Icons.keyboard_arrow_up;
