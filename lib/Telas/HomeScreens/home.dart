@@ -103,7 +103,9 @@ class _HomePageState extends State<HomePage> {
   int index = 0;
 
   void changeIndex() {
-    setState(() => index = random.nextInt(8));
+    if (colors[0] != random.nextInt(8)) {
+      setState(() => index = random.nextInt(8));
+    }
   }
 
   IconData _seta = Icons.keyboard_arrow_up;

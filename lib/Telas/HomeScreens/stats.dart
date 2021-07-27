@@ -147,7 +147,9 @@ class _StatsPageState extends State<StatsPage> {
   int index = 3;
 
   void changeIndex() {
-    setState(() => index = random.nextInt(8));
+    if (colors[3] != random.nextInt(8)) {
+      setState(() => index = random.nextInt(8));
+    }
   }
 
   static final List<String> items = <String>['15 dias', '30 dias', 'Geral'];
