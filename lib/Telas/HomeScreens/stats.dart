@@ -132,11 +132,22 @@ class _StatsPageState extends State<StatsPage> {
     super.initState();
   }
 
-  List colors = [Colors.cyanAccent, Colors.red, Colors.yellowAccent];
+  List colors = [
+    Colors.cyan[700],
+    Colors.red[600],
+    Colors.purpleAccent[700],
+    Colors.deepOrange,
+    Colors.green[700],
+    Color(0xffEF9A9A),
+    Color(0xFFF06292),
+    Color(0xff3366cc)
+  ];
   Random random = new Random();
-  int index = 0;
+
+  int index = 3;
+
   void changeIndex() {
-    setState(() => index = random.nextInt(3));
+    setState(() => index = random.nextInt(8));
   }
 
   static final List<String> items = <String>['15 dias', '30 dias', 'Geral'];
