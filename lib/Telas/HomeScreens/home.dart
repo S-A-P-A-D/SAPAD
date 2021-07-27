@@ -127,6 +127,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black87,
       key: _scaffoldState,
       drawer: Drawer(
           child: Container(
@@ -352,43 +353,180 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       )),
-      body: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.bottomRight,
-                end: Alignment.topCenter,
-                stops: [0.2, 0.2],
-                colors: [colors[index], Colors.black87])),
-        child: ListView(
-          padding:
-              EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0, bottom: 20.0),
-          children: [
-            //Drawer Button
-            Padding(
-              padding: EdgeInsets.only(top: 15.0),
-              child: IconButton(
-                alignment: Alignment.topLeft,
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.white,
+      body: ListView(
+        padding:
+            EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0, bottom: 20.0),
+        children: [
+          //Drawer Button
+          Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: IconButton(
+              alignment: Alignment.topLeft,
+              icon: Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+              onPressed: () => _scaffoldState.currentState!.openDrawer(),
+            ),
+          ),
+
+          //Card Como você está hoje
+          Card(
+              color: Colors.black54,
+              shadowColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Text(
+                      "Como você está hoje?",
+                      style: GoogleFonts.lora(
+                          textStyle: TextStyle(
+                        fontSize: 30.0,
+                        color: Colors.white,
+                      )),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
-                onPressed: () => _scaffoldState.currentState!.openDrawer(),
+              )),
+
+          //CheckBox Emoções
+          Card(
+            color: Colors.black54,
+            shadowColor: Colors.white,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  //Medo
+                  CheckboxListTile(
+                    title: Text(
+                      'Medo',
+                      style: GoogleFonts.lora(
+                          textStyle: TextStyle(
+                        fontSize: 25.0,
+                        color: Colors.white,
+                      )),
+                    ),
+                    activeColor: colors[index],
+                    value: _med,
+                    onChanged: (bool? _newmed) {
+                      setState(() {
+                        _med = _newmed;
+                        isChanged = _med;
+                        updateFirebase("Emotion", "med", _med);
+                      });
+                      _saveData();
+                    },
+                  ),
+                  //Ansiedade
+                  CheckboxListTile(
+                    title: Text(
+                      'Ansiedade',
+                      style: GoogleFonts.lora(
+                          textStyle: TextStyle(
+                        fontSize: 25.0,
+                        color: Colors.white,
+                      )),
+                    ),
+                    activeColor: colors[index],
+                    value: _ansi,
+                    onChanged: (bool? _newansi) {
+                      setState(() {
+                        _ansi = _newansi!;
+                        isChanged = _ansi;
+                        updateFirebase("Emotion", "ansi", _ansi);
+                      });
+                      _saveData();
+                    },
+                  ),
+                  //Tristeza
+                  CheckboxListTile(
+                    title: Text(
+                      'Tristeza',
+                      style: GoogleFonts.lora(
+                          textStyle: TextStyle(
+                        fontSize: 25.0,
+                        color: Colors.white,
+                      )),
+                    ),
+                    activeColor: colors[index],
+                    value: _triste,
+                    onChanged: (bool? _newtriste) {
+                      setState(() {
+                        _triste = _newtriste;
+                        isChanged = _triste;
+                        updateFirebase("Emotion", "triste", _triste);
+                      });
+                      _saveData();
+                    },
+                  ),
+                  //Raiva
+                  CheckboxListTile(
+                    title: Text(
+                      'Raiva',
+                      style: GoogleFonts.lora(
+                          textStyle: TextStyle(
+                        fontSize: 25.0,
+                        color: Colors.white,
+                      )),
+                    ),
+                    activeColor: colors[index],
+                    value: _raiva,
+                    onChanged: (bool? _newraiva) {
+                      setState(() {
+                        _raiva = _newraiva;
+                        isChanged = _raiva;
+                        updateFirebase("Emotion", "raiva", _raiva);
+                      });
+                      _saveData();
+                    },
+                  ),
+                  //Estresse
+                  CheckboxListTile(
+                    title: Text(
+                      'Estresse',
+                      style: GoogleFonts.lora(
+                          textStyle: TextStyle(
+                        fontSize: 25.0,
+                        color: Colors.white,
+                      )),
+                    ),
+                    activeColor: colors[index],
+                    value: _stress,
+                    onChanged: (bool? _newstress) {
+                      setState(() {
+                        _stress = _newstress;
+                        isChanged = _stress;
+                        updateFirebase("Emotion", "stress", _stress);
+                      });
+                      _saveData();
+                    },
+                  ),
+                ],
               ),
             ),
+          ),
 
-            //Card Como você está hoje
-            Card(
+          //Card Terapias
+          GestureDetector(
+            child: Card(
                 color: Colors.black54,
                 shadowColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
+                    borderRadius: BorderRadius.circular(20)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
                       Text(
-                        "Como você está hoje?",
+                        "Clique aqui para escolher uma terapia",
                         style: GoogleFonts.lora(
                             textStyle: TextStyle(
                           fontSize: 30.0,
@@ -396,143 +534,32 @@ class _HomePageState extends State<HomePage> {
                         )),
                         textAlign: TextAlign.center,
                       ),
+                      SizedBox(height: 3),
+                      Container(
+                          child: Icon(_seta, size: 70, color: colors[index]))
                     ],
                   ),
                 )),
+            onTap: () {
+              Future.delayed(Duration.zero, () {
+                _showEmotion(context);
+              });
+            },
+          ),
 
-            //CheckBox Emoções
-            Card(
-              color: Colors.black54,
-              shadowColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    //Medo
-                    CheckboxListTile(
-                      title: Text(
-                        'Medo',
-                        style: GoogleFonts.lora(
-                            textStyle: TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                        )),
-                      ),
-                      activeColor: colors[index],
-                      value: _med,
-                      onChanged: (bool? _newmed) {
-                        setState(() {
-                          _med = _newmed;
-                          isChanged = _med;
-                          updateFirebase("Emotion", "med", _med);
-                        });
-                        _saveData();
-                      },
-                    ),
-                    //Ansiedade
-                    CheckboxListTile(
-                      title: Text(
-                        'Ansiedade',
-                        style: GoogleFonts.lora(
-                            textStyle: TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                        )),
-                      ),
-                      activeColor: colors[index],
-                      value: _ansi,
-                      onChanged: (bool? _newansi) {
-                        setState(() {
-                          _ansi = _newansi!;
-                          isChanged = _ansi;
-                          updateFirebase("Emotion", "ansi", _ansi);
-                        });
-                        _saveData();
-                      },
-                    ),
-                    //Tristeza
-                    CheckboxListTile(
-                      title: Text(
-                        'Tristeza',
-                        style: GoogleFonts.lora(
-                            textStyle: TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                        )),
-                      ),
-                      activeColor: colors[index],
-                      value: _triste,
-                      onChanged: (bool? _newtriste) {
-                        setState(() {
-                          _triste = _newtriste;
-                          isChanged = _triste;
-                          updateFirebase("Emotion", "triste", _triste);
-                        });
-                        _saveData();
-                      },
-                    ),
-                    //Raiva
-                    CheckboxListTile(
-                      title: Text(
-                        'Raiva',
-                        style: GoogleFonts.lora(
-                            textStyle: TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                        )),
-                      ),
-                      activeColor: colors[index],
-                      value: _raiva,
-                      onChanged: (bool? _newraiva) {
-                        setState(() {
-                          _raiva = _newraiva;
-                          isChanged = _raiva;
-                          updateFirebase("Emotion", "raiva", _raiva);
-                        });
-                        _saveData();
-                      },
-                    ),
-                    //Estresse
-                    CheckboxListTile(
-                      title: Text(
-                        'Estresse',
-                        style: GoogleFonts.lora(
-                            textStyle: TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                        )),
-                      ),
-                      activeColor: colors[index],
-                      value: _stress,
-                      onChanged: (bool? _newstress) {
-                        setState(() {
-                          _stress = _newstress;
-                          isChanged = _stress;
-                          updateFirebase("Emotion", "stress", _stress);
-                        });
-                        _saveData();
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            //Card Terapias
-            GestureDetector(
+          //Respiração
+          GestureDetector(
               child: Card(
                   color: Colors.black54,
                   shadowColor: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Clique aqui para escolher uma terapia",
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Text(
+                          "Clique aqui para respirar melhor",
                           style: GoogleFonts.lora(
                               textStyle: TextStyle(
                             fontSize: 30.0,
@@ -540,93 +567,56 @@ class _HomePageState extends State<HomePage> {
                           )),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 3),
-                        Container(
-                            child: Icon(_seta, size: 70, color: colors[index]))
-                      ],
-                    ),
-                  )),
-              onTap: () {
-                Future.delayed(Duration.zero, () {
-                  _showEmotion(context);
-                });
-              },
-            ),
-
-            //Respiração
-            GestureDetector(
-                child: Card(
-                    color: Colors.black54,
-                    shadowColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: Text(
-                            "Clique aqui para respirar melhor",
-                            style: GoogleFonts.lora(
-                                textStyle: TextStyle(
-                              fontSize: 30.0,
-                              color: Colors.white,
-                            )),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    )),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => VideoBreathPage()));
-                }),
-            //Carousel
-            Padding(
-              padding: EdgeInsets.only(top: 1.0),
-              child: Column(
-                children: <Widget>[
-                  Stack(
-                    children: [
-                      CarouselSlider(
-                        options: CarouselOptions(
-                          height: 200.0,
-                          autoPlay: true,
-                          autoPlayInterval: Duration(seconds: 3),
-                          autoPlayAnimationDuration:
-                              Duration(milliseconds: 800),
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          pauseAutoPlayOnTouch: true,
-                          aspectRatio: 2.0,
-                          enlargeCenterPage: false,
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              _currentIndex = index;
-                            });
-                          },
-                        ),
-                        items: cardList.map((card) {
-                          return Builder(builder: (BuildContext context) {
-                            return Container(
-                                child: Stack(
-                              children: [
-                                Card(
-                                  color: Colors.transparent,
-                                  child: card,
-                                ),
-                              ],
-                            ));
-                          });
-                        }).toList(),
                       ),
                     ],
-                  ),
-                ],
-              ),
+                  )),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => VideoBreathPage()));
+              }),
+          //Carousel
+          Padding(
+            padding: EdgeInsets.only(top: 1.0),
+            child: Column(
+              children: <Widget>[
+                Stack(
+                  children: [
+                    CarouselSlider(
+                      options: CarouselOptions(
+                        height: 200.0,
+                        autoPlay: true,
+                        autoPlayInterval: Duration(seconds: 3),
+                        autoPlayAnimationDuration: Duration(milliseconds: 800),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        pauseAutoPlayOnTouch: true,
+                        aspectRatio: 2.0,
+                        enlargeCenterPage: false,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                        },
+                      ),
+                      items: cardList.map((card) {
+                        return Builder(builder: (BuildContext context) {
+                          return Container(
+                              child: Stack(
+                            children: [
+                              Card(
+                                color: Colors.transparent,
+                                child: card,
+                              ),
+                            ],
+                          ));
+                        });
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -702,6 +692,11 @@ class _HomePageState extends State<HomePage> {
                             ),
                             onTap: () {
                               if (isChanged == true) {
+                                updateFirebaseArray(
+                                    "EmotionStats",
+                                    "Geral",
+                                    EmotionStats("meditacao", Timestamp.now())
+                                        .toJson());
                                 if (_med == true) {
                                   contMeditmed++;
                                   updateFirebaseArray(
@@ -771,6 +766,12 @@ class _HomePageState extends State<HomePage> {
                             ),
                             onTap: () {
                               if (isChanged == true) {
+                                updateFirebaseArray(
+                                    "EmotionStats",
+                                    "Geral",
+                                    EmotionStats(
+                                            "cromoterapia", Timestamp.now())
+                                        .toJson());
                                 if (_med == true) {
                                   contCromomed++;
                                   updateFirebaseArray(
@@ -844,6 +845,12 @@ class _HomePageState extends State<HomePage> {
                             ),
                             onTap: () {
                               if (isChanged == true) {
+                                updateFirebaseArray(
+                                    "EmotionStats",
+                                    "Geral",
+                                    EmotionStats(
+                                            "musicoterapia", Timestamp.now())
+                                        .toJson());
                                 if (_med == true) {
                                   contMusicmed++;
                                   updateFirebaseArray(
