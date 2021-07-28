@@ -67,10 +67,10 @@ class _ConfigPageState extends State<ConfigPage> {
                       ),
                       TextField(
                         autofocus: true,
-                        style: TextStyle(color: Colors.blue, fontSize: 30),
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                         decoration: InputDecoration(
-                          labelText: _urlmusic.toString(),
-                          labelStyle: TextStyle(color: Colors.black),
+                          labelText: 'Adicione sua Musicoterapia com links',
+                          labelStyle: TextStyle(color: Colors.white),
                         ),
                         controller: myController,
                       ),
@@ -118,10 +118,10 @@ class _ConfigPageState extends State<ConfigPage> {
                     ),
                     TextField(
                       autofocus: true,
-                      style: TextStyle(color: Colors.blue, fontSize: 30),
+                      style: TextStyle(color: Colors.white, fontSize: 22),
                       decoration: InputDecoration(
-                        labelText: _urlmedit.toString(),
-                        labelStyle: TextStyle(color: Colors.black),
+                        labelText: 'Adicione sua Meditação com links',
+                        labelStyle: TextStyle(color: Colors.white),
                       ),
                       controller: myController2,
                     ),

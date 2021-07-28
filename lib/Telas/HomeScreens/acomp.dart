@@ -129,9 +129,9 @@ class _AcompPageState extends State<AcompPage> {
   ];
   late String value = items.first;
   static final List<String> itemsFiltro = <String>[
+    'Geral',
     '15 dias',
     '30 dias',
-    'Geral'
   ];
   late String valueFiltro = itemsFiltro.first;
 
@@ -308,6 +308,7 @@ class _AcompPageState extends State<AcompPage> {
                       yValueMapper: (GDPDatamedit data, _) => data.contMedit,
                       pointColorMapper: (GDPDatamedit data, _) =>
                           data.colorgraf,
+                      radius: '115%',
                       dataLabelSettings: DataLabelSettings(isVisible: true),
                       enableTooltip: true),
                 ],
@@ -325,19 +326,19 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas nos ultimos 15 dias: $_meditquinze',
+                        'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações nos ultimos 15 dias: $_meditquinze',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
                       title: LegendTitle(
                         text: 'Emoções',
-                        textStyle: TextStyle(color: Colors.white, fontSize: 20),
+                        textStyle: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       isVisible: true,
                       overflowMode: LegendItemOverflowMode.wrap,
                       textStyle: TextStyle(color: Colors.white, fontSize: 10),
                       alignment: ChartAlignment.center,
-                      itemPadding: 20,
+                      itemPadding: 7,
                       position: LegendPosition.right),
                   tooltipBehavior: _tooltipBehavior,
                   series: <CircularSeries>[
@@ -349,6 +350,7 @@ class _AcompPageState extends State<AcompPage> {
                             data.quinzecontMedit,
                         pointColorMapper: (GDPDatamedit15 data, _) =>
                             data.colorgraf,
+                        radius: '130%',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                         enableTooltip: true),
                   ],
@@ -367,7 +369,7 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações realizadas nos ultimos 30 dias: $_meditmes',
+                        'Estatísticas da Meditação \n Conforme uso por emoção sentida \n\n\n Total de Meditações nos ultimos 30 dias: $_meditmes',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
@@ -379,7 +381,7 @@ class _AcompPageState extends State<AcompPage> {
                       overflowMode: LegendItemOverflowMode.wrap,
                       textStyle: TextStyle(color: Colors.white, fontSize: 10),
                       alignment: ChartAlignment.center,
-                      itemPadding: 20,
+                      itemPadding: 7,
                       position: LegendPosition.right),
                   tooltipBehavior: _tooltipBehavior,
                   series: <CircularSeries>[
@@ -391,6 +393,7 @@ class _AcompPageState extends State<AcompPage> {
                             data.mescontMedit,
                         pointColorMapper: (GDPDatamedit30 data, _) =>
                             data.colorgraf,
+                        radius: '130%',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                         enableTooltip: true),
                   ],
@@ -413,11 +416,15 @@ class _AcompPageState extends State<AcompPage> {
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
+                      title: LegendTitle(
+                        text: 'Emoções',
+                        textStyle: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
                       isVisible: true,
                       overflowMode: LegendItemOverflowMode.wrap,
                       textStyle: TextStyle(color: Colors.white, fontSize: 10),
                       alignment: ChartAlignment.center,
-                      itemPadding: 20,
+                      itemPadding: 7,
                       position: LegendPosition.right),
                   tooltipBehavior: _tooltipBehavior,
                   series: <CircularSeries>[
@@ -427,6 +434,7 @@ class _AcompPageState extends State<AcompPage> {
                         yValueMapper: (GDPDatacromo data, _) => data.contCromo,
                         pointColorMapper: (GDPDatacromo data, _) =>
                             data.colorgraf,
+                        radius: '130%',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                         enableTooltip: true),
                   ],
@@ -445,15 +453,19 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas nos ultimos 15 dias: $_cromoquinze',
+                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias nos ultimos 15 dias: $_cromoquinze',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
+                      title: LegendTitle(
+                        text: 'Emoções',
+                        textStyle: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
                       isVisible: true,
                       overflowMode: LegendItemOverflowMode.wrap,
                       textStyle: TextStyle(color: Colors.white, fontSize: 10),
                       alignment: ChartAlignment.center,
-                      itemPadding: 20,
+                      itemPadding: 7,
                       position: LegendPosition.right),
                   tooltipBehavior: _tooltipBehavior,
                   series: <CircularSeries>[
@@ -465,6 +477,7 @@ class _AcompPageState extends State<AcompPage> {
                             data.quinzecontCromo,
                         pointColorMapper: (GDPDatacromo15 data, _) =>
                             data.colorgraf,
+                        radius: '130%',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                         enableTooltip: true),
                   ],
@@ -483,15 +496,19 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias realizadas nos ultimos 30 dias: $_cromomes',
+                        'Estatísticas da Cromaterapia \n Conforme uso por emoção sentida \n\n\n Total de Cromaterapias nos ultimos 30 dias: $_cromomes',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
+                      title: LegendTitle(
+                        text: 'Emoções',
+                        textStyle: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
                       isVisible: true,
                       overflowMode: LegendItemOverflowMode.wrap,
                       textStyle: TextStyle(color: Colors.white, fontSize: 10),
                       alignment: ChartAlignment.center,
-                      itemPadding: 20,
+                      itemPadding: 7,
                       position: LegendPosition.right),
                   tooltipBehavior: _tooltipBehavior,
                   series: <CircularSeries>[
@@ -503,6 +520,7 @@ class _AcompPageState extends State<AcompPage> {
                             data.mescontCromo,
                         pointColorMapper: (GDPDatacromo30 data, _) =>
                             data.colorgraf,
+                        radius: '130%',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                         enableTooltip: true),
                   ],
@@ -521,15 +539,19 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas: $_musicOver',
+                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapias realizadas: $_musicOver',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
+                      title: LegendTitle(
+                        text: 'Emoções',
+                        textStyle: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
                       isVisible: true,
                       overflowMode: LegendItemOverflowMode.wrap,
                       textStyle: TextStyle(color: Colors.white, fontSize: 10),
                       alignment: ChartAlignment.center,
-                      itemPadding: 20,
+                      itemPadding: 7,
                       position: LegendPosition.right),
                   tooltipBehavior: _tooltipBehavior,
                   series: <CircularSeries>[
@@ -539,6 +561,7 @@ class _AcompPageState extends State<AcompPage> {
                         yValueMapper: (GDPDatamusic data, _) => data.contMusic,
                         pointColorMapper: (GDPDatamusic data, _) =>
                             data.colorgraf,
+                        radius: '130%',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                         enableTooltip: true),
                   ],
@@ -557,15 +580,19 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas nos ultimos 15 dias: $_musicquinze',
+                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapias nos ultimos 15 dias: $_musicquinze',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
+                      title: LegendTitle(
+                        text: 'Emoções',
+                        textStyle: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
                       isVisible: true,
                       overflowMode: LegendItemOverflowMode.wrap,
                       textStyle: TextStyle(color: Colors.white, fontSize: 10),
                       alignment: ChartAlignment.center,
-                      itemPadding: 20,
+                      itemPadding: 7,
                       position: LegendPosition.right),
                   tooltipBehavior: _tooltipBehavior,
                   series: <CircularSeries>[
@@ -577,6 +604,7 @@ class _AcompPageState extends State<AcompPage> {
                             data.quinzecontMusic,
                         pointColorMapper: (GDPDatamusic15 data, _) =>
                             data.colorgraf,
+                        radius: '130%',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                         enableTooltip: true),
                   ],
@@ -595,15 +623,19 @@ class _AcompPageState extends State<AcompPage> {
                 child: SfCircularChart(
                   title: ChartTitle(
                     text:
-                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapia realizadas nos últimos 30 dias: $_musicmes',
+                        'Estatísticas da Musicoterapia \n Conforme uso por emoção sentida \n\n\n Total de Musicoterapias nos últimos 30 dias: $_musicmes',
                     textStyle: TextStyle(color: Colors.white),
                   ),
                   legend: Legend(
+                      title: LegendTitle(
+                        text: 'Emoções',
+                        textStyle: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
                       isVisible: true,
                       overflowMode: LegendItemOverflowMode.wrap,
                       textStyle: TextStyle(color: Colors.white, fontSize: 10),
                       alignment: ChartAlignment.center,
-                      itemPadding: 20,
+                      itemPadding: 7,
                       position: LegendPosition.right),
                   tooltipBehavior: _tooltipBehavior,
                   series: <CircularSeries>[
@@ -615,6 +647,7 @@ class _AcompPageState extends State<AcompPage> {
                             data.mescontMusic,
                         pointColorMapper: (GDPDatamusic30 data, _) =>
                             data.colorgraf,
+                        radius: '130%',
                         dataLabelSettings: DataLabelSettings(isVisible: true),
                         enableTooltip: true),
                   ],

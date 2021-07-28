@@ -117,12 +117,6 @@ class _StatsPageState extends State<StatsPage> {
   late String emoteBase;
   late String emoteBaseC;
   late String emoteBaseM;
-  /* late String emoteBase15;
-  late String emoteBaseC15;
-  late String emoteBaseM15;
-  late String emoteBase30;
-  late String emoteBaseC30;
-  late String emoteBaseM30; */
 
   @override
   void initState() {
@@ -152,7 +146,7 @@ class _StatsPageState extends State<StatsPage> {
     }
   }
 
-  static final List<String> items = <String>['15 dias', '30 dias', 'Geral'];
+  static final List<String> items = <String>['Geral', '15 dias', '30 dias'];
   late String value = items.first;
 
   @override
