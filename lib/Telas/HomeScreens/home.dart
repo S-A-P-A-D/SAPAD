@@ -49,6 +49,52 @@ class _HomePageState extends State<HomePage> {
   bool? _triste = false;
   bool? _raiva = false;
   bool? _stress = false;
+  String _buttonText = '';
+  String _stopwatchText = '00:00:00';
+  final _stopWatch = new Stopwatch();
+  final _timeout = const Duration(seconds: 1);
+
+  void _startTimeout() {
+    new Timer(_timeout, _handleTimeout);
+  }
+
+  void _handleTimeout() {
+    if (_stopWatch.isRunning) {
+      _startTimeout();
+    }
+    setState(() {});
+  }
+
+  void _startStopButtonPressed() {
+    setState(() {
+      if (_stopWatch.isRunning) {
+        _buttonText = 'Começar';
+        _stopWatch.stop();
+      } else {
+        _buttonText = 'Encerrar';
+        _stopWatch.start();
+        _startTimeout();
+      }
+    });
+  }
+
+  void _resetButtonPressed() {
+    if (_stopWatch.isRunning) {
+      _startStopButtonPressed();
+    }
+    setState(() {
+      _stopWatch.reset();
+      _setStopwatchText();
+    });
+  }
+
+  void _setStopwatchText() {
+    _stopwatchText = _stopWatch.elapsed.inHours.toString().padLeft(2, '0') +
+        ':' +
+        (_stopWatch.elapsed.inMinutes % 60).toString().padLeft(2, '0') +
+        ':' +
+        (_stopWatch.elapsed.inSeconds % 60).toString().padLeft(2, '0');
+  }
 
   @override
   void initState() {
