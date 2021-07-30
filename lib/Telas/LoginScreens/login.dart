@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                   body: Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                      image: AssetImage("assets/meditFundo.jpg"),
+                      image: AssetImage("assets/meditFundo.png"),
                       fit: BoxFit.cover,
                     )),
                     child: SafeArea(
