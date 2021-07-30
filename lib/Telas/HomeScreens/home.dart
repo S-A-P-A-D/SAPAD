@@ -1049,7 +1049,7 @@ class Item3 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image.asset(
-            'assets/meditacao.jpg',
+            'assets/respiracao.gif',
             height: 180.0,
             fit: BoxFit.cover,
           )
