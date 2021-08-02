@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +19,12 @@ class _MusicPageState extends State<MusicPage> {
   bool playing = false;
   IconData playBtn = Icons.play_arrow;
   late String _url;
+  bool flag = true;
+  late Stream<int> timerStream;
+  late StreamSubscription<int> timerSubscription;
+  String hoursStr = '00';
+  String minutesStr = '00';
+  String secondsStr = '00';
 
   AudioPlayer? _player;
   late AudioCache cache;
@@ -26,6 +34,43 @@ class _MusicPageState extends State<MusicPage> {
     readFirebase();
     _player = AudioPlayer();
     cache = AudioCache(fixedPlayer: _player);
+  }
+
+  Stream<int> stopWatchStream(){
+    StreamController<int>? streamController;
+    Timer? timer;
+    Duration timerInterval = Duration(seconds: 1);
+    int counter = 0;
+
+    void stopTimer() {
+      if (timer != null) {
+        timer!.cancel();
+        timer = null;
+        counter = 0;
+        streamController!.close();
+      }
+    }
+
+    void tick(_) {
+      counter++;
+      streamController!.add(counter);
+      if (!flag) {
+        stopTimer();
+      }
+    }
+
+    void startTimer() {
+      timer = Timer.periodic(timerInterval, tick);
+    }
+
+    streamController = StreamController<int>(
+      onListen: startTimer,
+      onCancel: stopTimer,
+      onResume: startTimer,
+      onPause: stopTimer,
+    );
+
+    return streamController.stream;
   }
 
   readFirebase() async {
@@ -169,6 +214,29 @@ class _MusicPageState extends State<MusicPage> {
                     ],
                   ),
                 ),
+              ),
+              Card(
+                color: Colors.black38,
+                shadowColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                    child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Expanded(
+                          child: Text(
+                            "Cronometro",
+                            style: GoogleFonts.lora(
+                                textStyle: TextStyle(
+                                    color: Colors.white, fontSize: 25)),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),),
               ),
             ]));
   }
