@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:sapad_v3/Telas/Screens/timer_provider.dart';
 
 class MeditationPage extends StatefulWidget {
   final bool? medo;
@@ -26,12 +28,13 @@ class _MeditationPageState extends State<MeditationPage> {
   bool playing = false;
   IconData playBtn = Icons.play_arrow;
   late String _url;
-
+  var timer;
   AudioPlayer? _player;
   late AudioCache cache;
 
   void initState() {
     super.initState();
+    timer = Provider.of<TimerProvider>(context, listen: false);
     _player = AudioPlayer();
     cache = AudioCache(fixedPlayer: _player);
   }
