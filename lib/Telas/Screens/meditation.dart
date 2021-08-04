@@ -34,7 +34,7 @@ class _MeditationPageState extends State<MeditationPage> {
 
   void initState() {
     super.initState();
-    //timer = Provider.of<TimerProvider>(context, listen: false);
+    timer = Provider.of<TimerProvider>(context, listen: false);
     _player = AudioPlayer();
     cache = AudioCache(fixedPlayer: _player);
   }
@@ -63,7 +63,7 @@ class _MeditationPageState extends State<MeditationPage> {
             padding: EdgeInsets.only(
                 left: 10.0, right: 10.0, top: 20.0, bottom: 20.0),
             children: [
-              /*Consumer<TimerProvider>(
+              Consumer<TimerProvider>(
                   builder: (context, timerprovider, _) => Row(
                         children: [
                           SizedBox(
@@ -78,7 +78,7 @@ class _MeditationPageState extends State<MeditationPage> {
                             ),
                           ))
                         ],
-                      )),*/
+                      )),
               //Card 1
               GestureDetector(
                 child: Card(

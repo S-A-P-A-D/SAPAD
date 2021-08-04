@@ -13,10 +13,9 @@ Future<void> main() async {
     providers: [
       ChangeNotifierProvider<GoogleSignInProvider>(
         create: (context) => GoogleSignInProvider(),
-        //child: ChangeNotifierProvider<TimerProvider>(
-        //  create: (context) => TimerProvider(),
-        //  child: MeditationPage(),
-      ) //),
+      ),
+      ChangeNotifierProvider<TimerProvider>(
+          create: (context) => TimerProvider(), child: MeditationPage()),
     ],
     child: MaterialApp(
       home: LoginPage(),
