@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:sapad_v3/Telas/components/popup_therapy.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:sapad_v3/Telas/Screens/timer_provider.dart';
 
@@ -71,7 +72,9 @@ class _MeditationPageState extends State<MeditationPage> {
                           ),
                           Center(
                               child: Text(
-                            'hora' + 'minutos' + 'segundos',
+                            '${timer.hour}' +
+                                '${timer.minute}' +
+                                '${timer.seconds}',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -80,33 +83,10 @@ class _MeditationPageState extends State<MeditationPage> {
                         ],
                       )),
               //Card 1
-              GestureDetector(
-                child: Card(
-                    color: Colors.black54,
-                    shadowColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(MdiIcons.emoticonExcited,
-                                size: 50, color: Colors.red),
-                            SizedBox(width: 10),
-                            Expanded(
-                              child: Text("Saiba mais sobre a Meditação",
-                                  style: GoogleFonts.lora(
-                                      textStyle: TextStyle(
-                                          color: Colors.white, fontSize: 25))),
-                            )
-                          ],
-                        ))),
-                onTap: () {
-                  //timer.startTimer;
-                  _requestPop(context);
-                },
-              ),
+              PopUpTherapy(
+                  onPressed: () => _requestPop(context),
+                  name: "Saiba mais sobre a Meditação",
+                  images: MdiIcons.emoticonExcited),
               SizedBox(height: 20),
 
               //Card 2
@@ -167,6 +147,7 @@ class _MeditationPageState extends State<MeditationPage> {
                   _requestPop(context);
                 },
               ),
+
               SizedBox(height: 20),
 
               //Card 3
@@ -212,6 +193,8 @@ class _MeditationPageState extends State<MeditationPage> {
   }
 
   _requestPop(context) {
+    timer.startTimer;
+
     showDialog(
         context: context,
         builder: (context) {

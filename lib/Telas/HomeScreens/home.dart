@@ -6,6 +6,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:sapad_v3/FireBase/read_firebase.dart';
 import 'package:sapad_v3/FireBase/register_firebase.dart';
 import 'package:sapad_v3/Telas/HomeScreens/stats.dart';
 import 'package:sapad_v3/Telas/LoginScreens/google_sign_in.dart';
@@ -49,52 +50,6 @@ class _HomePageState extends State<HomePage> {
   bool? _triste = false;
   bool? _raiva = false;
   bool? _stress = false;
-  String _buttonText = '';
-  String _stopwatchText = '00:00:00';
-  final _stopWatch = new Stopwatch();
-  final _timeout = const Duration(seconds: 1);
-
-  void _startTimeout() {
-    new Timer(_timeout, _handleTimeout);
-  }
-
-  void _handleTimeout() {
-    if (_stopWatch.isRunning) {
-      _startTimeout();
-    }
-    setState(() {});
-  }
-
-  void _startStopButtonPressed() {
-    setState(() {
-      if (_stopWatch.isRunning) {
-        _buttonText = 'Começar';
-        _stopWatch.stop();
-      } else {
-        _buttonText = 'Encerrar';
-        _stopWatch.start();
-        _startTimeout();
-      }
-    });
-  }
-
-  void _resetButtonPressed() {
-    if (_stopWatch.isRunning) {
-      _startStopButtonPressed();
-    }
-    setState(() {
-      _stopWatch.reset();
-      _setStopwatchText();
-    });
-  }
-
-  void _setStopwatchText() {
-    _stopwatchText = _stopWatch.elapsed.inHours.toString().padLeft(2, '0') +
-        ':' +
-        (_stopWatch.elapsed.inMinutes % 60).toString().padLeft(2, '0') +
-        ':' +
-        (_stopWatch.elapsed.inSeconds % 60).toString().padLeft(2, '0');
-  }
 
   @override
   void initState() {
@@ -465,7 +420,9 @@ class _HomePageState extends State<HomePage> {
                     onChanged: (bool? _newmed) {
                       setState(() {
                         _med = _newmed;
-                        isChanged = _med;
+                        if (_med == true) {
+                          isChanged = _med;
+                        }
                         updateFirebase("Emotion", "med", _med);
                       });
                       _saveData();
@@ -486,7 +443,9 @@ class _HomePageState extends State<HomePage> {
                     onChanged: (bool? _newansi) {
                       setState(() {
                         _ansi = _newansi!;
-                        isChanged = _ansi;
+                        if (_ansi == true) {
+                          isChanged = _ansi;
+                        }
                         updateFirebase("Emotion", "ansi", _ansi);
                       });
                       _saveData();
@@ -507,7 +466,9 @@ class _HomePageState extends State<HomePage> {
                     onChanged: (bool? _newtriste) {
                       setState(() {
                         _triste = _newtriste;
-                        isChanged = _triste;
+                        if (_triste == true) {
+                          isChanged = _triste;
+                        }
                         updateFirebase("Emotion", "triste", _triste);
                       });
                       _saveData();
@@ -528,7 +489,9 @@ class _HomePageState extends State<HomePage> {
                     onChanged: (bool? _newraiva) {
                       setState(() {
                         _raiva = _newraiva;
-                        isChanged = _raiva;
+                        if (_raiva == true) {
+                          isChanged = _raiva;
+                        }
                         updateFirebase("Emotion", "raiva", _raiva);
                       });
                       _saveData();
@@ -549,7 +512,9 @@ class _HomePageState extends State<HomePage> {
                     onChanged: (bool? _newstress) {
                       setState(() {
                         _stress = _newstress;
-                        isChanged = _stress;
+                        if (_stress == true) {
+                          isChanged = _stress;
+                        }
                         updateFirebase("Emotion", "stress", _stress);
                       });
                       _saveData();

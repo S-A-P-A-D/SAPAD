@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sapad_v3/Telas/components/popup_therapy.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MusicPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _MusicPageState extends State<MusicPage> {
     cache = AudioCache(fixedPlayer: _player);
   }
 
-  Stream<int> stopWatchStream(){
+  Stream<int> stopWatchStream() {
     StreamController<int>? streamController;
     Timer? timer;
     Duration timerInterval = Duration(seconds: 1);
@@ -98,31 +99,10 @@ class _MusicPageState extends State<MusicPage> {
                 left: 10.0, right: 10.0, top: 20.0, bottom: 20.0),
             children: [
               //Card 1
-              GestureDetector(
-                child: Card(
-                    color: Colors.black54,
-                    shadowColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(MdiIcons.bookmarkMusic,
-                                size: 50, color: Colors.red),
-                            Expanded(
-                              child: Text("Saiba mais sobre a Musicoterapia",
-                                  style: GoogleFonts.lora(
-                                      textStyle: TextStyle(
-                                          color: Colors.white, fontSize: 25))),
-                            )
-                          ],
-                        ))),
-                onTap: () {
-                  _requestPop(context);
-                },
-              ),
+              PopUpTherapy(
+                  onPressed: () => _requestPop(context),
+                  name: "Saiba mais sobre a Misocpterapia",
+                  images: MdiIcons.bookmarkMusic),
               SizedBox(height: 20),
 
               //Card 2
@@ -220,7 +200,7 @@ class _MusicPageState extends State<MusicPage> {
                 shadowColor: Colors.white,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
-                    child: Padding(
+                child: Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Row(
                     children: [
@@ -236,7 +216,8 @@ class _MusicPageState extends State<MusicPage> {
                         ),
                       ),
                     ],
-                  ),),
+                  ),
+                ),
               ),
             ]));
   }

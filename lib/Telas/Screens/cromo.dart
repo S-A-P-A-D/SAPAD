@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sapad_v3/Telas/components/popup_therapy.dart';
 import 'package:sapad_v3/helper.dart/popCores.dart';
 
 class CromoPage extends StatefulWidget {
@@ -42,31 +43,10 @@ class _CromoPageState extends State<CromoPage> {
         padding: EdgeInsets.all(10.0),
         children: [
           //Card 1
-          GestureDetector(
-            child: Card(
-                color: Colors.black54,
-                shadowColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(MdiIcons.lavaLamp, size: 50, color: Colors.red),
-                        Expanded(
-                          child: Text("Saiba mais sobre a Cromoterapia",
-                              style: GoogleFonts.lora(
-                                  textStyle: TextStyle(
-                                      color: Colors.white, fontSize: 25))),
-                        )
-                      ],
-                    ))),
-            onTap: () {
-              _requestPopInfo(context);
-            },
-          ),
-
+          PopUpTherapy(
+              onPressed: () => _requestPopInfo(context),
+              name: "Saiba mais sobre a Cromoterapia",
+              images: MdiIcons.lavaLamp),
           //Card Alerta
           Visibility(
             child: Padding(

@@ -166,6 +166,14 @@ class _AcompPageState extends State<AcompPage> {
                             autofocus: false,
                             style: TextStyle(color: Colors.white, fontSize: 30),
                             decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent),
+                              ),
                               labelText: "Insira o E-mail de seu paciente:",
                               labelStyle: GoogleFonts.lora(
                                   textStyle: TextStyle(
@@ -209,6 +217,8 @@ class _AcompPageState extends State<AcompPage> {
                                     child: DropdownButton<String>(
                                       focusColor: Colors.black,
                                       dropdownColor: Colors.red,
+                                      underline:
+                                          Container(color: Colors.transparent),
                                       value: value,
                                       items: items
                                           .map((item) =>
@@ -258,7 +268,7 @@ class _AcompPageState extends State<AcompPage> {
                           focusColor: Colors.black,
                           dropdownColor: Colors.black,
                           underline: Container(
-                            color: Colors.red,
+                            color: Colors.transparent,
                             height: 1,
                           ),
                           value: valueFiltro,

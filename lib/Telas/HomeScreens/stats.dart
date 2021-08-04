@@ -227,7 +227,7 @@ class _StatsPageState extends State<StatsPage> {
                                     focusColor: Colors.black,
                                     dropdownColor: Colors.black,
                                     underline: Container(
-                                      color: colors[index],
+                                      color: Colors.transparent,
                                       height: 1,
                                     ),
                                     value: value,
