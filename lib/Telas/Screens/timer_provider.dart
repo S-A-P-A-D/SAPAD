@@ -1,7 +1,6 @@
-// ignore: unused_import
-import 'package:provider/provider.dart';
-import 'package:flutter/foundation.dart';
 import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 
 class TimerProvider with ChangeNotifier {
   late Timer _timer;
@@ -31,7 +30,7 @@ class TimerProvider with ChangeNotifier {
       if (_seconds < 59) {
         _seconds++;
       } else if (_seconds == 59) {
-        _seconds++;
+        _seconds = 0;
         if (_minute == 59) {
           _hour++;
           _minute = 0;
@@ -46,9 +45,9 @@ class TimerProvider with ChangeNotifier {
 
   void stopTimer() {
     if (_startEnable == false) {
-      _startEnable == true;
-      _continueEnable == true;
-      _stopEnable == false;
+      _startEnable = true;
+      _continueEnable = true;
+      _stopEnable = false;
       _timer.cancel();
     }
     notifyListeners();
@@ -63,7 +62,7 @@ class TimerProvider with ChangeNotifier {
       if (_seconds < 59) {
         _seconds++;
       } else if (_seconds == 59) {
-        _seconds++;
+        _seconds = 0;
         if (_minute == 59) {
           _hour++;
           _minute = 0;

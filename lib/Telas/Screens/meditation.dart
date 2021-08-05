@@ -32,6 +32,7 @@ class _MeditationPageState extends State<MeditationPage> {
   var timer;
   AudioPlayer? _player;
   late AudioCache cache;
+  int contTimer = 0;
 
   void initState() {
     super.initState();
@@ -72,9 +73,9 @@ class _MeditationPageState extends State<MeditationPage> {
                           ),
                           Center(
                               child: Text(
-                            '${timer.hour}' +
-                                '${timer.minute}' +
-                                '${timer.seconds}',
+                            '${timer.hour}  ' +
+                                '  ${timer.minute}  ' +
+                                '  ${timer.seconds}',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -123,12 +124,16 @@ class _MeditationPageState extends State<MeditationPage> {
                             color: Colors.purple,
                             onPressed: () {
                               if (!playing) {
+                                contTimer = 1;
+                                timerStart();
                                 cache.play("Med1.mp3");
                                 setState(() {
                                   playBtn = Icons.pause;
                                   playing = true;
                                 });
                               } else {
+                                contTimer = 0;
+                                timerStop();
                                 _player!.pause();
                                 setState(() {
                                   playBtn = Icons.play_arrow;
@@ -193,8 +198,6 @@ class _MeditationPageState extends State<MeditationPage> {
   }
 
   _requestPop(context) {
-    timer.startTimer;
-
     showDialog(
         context: context,
         builder: (context) {
@@ -224,6 +227,28 @@ class _MeditationPageState extends State<MeditationPage> {
           );
         });
   }
+
+  void timerStart() async {
+    if (contTimer == 1) {
+      await timer.startEnable;
+    }
+  }
+
+  void timerStop() async {
+    if (contTimer == 0) {
+      await timer.stopEnable;
+      print('CEBOLACEBOLACEBOLA');
+    }
+  }
+
+  /* void timerContinue() {
+    if (contTimer == 2) {
+      (timer.continueEnable)!;
+      ElevatedButton(onPressed: timer.continueEnable, child: Text(''));
+    } else {
+      ElevatedButton(onPressed: null, child: Text(''));
+    }
+  } */
 
   Future<void> abrirLink() async {
     if (await canLaunch(_url)) {
