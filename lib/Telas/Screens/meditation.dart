@@ -66,23 +66,60 @@ class _MeditationPageState extends State<MeditationPage> {
                 left: 10.0, right: 10.0, top: 20.0, bottom: 20.0),
             children: [
               Consumer<TimerProvider>(
-                  builder: (context, timerprovider, _) => Row(
-                        children: [
-                          SizedBox(
-                            height: 25,
-                          ),
-                          Center(
-                              child: Text(
-                            '${timer.hour}  ' +
-                                '  ${timer.minute}  ' +
-                                '  ${timer.seconds}',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                          ))
-                        ],
-                      )),
+                builder: (context, timerprovider, widget) => Column(
+                  children: [
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Center(
+                      child: Text(
+                        '${timer.hour} : ' +
+                            '${timer.minute} : ' +
+                            '${timer.seconds} ',
+                        style: TextStyle(
+                          color: Colors.yellow,
+                          fontSize: 40,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        (timer.startEnable)
+                            ? ElevatedButton(
+                                onPressed: timer.startTimer,
+                                child: Text('Começar'),
+                              )
+                            : ElevatedButton(
+                                onPressed: null,
+                                child: Text('Começar'),
+                              ),
+                        (timer.stopEnable)
+                            ? ElevatedButton(
+                                onPressed: timer.stopTimer,
+                                child: Text('Parar'),
+                              )
+                            : ElevatedButton(
+                                onPressed: null,
+                                child: Text('Parar'),
+                              ),
+                        (timer.continueEnable)
+                            ? ElevatedButton(
+                                onPressed: timer.continueTimer,
+                                child: Text('Continuar'),
+                              )
+                            : ElevatedButton(
+                                onPressed: null,
+                                child: Text('Continuar'),
+                              ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
               //Card 1
               PopUpTherapy(
                   onPressed: () => _requestPop(context),
@@ -125,7 +162,7 @@ class _MeditationPageState extends State<MeditationPage> {
                             onPressed: () {
                               if (!playing) {
                                 contTimer = 1;
-                                timerStart();
+                                //timerStart();
                                 cache.play("Med1.mp3");
                                 setState(() {
                                   playBtn = Icons.pause;
@@ -133,7 +170,7 @@ class _MeditationPageState extends State<MeditationPage> {
                                 });
                               } else {
                                 contTimer = 0;
-                                timerStop();
+                                //timerStop();
                                 _player!.pause();
                                 setState(() {
                                   playBtn = Icons.play_arrow;
@@ -230,7 +267,10 @@ class _MeditationPageState extends State<MeditationPage> {
 
   void timerStart() async {
     if (contTimer == 1) {
-      await timer.startEnable;
+      timer.startEnable = true;
+      if (timer.startEnable == true) {
+        timer.startTimer;
+      }
     }
   }
 

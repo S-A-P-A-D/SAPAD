@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 
 class TimerProvider with ChangeNotifier {
-  late Timer _timer;
+  Timer? _timer;
   int _hour = 0;
   int _minute = 0;
   int _seconds = 0;
@@ -48,7 +48,7 @@ class TimerProvider with ChangeNotifier {
       _startEnable = true;
       _continueEnable = true;
       _stopEnable = false;
-      _timer.cancel();
+      _timer!.cancel();
     }
     notifyListeners();
   }
