@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sapad_v3/Telas/LoginScreens/google_sign_in.dart';
+import 'package:sapad_v3/Telas/components/popup_default.dart';
 import 'package:sapad_v3/control/control_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final auth = FirebaseAuth.instance;
+  bool? _marked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +105,9 @@ class _LoginPageState extends State<LoginPage> {
                                   children: [
                                     GestureDetector(
                                       child: Card(
-                                          color: Colors.white,
+                                          color: _marked == true
+                                              ? Colors.white
+                                              : Colors.grey,
                                           shadowColor: Colors.white,
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -132,12 +136,51 @@ class _LoginPageState extends State<LoginPage> {
                                             ),
                                           )),
                                       onTap: () {
-                                        final provider =
-                                            Provider.of<GoogleSignInProvider>(
-                                                context,
-                                                listen: false);
-                                        provider.googleLogin();
+                                        if (_marked == true) {
+                                          final provider =
+                                              Provider.of<GoogleSignInProvider>(
+                                                  context,
+                                                  listen: false);
+                                          provider.googleLogin();
+                                        } else {
+                                          defaultPopUp(
+                                              context,
+                                              "Você precisa aceitar os termos de uso",
+                                              Colors.black87,
+                                              close);
+                                        }
                                       },
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        TextButton(
+                                            onPressed: () => defaultPopUp(
+                                                context,
+                                                "Este aplicativo tem como intuito apenas ajudar pessoas, não é um substituto de qualquer profissional ou tratamento",
+                                                Colors.black87,
+                                                close),
+                                            child: Text(
+                                              "Você aceita os termos de usuario?",
+                                              style: TextStyle(
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  fontSize: 15,
+                                                  color: Colors.white),
+                                              textAlign: TextAlign.right,
+                                            )),
+                                        Expanded(
+                                          child: CheckboxListTile(
+                                              value: _marked,
+                                              onChanged: (bool? value) {
+                                                setState(() {
+                                                  _marked = value;
+                                                  print(_marked);
+                                                });
+                                              }),
+                                        )
+                                      ],
                                     ),
                                   ],
                                 )),
@@ -149,5 +192,9 @@ class _LoginPageState extends State<LoginPage> {
                 );
               }
             }));
+  }
+
+  close() {
+    Navigator.pop(context);
   }
 }

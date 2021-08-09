@@ -195,30 +195,6 @@ class _MusicPageState extends State<MusicPage> {
                   ),
                 ),
               ),
-              Card(
-                color: Colors.black38,
-                shadowColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      Container(
-                        child: Expanded(
-                          child: Text(
-                            "Cronometro",
-                            style: GoogleFonts.lora(
-                                textStyle: TextStyle(
-                                    color: Colors.white, fontSize: 25)),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             ]));
   }
 

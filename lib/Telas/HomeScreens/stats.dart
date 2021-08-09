@@ -1186,6 +1186,7 @@ class _StatsPageState extends State<StatsPage> {
     try {
       //Medit ----------------------------
       //Medit GroupBy
+      _meditNull = false;
       List<dynamic> listMedit = (tec.data()?['Meditacao']);
       var listMedit2 = listMedit.map((e) => EmotionStats.fromJson(e)).toList();
       var listMeditOver = listMedit2.groupBy((m) => m.emotion);
@@ -1252,6 +1253,7 @@ class _StatsPageState extends State<StatsPage> {
     try {
       //Cromo ----------------------------
       //Cromo GroupBy
+      _meditNull = false;
       List<dynamic> listCromo = (tec.data()?['Cromoterapia']);
       var listCromo2 = listCromo.map((e) => EmotionStats.fromJson(e)).toList();
       var listCromoOver = listCromo2.groupBy((m) => m.emotion);
@@ -1317,6 +1319,7 @@ class _StatsPageState extends State<StatsPage> {
     try {
       //Music ----------------------------
       //Music GroupBy
+      _meditNull = false;
       List<dynamic> listMusic = (tec.data()?['Musicoterapia']);
       var listMusic2 = listMusic.map((e) => EmotionStats.fromJson(e)).toList();
       var listMusicOver = listMusic2.groupBy((m) => m.emotion);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sapad_v3/Telas/components/popup_default.dart';
 import 'package:sapad_v3/Telas/components/popup_therapy.dart';
 import 'package:sapad_v3/helper.dart/popCores.dart';
 
@@ -44,7 +44,11 @@ class _CromoPageState extends State<CromoPage> {
         children: [
           //Card 1
           PopUpTherapy(
-              onPressed: () => _requestPopInfo(context),
+              onPressed: () => defaultPopUp(
+                  context,
+                  "A Cromoterapia é um tratamento que, através do uso das cores, estabelece um equilíbrio entre corpo físico, mente, espírito e emoções. Cada cor transmite uma mensagem ao nosso cérebro e corpo sutil que traz funções terapêuticas. Através da emissão das cores, junto à iluminação, esta terapia restabelece e energiza um corpo em desequilíbrio, para um corpo em harmonia. Trazendo bem-estar e qualidade de vida.",
+                  Colors.black87,
+                  close),
               name: "Saiba mais sobre a Cromoterapia",
               images: MdiIcons.lavaLamp),
           //Card Alerta
@@ -290,34 +294,7 @@ class _CromoPageState extends State<CromoPage> {
     );
   }
 
-  _requestPopInfo(context) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            backgroundColor: Colors.purple[100],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20.0)),
-            ),
-            content: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Container(
-                child: Text(
-                  "A Cromoterapia é um tratamento que, através do uso das cores, estabelece um equilíbrio entre corpo físico, mente, espírito e emoções. Cada cor transmite uma mensagem ao nosso cérebro e corpo sutil que traz funções terapêuticas. Através da emissão das cores, junto à iluminação, esta terapia restabelece e energiza um corpo em desequilíbrio, para um corpo em harmonia. Trazendo bem-estar e qualidade de vida.",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.lora(
-                      textStyle: TextStyle(color: Colors.white, fontSize: 20)),
-                ),
-              ),
-            ),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("OK", style: TextStyle(color: Colors.red)))
-            ],
-          );
-        });
+  close() {
+    Navigator.pop(context);
   }
 }

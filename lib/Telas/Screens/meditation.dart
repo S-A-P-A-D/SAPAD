@@ -88,15 +88,6 @@ class _MeditationPageState extends State<MeditationPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        (timer.startEnable)
-                            ? ElevatedButton(
-                                onPressed: timer.startTimer,
-                                child: Text('Começar'),
-                              )
-                            : ElevatedButton(
-                                onPressed: null,
-                                child: Text('Começar'),
-                              ),
                         (timer.stopEnable)
                             ? ElevatedButton(
                                 onPressed: timer.stopTimer,
@@ -160,6 +151,8 @@ class _MeditationPageState extends State<MeditationPage> {
                             iconSize: 50.0,
                             color: Colors.purple,
                             onPressed: () {
+                              (timer.startEnable) ? timer.startTimer : null;
+
                               if (!playing) {
                                 contTimer = 1;
                                 //timerStart();
