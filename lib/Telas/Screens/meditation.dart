@@ -65,7 +65,7 @@ class _MeditationPageState extends State<MeditationPage> {
             padding: EdgeInsets.only(
                 left: 10.0, right: 10.0, top: 20.0, bottom: 20.0),
             children: [
-              Consumer<TimerProvider>(
+              /* Consumer<TimerProvider>(
                 builder: (context, timerprovider, widget) => Column(
                   children: [
                     SizedBox(
@@ -110,7 +110,7 @@ class _MeditationPageState extends State<MeditationPage> {
                     ),
                   ],
                 ),
-              ),
+              ), */
               //Card 1
               PopUpTherapy(
                   onPressed: () => _requestPop(context),
@@ -151,8 +151,6 @@ class _MeditationPageState extends State<MeditationPage> {
                             iconSize: 50.0,
                             color: Colors.purple,
                             onPressed: () {
-                              (timer.startEnable) ? timer.startTimer : null;
-
                               if (!playing) {
                                 contTimer = 1;
                                 //timerStart();
@@ -258,7 +256,7 @@ class _MeditationPageState extends State<MeditationPage> {
         });
   }
 
-  void timerStart() async {
+  /* void timerStart() async {
     if (contTimer == 1) {
       timer.startEnable = true;
       if (timer.startEnable == true) {
@@ -272,7 +270,7 @@ class _MeditationPageState extends State<MeditationPage> {
       await timer.stopEnable;
       print('CEBOLACEBOLACEBOLA');
     }
-  }
+  } */
 
   /* void timerContinue() {
     if (contTimer == 2) {
