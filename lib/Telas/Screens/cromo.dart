@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sapad_v3/Telas/components/appbar_default.dart';
 import 'package:sapad_v3/Telas/components/popup_default.dart';
 import 'package:sapad_v3/Telas/components/popup_therapy.dart';
 import 'package:sapad_v3/helper.dart/popCores.dart';
@@ -30,14 +31,7 @@ class _CromoPageState extends State<CromoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black87,
-        title: Text(
-          "Cromoterapia",
-          style: TextStyle(fontSize: 20.0),
-        ),
-        centerTitle: true,
-      ),
+      appBar: const AppBarDefault(title: "Cromoterapia"),
       backgroundColor: Colors.black87,
       body: ListView(
         padding: EdgeInsets.all(10.0),

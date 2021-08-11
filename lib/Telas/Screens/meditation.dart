@@ -270,7 +270,6 @@ class _MeditationPageState extends State<MeditationPage> {
       }
     }
   }
-
   void timerStop() async {
     if (contTimer == 0) {
       await timer.stopEnable;

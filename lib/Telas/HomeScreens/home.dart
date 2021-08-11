@@ -14,6 +14,7 @@ import 'package:sapad_v3/Telas/Screens/config.dart';
 import 'package:sapad_v3/Telas/Screens/cromo.dart';
 import 'package:sapad_v3/Telas/Screens/meditation.dart';
 import 'package:sapad_v3/Telas/Screens/musicoterapia.dart';
+import 'package:sapad_v3/Telas/Screens/workout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -556,34 +557,6 @@ class _HomePageState extends State<HomePage> {
               });
             },
           ),
-
-          //Respiração
-          GestureDetector(
-              child: Card(
-                  color: Colors.black54,
-                  shadowColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: Text(
-                          "Clique aqui para respirar melhor",
-                          style: GoogleFonts.lora(
-                              textStyle: TextStyle(
-                            fontSize: 30.0,
-                            color: Colors.white,
-                          )),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  )),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => VideoBreathPage()));
-              }),
           //Carousel
           Padding(
             padding: EdgeInsets.only(top: 1.0),
@@ -595,7 +568,7 @@ class _HomePageState extends State<HomePage> {
                       options: CarouselOptions(
                         height: 200.0,
                         autoPlay: true,
-                        autoPlayInterval: Duration(seconds: 3),
+                        autoPlayInterval: Duration(seconds: 10),
                         autoPlayAnimationDuration: Duration(milliseconds: 800),
                         autoPlayCurve: Curves.fastOutSlowIn,
                         pauseAutoPlayOnTouch: true,
@@ -912,6 +885,50 @@ class _HomePageState extends State<HomePage> {
                             }),
                         visible:
                             _music == true && isChanged == true ? true : false,
+                      ),
+                      //Respiração
+                      Visibility(
+                        child: ListTile(
+                            leading: Icon(MdiIcons.tailwind,
+                                size: 50, color: colors[index]),
+                            title: Text(
+                              "Respiração",
+                              style: GoogleFonts.lora(
+                                  textStyle: TextStyle(
+                                fontSize: 30.0,
+                                color: Colors.white,
+                              )),
+                              textAlign: TextAlign.center,
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => VideoBreathPage()));
+                            }),
+                        visible: isChanged == true ? true : false,
+                      ),
+                      //Exercicios Fisicos
+                      Visibility(
+                        child: ListTile(
+                            leading: Icon(MdiIcons.dumbbell,
+                                size: 50, color: colors[index]),
+                            title: Text(
+                              "Exercicios",
+                              style: GoogleFonts.lora(
+                                  textStyle: TextStyle(
+                                fontSize: 30.0,
+                                color: Colors.white,
+                              )),
+                              textAlign: TextAlign.center,
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => WorkOut()));
+                            }),
+                        visible: isChanged == true ? true : false,
                       ),
                       //Card Alerta
                       Visibility(
