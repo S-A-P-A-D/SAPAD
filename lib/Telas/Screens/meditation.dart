@@ -33,6 +33,8 @@ class _MeditationPageState extends State<MeditationPage> {
   AudioPlayer? _player;
   late AudioCache cache;
   int contTimer = 0;
+  var timeInit;
+  var timePause;
 
   void initState() {
     super.initState();
@@ -153,15 +155,19 @@ class _MeditationPageState extends State<MeditationPage> {
                             onPressed: () {
                               if (!playing) {
                                 contTimer = 1;
-                                //timerStart();
+                                timeInit = DateTime.now();
+                                print(timeInit);
                                 cache.play("Med1.mp3");
                                 setState(() {
                                   playBtn = Icons.pause;
                                   playing = true;
                                 });
                               } else {
-                                contTimer = 0;
-                                //timerStop();
+                                timePause = DateTime.now();
+                                print(timePause);
+                                Duration timeFinal =
+                                    timePause.difference(timeInit);
+                                print(timeFinal);
                                 _player!.pause();
                                 setState(() {
                                   playBtn = Icons.play_arrow;
