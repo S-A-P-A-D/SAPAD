@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:sapad_v3/FireBase/register_firebase.dart';
 import 'package:sapad_v3/Telas/components/popup_therapy.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:sapad_v3/Telas/Screens/timer_provider.dart';
@@ -34,7 +35,17 @@ class _MeditationPageState extends State<MeditationPage> {
   late AudioCache cache;
   int contTimer = 0;
   var timeInit;
+  var timeMedo;
+  var timeRaiva;
+  var timeAnsi;
+  var timeStress;
+  var timeTriste;
   var timePause;
+  late final bool? medo;
+  late final bool? ansi;
+  late final bool? triste;
+  late final bool? stress;
+  late final bool? raiva;
 
   void initState() {
     super.initState();
@@ -49,6 +60,15 @@ class _MeditationPageState extends State<MeditationPage> {
         .doc('Songs')
         .get();
     _url = songs.data()?['video'];
+    var emotes = await FirebaseFirestore.instance
+        .collection(user.email.toString())
+        .doc('Emotion')
+        .get();
+    medo = emotes.data()?['medo'];
+    ansi = emotes.data()?['ansi'];
+    stress = emotes.data()?['stress'];
+    triste = emotes.data()?['triste'];
+    raiva = emotes.data()?['raiva'];
   }
 
   @override
@@ -168,6 +188,29 @@ class _MeditationPageState extends State<MeditationPage> {
                                 Duration timeFinal =
                                     timePause.difference(timeInit);
                                 print(timeFinal);
+                                if (medo == true) {
+                                  timeMedo = timeFinal;
+                                  updateFirebase('Times', 'timeMedo', timeMedo);
+                                }
+                                if (ansi == true) {
+                                  timeAnsi = timeFinal;
+                                  updateFirebase('Times', 'timeAnsi', timeAnsi);
+                                }
+                                if (raiva == true) {
+                                  timeRaiva = timeFinal;
+                                  updateFirebase(
+                                      'Times', 'timeRaiva', timeRaiva);
+                                }
+                                if (stress == true) {
+                                  timeStress = timeFinal;
+                                  updateFirebase(
+                                      'Times', 'timeStress', timeStress);
+                                }
+                                if (triste == true) {
+                                  timeTriste = timeFinal;
+                                  updateFirebase(
+                                      'Times', 'timeTriste', timeTriste);
+                                }
                                 _player!.pause();
                                 setState(() {
                                   playBtn = Icons.play_arrow;
