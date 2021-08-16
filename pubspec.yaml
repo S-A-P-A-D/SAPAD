@@ -58,6 +58,7 @@ dependencies:
   #Loading Screen
   flutter_spinkit: ^5.0.0
   flutter_launcher_icons: ^0.9.1
+  syncfusion_flutter_calendar: ^19.2.55
 
 flutter_icons:
   ios: true

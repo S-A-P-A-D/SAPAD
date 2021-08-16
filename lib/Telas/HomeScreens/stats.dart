@@ -518,6 +518,49 @@ class _StatsPageState extends State<StatsPage> {
                                     ? true
                                     : false,
                           ),
+                          SizedBox(height: 30),
+                          Visibility(
+                            child: Container(
+                                child: SfCartesianChart(
+                                    primaryXAxis: CategoryAxis(),
+                                    isTransposed: true,
+                                    title: ChartTitle(
+                                      text:
+                                          'Estatisticas de tempo de uso na meditação',
+                                      textStyle: TextStyle(color: Colors.white),
+                                    ),
+                                    legend: Legend(
+                                        padding: 10,
+                                        isVisible: true,
+                                        overflowMode:
+                                            LegendItemOverflowMode.wrap,
+                                        textStyle: TextStyle(
+                                            color: Colors.white, fontSize: 10),
+                                        alignment: ChartAlignment.center,
+                                        itemPadding: 5,
+                                        position: LegendPosition.bottom),
+                                    tooltipBehavior: _tooltipBehavior,
+                                    series: <ChartSeries>[
+                                  BarSeries<GDPDatacromo, dynamic>(
+                                      dataSource: _chartDatacromo,
+                                      xValueMapper: (GDPDatacromo data, _) =>
+                                          data.emoteBaseC,
+                                      yValueMapper: (GDPDatacromo data, _) =>
+                                          data.contCromo,
+                                      pointColorMapper:
+                                          (GDPDatacromo data, _) =>
+                                              data.colorgraf,
+                                      dataLabelSettings:
+                                          DataLabelSettings(isVisible: true),
+                                      enableTooltip: true,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(15)))
+                                ])),
+                            visible:
+                                value.contains("Geral") && _cromoNull == false
+                                    ? true
+                                    : false,
+                          ),
                           //Grafico 15 dias
                           Visibility(
                             child: Container(
