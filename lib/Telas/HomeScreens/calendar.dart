@@ -6,20 +6,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, this.child}) : super(key: key);
+class CalendarPage extends StatefulWidget {
+  CalendarPage({Key? key, this.child}) : super(key: key);
   final Widget? child;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _CalendarPageState createState() => _CalendarPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return SfCalendar(
       view: CalendarView.month,
       showNavigationArrow: true,
+      backgroundColor: Colors.grey,
     );
   }
 }

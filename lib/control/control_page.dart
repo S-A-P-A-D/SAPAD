@@ -5,6 +5,7 @@ import 'package:sapad_v3/Telas/HomeScreens/acomp.dart';
 import 'package:sapad_v3/Telas/HomeScreens/home.dart';
 import 'package:sapad_v3/Telas/HomeScreens/info.dart';
 import 'package:sapad_v3/Telas/HomeScreens/stats.dart';
+import 'package:sapad_v3/Telas/HomeScreens/calendar.dart';
 
 class ControlPage extends StatefulWidget {
   @override
@@ -12,7 +13,13 @@ class ControlPage extends StatefulWidget {
 }
 
 class _ControlPageState extends State<ControlPage> {
-  final List _telas = [InfoPage(), HomePage(), StatsPage(), AcompPage()];
+  final List _telas = [
+    InfoPage(),
+    HomePage(),
+    StatsPage(),
+    AcompPage(),
+    CalendarPage(),
+  ];
   FirebaseFirestore db = FirebaseFirestore.instance;
 
   int _indiceAtual = 1;
@@ -46,7 +53,11 @@ class _ControlPageState extends State<ControlPage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.remove_red_eye, size: 20.0),
               activeIcon: Icon(MdiIcons.handHeart, size: 30.0),
-              label: 'Acompanhamento')
+              label: 'Acompanhamento'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today, size: 20.0),
+              activeIcon: Icon(MdiIcons.calendarMultiple, size: 30.0),
+              label: 'Calendário'),
         ],
         onTap: onTabTapped,
       ),
