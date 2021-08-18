@@ -15,6 +15,8 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
+  late List<String> emotea = [];
+  late final String eventName;
   List colors = [
     Colors.cyan[700],
     Colors.red[600],
@@ -37,6 +39,7 @@ class _CalendarPageState extends State<CalendarPage> {
 
   @override
   void initState() {
+    readFirebase();
     changeIndex();
     super.initState();
   }
@@ -82,23 +85,64 @@ class _CalendarPageState extends State<CalendarPage> {
     ));
   }
 
+  List<CalendarEmote> _getDataSource() {
+    final List<CalendarEmote> calendarEmote = <CalendarEmote>[];
+    this.emotea.forEach((eventName) => {
+          if (eventName == 'medo')
+            {
+              calendarEmote.add(new CalendarEmote('medo')),
+            }
+          else if (eventName == 'stress')
+            {
+              calendarEmote.add(new CalendarEmote('stress')),
+            }
+          else if (eventName == 'raiva')
+            {
+              calendarEmote.add(new CalendarEmote('raiva')),
+            }
+          else if (eventName == 'ansiedade')
+            {
+              calendarEmote.add(new CalendarEmote('ansiedade')),
+            }
+          else if (eventName == 'triste')
+            {
+              calendarEmote.add(new CalendarEmote('triste')),
+            }
+        });
+
+    /* final DateTime today = DateTime.now();
+  final DateTime startTime =
+      DateTime(today.year, today.month, today.day, 9, 0, 0);
+  final DateTime endTime = startTime.add(const Duration(hours: 2)); */
+    return calendarEmote;
+  }
+
   readFirebase() async {
     var emote = await FirebaseFirestore.instance
         .collection(user.email.toString())
         .doc('Emotion')
         .get();
+    List<String> emotea = [];
+    if (emote['med'] == true) {
+      emotea.add('medo');
+    }
+    if (emote['ansi'] == true) {
+      emotea.add('ansiedade');
+    }
+    if (emote['raiva'] == true) {
+      emotea.add('raiva');
+    }
+    if (emote['stress'] == true) {
+      emotea.add('stress');
+    }
+    if (emote['triste'] == true) {
+      emotea.add('triste');
+    }
+    this.emotea = emotea;
+    setState(() {
+      
+    });
   }
-}
-
-List<CalendarEmote> _getDataSource() {
-  final List<CalendarEmote> calendarEmote = <CalendarEmote>[];
-  final DateTime today = DateTime.now();
-  final DateTime startTime =
-      DateTime(today.year, today.month, today.day, 9, 0, 0);
-  final DateTime endTime = startTime.add(const Duration(hours: 2));
-  calendarEmote.add(CalendarEmote(
-      'Conference', startTime, endTime, const Color(0xFFF06292), false));
-  return calendarEmote;
 }
 
 class CalendarEmoteSource extends CalendarDataSource {
@@ -106,37 +150,14 @@ class CalendarEmoteSource extends CalendarDataSource {
     appointments = source;
   }
   @override
-  DateTime getStartTime(int index) {
-    return appointments![index].from;
-  }
-
-  @override
-  DateTime getEndTime(int index) {
-    return appointments![index].to;
-  }
-
-  @override
   String getSubject(int index) {
     return appointments![index].eventName;
-  }
-
-  @override
-  Color getColor(int index) {
-    return appointments![index].background;
-  }
-
-  @override
-  bool isAllDay(int index) {
-    return appointments![index].isAllDay;
   }
 }
 
 class CalendarEmote {
   CalendarEmote(
-      this.eventName, this.from, this.to, this.background, this.isAllDay);
+    this.eventName,
+  );
   String eventName;
-  DateTime from;
-  DateTime to;
-  Color background;
-  bool isAllDay;
 }
