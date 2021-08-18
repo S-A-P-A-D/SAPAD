@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:syncfusion_localizations/syncfusion_localizations.dart';
 
 class CalendarPage extends StatefulWidget {
   CalendarPage({Key? key, this.child}) : super(key: key);
@@ -50,6 +51,7 @@ class _CalendarPageState extends State<CalendarPage> {
         body: SafeArea(
       child: SfCalendar(
         view: CalendarView.month,
+        timeZone: 'E. South America Standard Time',
         todayHighlightColor: colors[index],
         cellBorderColor: colors[index],
         showNavigationArrow: true,
@@ -57,14 +59,19 @@ class _CalendarPageState extends State<CalendarPage> {
         backgroundColor: Colors.black87,
         dataSource: CalendarEmoteSource(_getDataSource()),
         headerStyle: CalendarHeaderStyle(
+            backgroundColor: colors[index],
             textAlign: TextAlign.center,
-            textStyle:
-                TextStyle(fontSize: 18, letterSpacing: 3, color: Colors.white)),
+            textStyle: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Times new Roman',
+                fontWeight: FontWeight.w500,
+                letterSpacing: 3,
+                color: Colors.white)),
         viewHeaderStyle: ViewHeaderStyle(
             dayTextStyle: TextStyle(fontSize: 18, color: colors[index])),
         monthViewSettings: MonthViewSettings(
             numberOfWeeksInView: 6,
-            appointmentDisplayCount: 2,
+            appointmentDisplayCount: 1,
             showAgenda: true,
             agendaItemHeight: 40,
             agendaStyle: AgendaStyle(
@@ -76,10 +83,8 @@ class _CalendarPageState extends State<CalendarPage> {
             monthCellStyle: MonthCellStyle(
                 textStyle: TextStyle(
                     fontSize: 12, fontFamily: 'Arial', color: Colors.white),
-                leadingDatesTextStyle: TextStyle(
-                    fontSize: 12,
-                    fontFamily: 'Arial',
-                    color: Colors.grey[800])),
+                leadingDatesTextStyle:
+                    TextStyle(fontSize: 12, color: Colors.grey[800])),
             appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
       ),
     ));
@@ -109,11 +114,6 @@ class _CalendarPageState extends State<CalendarPage> {
               calendarEmote.add(new CalendarEmote('triste')),
             }
         });
-
-    /* final DateTime today = DateTime.now();
-  final DateTime startTime =
-      DateTime(today.year, today.month, today.day, 9, 0, 0);
-  final DateTime endTime = startTime.add(const Duration(hours: 2)); */
     return calendarEmote;
   }
 
@@ -139,9 +139,7 @@ class _CalendarPageState extends State<CalendarPage> {
       emotea.add('triste');
     }
     this.emotea = emotea;
-    setState(() {
-      
-    });
+    setState(() {});
   }
 }
 
