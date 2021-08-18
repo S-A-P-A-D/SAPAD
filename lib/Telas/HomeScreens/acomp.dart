@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,26 @@ class AcompPage extends StatefulWidget {
 }
 
 class _AcompPageState extends State<AcompPage> {
+  List colors = [
+    Colors.cyan[700],
+    Colors.red[600],
+    Colors.purpleAccent[700],
+    Colors.deepOrange,
+    Colors.green[700],
+    Color(0xffEF9A9A),
+    Color(0xFFF06292),
+    Color(0xff3366cc)
+  ];
+  Random random = new Random();
+
+  int index = 3;
+
+  void changeIndex() {
+    if (colors[3] != random.nextInt(8)) {
+      setState(() => index = random.nextInt(8));
+    }
+  }
+
   FirebaseFirestore db = FirebaseFirestore.instance;
   final user = FirebaseAuth.instance.currentUser!;
 
@@ -117,6 +139,7 @@ class _AcompPageState extends State<AcompPage> {
 
   void initState() {
     readFirebase();
+    changeIndex();
     _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
   }
@@ -198,7 +221,7 @@ class _AcompPageState extends State<AcompPage> {
                       Padding(
                         padding: EdgeInsets.all(10.0),
                         child: Card(
-                          color: Colors.red,
+                          color: colors[index],
                           shadowColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0)),
@@ -212,11 +235,11 @@ class _AcompPageState extends State<AcompPage> {
                                         horizontal: 12, vertical: 2),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: Colors.red,
+                                      color: colors[index],
                                     ),
                                     child: DropdownButton<String>(
                                       focusColor: Colors.black,
-                                      dropdownColor: Colors.red,
+                                      dropdownColor: colors[index],
                                       underline:
                                           Container(color: Colors.transparent),
                                       value: value,
@@ -280,7 +303,7 @@ class _AcompPageState extends State<AcompPage> {
                                           textStyle: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 30,
-                                              color: Colors.red)),
+                                              color: colors[index])),
                                     ),
                                     value: itemFiltro,
                                   ))
@@ -679,7 +702,7 @@ class _AcompPageState extends State<AcompPage> {
                   child: FloatingActionButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15))),
-                    backgroundColor: Colors.red,
+                    backgroundColor: colors[index],
                     child: Icon(
                       MdiIcons.accountSearch,
                       color: Colors.white,

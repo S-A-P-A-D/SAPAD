@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,6 +12,32 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
+  List colors = [
+    Colors.cyan[700],
+    Colors.red[600],
+    Colors.purpleAccent[700],
+    Colors.deepOrange,
+    Colors.green[700],
+    Color(0xffEF9A9A),
+    Color(0xFFF06292),
+    Color(0xff3366cc)
+  ];
+  Random random = new Random();
+
+  int index = 3;
+
+  void changeIndex() {
+    if (colors[3] != random.nextInt(8)) {
+      setState(() => index = random.nextInt(8));
+    }
+  }
+
+  @override
+  void initState() {
+    changeIndex();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +68,7 @@ class _InfoPageState extends State<InfoPage> {
                       Icon(
                         Icons.info_outline,
                         size: 100.0,
-                        color: Colors.white,
+                        color: colors[index],
                       ),
                       Padding(
                         padding: EdgeInsets.all(7.0),

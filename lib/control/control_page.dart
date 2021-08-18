@@ -15,14 +15,14 @@ class ControlPage extends StatefulWidget {
 class _ControlPageState extends State<ControlPage> {
   final List _telas = [
     InfoPage(),
+    CalendarPage(),
     HomePage(),
     StatsPage(),
     AcompPage(),
-    CalendarPage(),
   ];
   FirebaseFirestore db = FirebaseFirestore.instance;
 
-  int _indiceAtual = 1;
+  int _indiceAtual = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,10 @@ class _ControlPageState extends State<ControlPage> {
             label: 'Info',
           ),
           BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today, size: 20.0),
+              activeIcon: Icon(MdiIcons.calendarMultiple, size: 30.0),
+              label: 'Calendário'),
+          BottomNavigationBarItem(
               icon: Icon(Icons.home_max, size: 20.0),
               activeIcon: Icon(Icons.home_filled, size: 30.0),
               label: 'Home'),
@@ -54,10 +58,6 @@ class _ControlPageState extends State<ControlPage> {
               icon: Icon(Icons.remove_red_eye, size: 20.0),
               activeIcon: Icon(MdiIcons.handHeart, size: 30.0),
               label: 'Acompanhamento'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today, size: 20.0),
-              activeIcon: Icon(MdiIcons.calendarMultiple, size: 30.0),
-              label: 'Calendário'),
         ],
         onTap: onTabTapped,
       ),
