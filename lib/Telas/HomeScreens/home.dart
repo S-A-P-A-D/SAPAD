@@ -12,9 +12,11 @@ import 'package:sapad_v3/Telas/LoginScreens/google_sign_in.dart';
 import 'package:sapad_v3/Telas/Screens/breath.dart';
 import 'package:sapad_v3/Telas/Screens/config.dart';
 import 'package:sapad_v3/Telas/Screens/cromo.dart';
+import 'package:sapad_v3/Telas/Screens/infoCarrousel.dart';
 import 'package:sapad_v3/Telas/Screens/meditation.dart';
 import 'package:sapad_v3/Telas/Screens/musicoterapia.dart';
 import 'package:sapad_v3/Telas/Screens/workout.dart';
+import 'package:sapad_v3/Telas/components/popup_default.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -660,6 +662,7 @@ class _HomePageState extends State<HomePage> {
                   child: Wrap(
                     children: [
                       //Meditação
+                      SizedBox(height: 5),
                       Visibility(
                         child: ListTile(
                             leading: Icon(MdiIcons.headHeart,
@@ -732,6 +735,7 @@ class _HomePageState extends State<HomePage> {
                         visible:
                             _medit == true && isChanged == true ? true : false,
                       ),
+                      SizedBox(height: 5),
 
                       //Cromoterapia
                       Visibility(
@@ -813,6 +817,7 @@ class _HomePageState extends State<HomePage> {
                             _cromo == true && isChanged == true ? true : false,
                       ),
                       //Musicoterapia
+                      SizedBox(height: 5),
                       Visibility(
                         child: ListTile(
                             leading: Icon(MdiIcons.musicBox,
@@ -887,6 +892,7 @@ class _HomePageState extends State<HomePage> {
                             _music == true && isChanged == true ? true : false,
                       ),
                       //Respiração
+                      SizedBox(height: 5),
                       Visibility(
                         child: ListTile(
                             leading: Icon(MdiIcons.tailwind,
@@ -909,6 +915,7 @@ class _HomePageState extends State<HomePage> {
                         visible: isChanged == true ? true : false,
                       ),
                       //Exercicios Fisicos
+                      SizedBox(height: 5),
                       Visibility(
                         child: ListTile(
                             leading: Icon(MdiIcons.dumbbell,
@@ -931,6 +938,7 @@ class _HomePageState extends State<HomePage> {
                         visible: isChanged == true ? true : false,
                       ),
                       //Card Alerta
+                      SizedBox(height: 5),
                       Visibility(
                         child: ListTile(
                           leading: Icon(MdiIcons.alert,
@@ -969,25 +977,34 @@ class Item1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black38,
-        border: Border.all(color: Colors.transparent),
+    return GestureDetector(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black38,
+          border: Border.all(color: Colors.transparent),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Stack(
+              children: [
+                Image.asset(
+                  'assets/Cromoterapia.png',
+                  height: 180.0,
+                  fit: BoxFit.cover,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Stack(
-            children: [
-              Image.asset(
-                'assets/Cromoterapia.png',
-                height: 180.0,
-                fit: BoxFit.cover,
-              ),
-            ],
-          )
-        ],
-      ),
+      onTap: () {
+        bool item1 = true;
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => InfoCarrousel(item1: item1)));
+      },
     );
   }
 }
@@ -997,21 +1014,30 @@ class Item2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black38,
-        border: Border.all(color: Colors.transparent),
+    return GestureDetector(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black38,
+          border: Border.all(color: Colors.transparent),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              'assets/Musicoterapia.gif',
+              height: 180.0,
+              fit: BoxFit.cover,
+            )
+          ],
+        ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            'assets/Musicoterapia.gif',
-            height: 180.0,
-            fit: BoxFit.cover,
-          )
-        ],
-      ),
+      onTap: () {
+        bool item2 = true;
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => InfoCarrousel(item2: item2)));
+      },
     );
   }
 }
@@ -1021,21 +1047,30 @@ class Item3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black38,
-        border: Border.all(color: Colors.transparent),
+    return GestureDetector(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black38,
+          border: Border.all(color: Colors.transparent),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              'assets/respiracao.gif',
+              height: 180.0,
+              fit: BoxFit.cover,
+            )
+          ],
+        ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            'assets/respiracao.gif',
-            height: 180.0,
-            fit: BoxFit.cover,
-          )
-        ],
-      ),
+      onTap: () {
+        bool item3 = true;
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => InfoCarrousel(item3: item3)));
+      },
     );
   }
 }
@@ -1045,21 +1080,30 @@ class Item4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black38,
-        border: Border.all(color: Colors.transparent),
+    return GestureDetector(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black38,
+          border: Border.all(color: Colors.transparent),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              'assets/cardInfoMedit.png',
+              height: 180.0,
+              fit: BoxFit.cover,
+            )
+          ],
+        ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            'assets/cardInfoMedit.png',
-            height: 180.0,
-            fit: BoxFit.cover,
-          )
-        ],
-      ),
+      onTap: () {
+        bool item4 = true;
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => InfoCarrousel(item4: item4)));
+      },
     );
   }
 }

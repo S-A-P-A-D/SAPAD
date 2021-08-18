@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sapad_v3/Telas/components/appbar_default.dart';
 import 'package:sapad_v3/Telas/components/card_default_white.dart';
 
@@ -20,36 +21,45 @@ class _WorkOutState extends State<WorkOut> {
               EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0, bottom: 20.0),
           child: Column(
             children: [
-              Text(
-                "Tente fazer exercicios de no minimo meia hora.",
-                style: GoogleFonts.lora(
-                    textStyle: TextStyle(
-                  fontSize: 30.0,
+              Card(
                   color: Colors.white,
-                  textBaseline: TextBaseline.alphabetic,
-                )),
-              ),
-              SizedBox(height: 10),
-              Text(
-                "Beneficios dos exercicios fisicos na saude mental:",
-                style: GoogleFonts.lora(
-                    textStyle: TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
-                )),
-              ),
+                  shadowColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text(
+                            "Tente fazer exercicios por no minimo meia hora por dia.",
+                            style: GoogleFonts.lora(
+                                textStyle: TextStyle(
+                              fontSize: 30.0,
+                              color: Colors.black,
+                              textBaseline: TextBaseline.alphabetic,
+                            )),
+                            textAlign: TextAlign.center),
+                        SizedBox(height: 10),
+                        Text("Alguns exercicios faceis que podem ajudar muito:",
+                            style: GoogleFonts.lora(
+                                textStyle: TextStyle(
+                              fontSize: 25.0,
+                              color: Colors.black,
+                            )),
+                            textAlign: TextAlign.center),
+                      ],
+                    ),
+                  )),
               SizedBox(height: 35),
               Stack(
                 children: <Widget>[
                   Container(
-                    //padding: EdgeInsets.all(10),
-                    //alignment: Alignment.center,
-                    height: MediaQuery.of(context).size.height * 0.9,
+                    height: MediaQuery.of(context).size.height * 0.7,
                     width: double.infinity,
                     color: Colors.transparent,
                     child: Container(
                         decoration: new BoxDecoration(
-                            color: Colors.white70,
+                            color: Colors.white,
                             borderRadius: BorderRadius.only(
                               topLeft: const Radius.circular(40.0),
                               topRight: const Radius.circular(40.0),
@@ -58,15 +68,105 @@ class _WorkOutState extends State<WorkOut> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: <Widget>[
-                              CardWhiteDefault(
-                                  text:
-                                      "Exercício físico regular aumenta a produção de endorfinas, responsáveis pelo bem-estar e por reduzir a percepção da dor.",
-                                  image: "assets/Logo.png"),
-                              SizedBox(height: 10),
-                              CardWhiteDefault(
-                                  text:
-                                      "É comprovadamente eficaz na melhora do humor e no alívio dos sintomas de depressão, ansiedade e estresse",
-                                  image: "assets/Logo.png")
+                              SizedBox(height: 5),
+                              ListTile(
+                                leading: Icon(MdiIcons.walk,
+                                    color: Colors.red, size: 60),
+                                title: Text(
+                                  "Caminhada",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              ListTile(
+                                leading: Icon(MdiIcons.run,
+                                    color: Colors.red, size: 60),
+                                title: Text(
+                                  "Corrida",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              ListTile(
+                                leading: Icon(MdiIcons.humanHandsup,
+                                    color: Colors.red, size: 60),
+                                title: Text(
+                                  "Polichinelos",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              ListTile(
+                                leading: Icon(MdiIcons.armFlex,
+                                    color: Colors.red, size: 60),
+                                title: Text(
+                                  "Flexões",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              ListTile(
+                                leading: Icon(MdiIcons.seatReclineNormal,
+                                    color: Colors.red, size: 60),
+                                title: Text(
+                                  "Abdominais",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              ListTile(
+                                leading: Icon(MdiIcons.jumpRope,
+                                    color: Colors.red, size: 60),
+                                title: Text(
+                                  "Pular Corda",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              ListTile(
+                                leading: Icon(MdiIcons.transitTransfer,
+                                    color: Colors.red, size: 60),
+                                title: Text(
+                                  "Alongamentos",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              ListTile(
+                                leading: Icon(MdiIcons.debugStepOver,
+                                    color: Colors.red, size: 60),
+                                title: Text(
+                                  "Avanço",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              ListTile(
+                                leading: Icon(MdiIcons.handball,
+                                    color: Colors.red, size: 60),
+                                title: Text(
+                                  "Esportes",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
                             ],
                           ),
                         )),
