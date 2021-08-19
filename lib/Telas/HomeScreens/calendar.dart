@@ -38,6 +38,8 @@ class _CalendarPageState extends State<CalendarPage> {
     }
   }
 
+  late int contEmote = 0;
+
   @override
   void initState() {
     readFirebase();
@@ -63,7 +65,7 @@ class _CalendarPageState extends State<CalendarPage> {
             textAlign: TextAlign.center,
             textStyle: TextStyle(
                 fontSize: 18,
-                fontFamily: 'Times new Roman',
+                fontFamily: 'Arial',
                 fontWeight: FontWeight.w500,
                 letterSpacing: 3,
                 color: Colors.white)),
@@ -123,8 +125,11 @@ class _CalendarPageState extends State<CalendarPage> {
         .doc('Emotion')
         .get();
     List<String> emotea = [];
-    if (emote['med'] == true) {
-      emotea.add('medo');
+    if (contEmote == 0) {
+      if (emote['med'] == true) {
+        emotea.add('medo');
+        contEmote++;
+      }
     }
     if (emote['ansi'] == true) {
       emotea.add('ansiedade');
