@@ -26,7 +26,9 @@ Future<void> main() async {
         SfGlobalLocalizations.delegate,
       ],
       supportedLocales: [
-        const Locale('pt', ''), // Português
+        const Locale('pt', ''),
+        const Locale('en', ''),
+        const Locale('es', '')
       ],
       locale: const Locale('pt'),
       home: LoginPage(),
