@@ -17,7 +17,7 @@ class CalendarPage extends StatefulWidget {
 
 class _CalendarPageState extends State<CalendarPage> {
   late List<String> emotea = [];
-  late final String eventName;
+  late final String emoteName;
   List colors = [
     Colors.cyan[700],
     Colors.red[600],
@@ -38,7 +38,11 @@ class _CalendarPageState extends State<CalendarPage> {
     }
   }
 
-  late int contEmote = 0;
+  late int contEmotemed = 0;
+  late int contEmoteansi = 0;
+  late int contEmotestress = 0;
+  late int contEmoteraiva = 0;
+  late int contEmotetriste = 0;
 
   @override
   void initState() {
@@ -94,29 +98,42 @@ class _CalendarPageState extends State<CalendarPage> {
 
   List<CalendarEmote> _getDataSource() {
     final List<CalendarEmote> calendarEmote = <CalendarEmote>[];
-    this.emotea.forEach((eventName) => {
-          if (eventName == 'medo')
+    this.emotea.forEach((emoteName) => {
+          if (emoteName == 'medo')
             {
               calendarEmote.add(new CalendarEmote('medo')),
             }
-          else if (eventName == 'stress')
+          else if (emoteName == 'stress')
             {
               calendarEmote.add(new CalendarEmote('stress')),
             }
-          else if (eventName == 'raiva')
+          else if (emoteName == 'raiva')
             {
               calendarEmote.add(new CalendarEmote('raiva')),
             }
-          else if (eventName == 'ansiedade')
+          else if (emoteName == 'ansiedade')
             {
               calendarEmote.add(new CalendarEmote('ansiedade')),
             }
-          else if (eventName == 'triste')
+          else if (emoteName == 'triste')
             {
               calendarEmote.add(new CalendarEmote('triste')),
             }
         });
     return calendarEmote;
+  }
+
+  zeraCont() {
+    DateTime zera = DateTime.now();
+    dynamic aux;
+    if (zera.toUtc().isAfter(aux)) {
+      contEmoteansi = 0;
+      contEmotemed = 0;
+      contEmotestress = 0;
+      contEmoteraiva = 0;
+      contEmotetriste = 0;
+      aux = zera;
+    }
   }
 
   readFirebase() async {
@@ -125,23 +142,32 @@ class _CalendarPageState extends State<CalendarPage> {
         .doc('Emotion')
         .get();
     List<String> emotea = [];
-    if (contEmote == 0) {
+    zeraCont();
+    if (contEmotemed == 0) {
       if (emote['med'] == true) {
         emotea.add('medo');
-        contEmote++;
+        contEmotemed++;
       }
     }
-    if (emote['ansi'] == true) {
-      emotea.add('ansiedade');
+    if (contEmoteansi == 0) {
+      if (emote['ansi'] == true) {
+        emotea.add('ansiedade');
+      }
     }
-    if (emote['raiva'] == true) {
-      emotea.add('raiva');
+    if (contEmoteraiva == 0) {
+      if (emote['raiva'] == true) {
+        emotea.add('raiva');
+      }
     }
-    if (emote['stress'] == true) {
-      emotea.add('stress');
+    if (contEmotestress == 0) {
+      if (emote['stress'] == true) {
+        emotea.add('stress');
+      }
     }
-    if (emote['triste'] == true) {
-      emotea.add('triste');
+    if (contEmotetriste == 0) {
+      if (emote['triste'] == true) {
+        emotea.add('triste');
+      }
     }
     this.emotea = emotea;
     setState(() {});
@@ -154,13 +180,11 @@ class CalendarEmoteSource extends CalendarDataSource {
   }
   @override
   String getSubject(int index) {
-    return appointments![index].eventName;
+    return appointments![index].emoteName;
   }
 }
 
 class CalendarEmote {
-  CalendarEmote(
-    this.eventName,
-  );
-  String eventName;
+  CalendarEmote(this.emoteName);
+  String emoteName;
 }
