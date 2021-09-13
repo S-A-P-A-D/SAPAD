@@ -20,7 +20,6 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
-  CalendarController _calendarController = CalendarController();
   late List<String> emotea = [];
   late final String emoteName;
   List colors = [
@@ -43,24 +42,9 @@ class _CalendarPageState extends State<CalendarPage> {
       setState(() => index = random.nextInt(8));
     }
   }
-  
-
-  late String auxiliar;
-
-  late int contEmotemed = 0;
-  late int contEmoteansi = 0;
-  late int contEmotestress = 0;
-  late int contEmoteraiva = 0;
-  late int contEmotetriste = 0;
-  int? _contEmotemed = 0;
-  int? _contEmoteansi = 0;
-  int? _contEmotestress = 0;
-  int? _contEmoteraiva = 0;
-  int? _contEmotetriste = 0;
 
   @override
   void initState() {
-    _calendarController.selectedDate = DateTime.now();
     changeIndex();
     /* readFirebase(); */
     super.initState();

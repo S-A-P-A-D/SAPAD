@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:sapad_v3/FireBase/register_firebase.dart';
 import 'package:sapad_v3/Telas/components/popup_therapy.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:sapad_v3/Telas/Screens/timer_provider.dart';
 
 class MeditationPage extends StatefulWidget {
   final bool? medo;
@@ -30,17 +29,8 @@ class _MeditationPageState extends State<MeditationPage> {
   bool playing = false;
   IconData playBtn = Icons.play_arrow;
   late String _url;
-  var timer;
   AudioPlayer? _player;
   late AudioCache cache;
-  int contTimer = 0;
-  var timeInit;
-  var timeMedo;
-  var timeRaiva;
-  var timeAnsi;
-  var timeStress;
-  var timeTriste;
-  var timePause;
   late final bool? medo;
   late final bool? ansi;
   late final bool? triste;
@@ -49,7 +39,6 @@ class _MeditationPageState extends State<MeditationPage> {
 
   void initState() {
     super.initState();
-    timer = Provider.of<TimerProvider>(context, listen: false);
     _player = AudioPlayer();
     cache = AudioCache(fixedPlayer: _player);
   }
@@ -87,52 +76,6 @@ class _MeditationPageState extends State<MeditationPage> {
             padding: EdgeInsets.only(
                 left: 10.0, right: 10.0, top: 20.0, bottom: 20.0),
             children: [
-              /* Consumer<TimerProvider>(
-                builder: (context, timerprovider, widget) => Column(
-                  children: [
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Center(
-                      child: Text(
-                        '${timer.hour} : ' +
-                            '${timer.minute} : ' +
-                            '${timer.seconds} ',
-                        style: TextStyle(
-                          color: Colors.yellow,
-                          fontSize: 40,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        (timer.stopEnable)
-                            ? ElevatedButton(
-                                onPressed: timer.stopTimer,
-                                child: Text('Parar'),
-                              )
-                            : ElevatedButton(
-                                onPressed: null,
-                                child: Text('Parar'),
-                              ),
-                        (timer.continueEnable)
-                            ? ElevatedButton(
-                                onPressed: timer.continueTimer,
-                                child: Text('Continuar'),
-                              )
-                            : ElevatedButton(
-                                onPressed: null,
-                                child: Text('Continuar'),
-                              ),
-                      ],
-                    ),
-                  ],
-                ),
-              ), */
               //Card 1
               PopUpTherapy(
                   onPressed: () => _requestPop(context),
@@ -174,43 +117,12 @@ class _MeditationPageState extends State<MeditationPage> {
                             color: Colors.purple,
                             onPressed: () {
                               if (!playing) {
-                                contTimer = 1;
-                                timeInit = DateTime.now();
-                                print(timeInit);
                                 cache.play("Med1.mp3");
                                 setState(() {
                                   playBtn = Icons.pause;
                                   playing = true;
                                 });
                               } else {
-                                timePause = DateTime.now();
-                                print(timePause);
-                                Duration timeFinal =
-                                    timePause.difference(timeInit);
-                                print(timeFinal);
-                                if (medo == true) {
-                                  timeMedo = timeFinal;
-                                  updateFirebase('Times', 'timeMedo', timeMedo);
-                                }
-                                if (ansi == true) {
-                                  timeAnsi = timeFinal;
-                                  updateFirebase('Times', 'timeAnsi', timeAnsi);
-                                }
-                                if (raiva == true) {
-                                  timeRaiva = timeFinal;
-                                  updateFirebase(
-                                      'Times', 'timeRaiva', timeRaiva);
-                                }
-                                if (stress == true) {
-                                  timeStress = timeFinal;
-                                  updateFirebase(
-                                      'Times', 'timeStress', timeStress);
-                                }
-                                if (triste == true) {
-                                  timeTriste = timeFinal;
-                                  updateFirebase(
-                                      'Times', 'timeTriste', timeTriste);
-                                }
                                 _player!.pause();
                                 setState(() {
                                   playBtn = Icons.play_arrow;
@@ -304,30 +216,6 @@ class _MeditationPageState extends State<MeditationPage> {
           );
         });
   }
-
-  /* void timerStart() async {
-    if (contTimer == 1) {
-      timer.startEnable = true;
-      if (timer.startEnable == true) {
-        timer.startTimer;
-      }
-    }
-  }
-  void timerStop() async {
-    if (contTimer == 0) {
-      await timer.stopEnable;
-      print('CEBOLACEBOLACEBOLA');
-    }
-  } */
-
-  /* void timerContinue() {
-    if (contTimer == 2) {
-      (timer.continueEnable)!;
-      ElevatedButton(onPressed: timer.continueEnable, child: Text(''));
-    } else {
-      ElevatedButton(onPressed: null, child: Text(''));
-    }
-  } */
 
   Future<void> abrirLink() async {
     if (await canLaunch(_url)) {

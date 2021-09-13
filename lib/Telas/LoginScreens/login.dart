@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                                         TextButton(
                                             onPressed: () => defaultPopUp(
                                                 context,
-                                                "Este aplicativo tem como intuito apenas ajudar pessoas, não é um substituto de qualquer profissional ou tratamento",
+                                                "Este aplicativo tem como intuito apenas ajudar pessoas, não é um substituto de qualquer profissional ou tratamento \n Ao aceitar os termos de uso você garante que seus dados poderão ser compartilhados a partir de seu E-mail",
                                                 Colors.black87,
                                                 close),
                                             child: Text(
