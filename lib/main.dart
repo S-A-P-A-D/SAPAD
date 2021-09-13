@@ -9,6 +9,8 @@ import 'package:sapad_v3/Telas/Screens/timer_provider.dart';
 import 'package:syncfusion_localizations/syncfusion_localizations.dart';
 import 'package:workmanager/workmanager.dart';
 
+import 'Telas/components/event_provider.dart';
+
 const myTask = "syncWithTheBackEnd";
 
 Future<void> callbackDispatcher() async {
@@ -37,8 +39,8 @@ Future<void> main() async {
       ChangeNotifierProvider<GoogleSignInProvider>(
         create: (context) => GoogleSignInProvider(),
       ),
-      ChangeNotifierProvider<TimerProvider>(
-          create: (context) => TimerProvider(), child: MeditationPage()),
+      ChangeNotifierProvider<EventProvider>(
+          create: (context) => EventProvider()),
     ],
     child: MaterialApp(
       localizationsDelegates: [
@@ -53,6 +55,8 @@ Future<void> main() async {
       ],
       locale: const Locale('pt'),
       home: LoginPage(),
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
     ),
   ));

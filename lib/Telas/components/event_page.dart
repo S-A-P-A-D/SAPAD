@@ -5,6 +5,7 @@ import 'package:sapad_v3/Telas/components/utils.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import 'event.dart';
+import 'event_provider.dart';
 
 class EventEditingPage extends StatefulWidget {
   final Event? event;
@@ -67,18 +68,20 @@ class _EventEditingPageState extends State<EventEditingPage> {
               primary: Colors.transparent,
               shadowColor: Colors.transparent,
             ),
-            onPressed: () {},
+            onPressed: saveForm,
             icon: Icon(Icons.done),
-            label: Text('Salvar')),
+            label: Text('Salvar', style: TextStyle(color: Colors.white))),
       ];
 
   Widget buildTitle() => TextFormField(
-        style: TextStyle(fontSize: 24),
+        style: TextStyle(fontSize: 24, color: Colors.white),
         decoration: InputDecoration(
+          labelStyle: TextStyle(color: Colors.white),
           border: UnderlineInputBorder(),
-          hintText: 'Add Title',
+          hintText: 'Adicionar Titulo',
+          hintStyle: TextStyle(color: Colors.white),
         ),
-        onFieldSubmitted: (_) {},
+        onFieldSubmitted: (_) => saveForm(),
         validator: (title) => title != null && title.isEmpty
             ? 'Titulo não pode ficar vazio'
             : null,
@@ -92,40 +95,44 @@ class _EventEditingPageState extends State<EventEditingPage> {
       );
 
   Widget buildFrom() => buildHeader(
-      header: 'FROM',
+      header: 'De',
       child: Row(
         children: [
           Expanded(
             flex: 2,
             child: buildDropdownField(
               text: Utils.toDate(fromDate),
-              onClicked: () {},
+              colors: Colors.white,
+              onClicked: () => pickFromDateTime(pickDate: true),
             ),
           ),
           Expanded(
             child: buildDropdownField(
-              text: Utils.toDate(fromDate),
-              onClicked: () {},
+              text: Utils.toTime(fromDate),
+              colors: Colors.white,
+              onClicked: () => pickFromDateTime(pickDate: false),
             ),
           ),
         ],
       ));
 
   Widget buildTo() => buildHeader(
-      header: 'TO',
+      header: 'Até',
       child: Row(
         children: [
           Expanded(
             flex: 2,
             child: buildDropdownField(
-              text: Utils.toDate(fromDate),
-              onClicked: () => pickFromDateTime(pickDate: true),
+              text: Utils.toDate(toDate),
+              colors: Colors.white,
+              onClicked: () => pickToDateTime(pickDate: true),
             ),
           ),
           Expanded(
             child: buildDropdownField(
-              text: Utils.toDate(fromDate),
-              onClicked: () => pickFromDateTime(pickDate: false),
+              text: Utils.toTime(toDate),
+              colors: Colors.white,
+              onClicked: () => pickToDateTime(pickDate: false),
             ),
           ),
         ],
@@ -133,6 +140,22 @@ class _EventEditingPageState extends State<EventEditingPage> {
 
   Future pickFromDateTime({required bool pickDate}) async {
     final date = await pickDateTime(fromDate, pickDate: pickDate);
+    if(date == null) return;
+    
+    if(date.isAfter(toDate)){
+      toDate = DateTime(date.year, date.month, date.day, toDate.hour, toDate.minute);
+    }
+    setState(()=> fromDate = date);
+
+  }
+
+  Future pickToDateTime({required bool pickDate}) async {
+    final date = await pickDateTime(toDate, pickDate: pickDate,
+    firstDate: pickDate ? fromDate : null);
+    if(date == null) return;
+    
+    setState(()=> toDate = date);
+
   }
 
   Future<DateTime?> pickDateTime(
@@ -154,11 +177,21 @@ class _EventEditingPageState extends State<EventEditingPage> {
           Duration(hours: initialDate.hour, minutes: initialDate.minute);
 
       return date.add(time);
+    } else {
+      final timeOfDay = await showTimePicker(context: context, initialTime: TimeOfDay.fromDateTime(initialDate));
+
+      if(timeOfDay == null) return null;
+
+      final date = DateTime(initialDate.year, initialDate.month, initialDate.day);
+      final time = Duration(hours: timeOfDay.hour, minutes: timeOfDay.minute);
+
+      return date.add(time);
     }
   }
 
   Widget buildDropdownField({
     required String text,
+    required Color colors,
     required VoidCallback onClicked,
   }) =>
       ListTile(
@@ -172,9 +205,28 @@ class _EventEditingPageState extends State<EventEditingPage> {
         children: [
           Text(
             header,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
           child,
         ],
       );
+
+  Future saveForm() async{
+    final isValid = _formKey.currentState!.validate();
+
+    if(isValid){
+      final event = Event(
+        title: titleController.text,
+        from: fromDate,
+        to: toDate,
+        isAllDay: false,
+        description: 'Descrição'
+      );
+
+      final provider = Provider.of<EventProvider>(context, listen: false);
+      provider.addEvent(event);
+
+      Navigator.of(context).pop();
+    }
+  }
 }
