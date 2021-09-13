@@ -43,7 +43,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   @override
   Widget build(BuildContext context) {
     final events = Provider.of<EventProvider>(context).events;
-    return SfCalendar(
+    return SafeArea(child: SfCalendar(
       view: CalendarView.month,
       initialSelectedDate: DateTime.now(),
       timeZone: 'E. South America Standard Time',
@@ -84,6 +84,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                   fontSize: 12, fontFamily: 'Arial', color: Colors.white),
               leadingDatesTextStyle:
                   TextStyle(fontSize: 12, color: Colors.grey[800]))),
-    );
+    ),);
   }
 }
