@@ -29,17 +29,8 @@ class _MeditationPageState extends State<MeditationPage> {
   bool playing = false;
   IconData playBtn = Icons.play_arrow;
   late String _url;
-  var timer;
   AudioPlayer? _player;
   late AudioCache cache;
-  int contTimer = 0;
-  var timeInit;
-  var timeMedo;
-  var timeRaiva;
-  var timeAnsi;
-  var timeStress;
-  var timeTriste;
-  var timePause;
   late final bool? medo;
   late final bool? ansi;
   late final bool? triste;
@@ -126,43 +117,12 @@ class _MeditationPageState extends State<MeditationPage> {
                             color: Colors.purple,
                             onPressed: () {
                               if (!playing) {
-                                contTimer = 1;
-                                timeInit = DateTime.now();
-                                print(timeInit);
                                 cache.play("Med1.mp3");
                                 setState(() {
                                   playBtn = Icons.pause;
                                   playing = true;
                                 });
                               } else {
-                                timePause = DateTime.now();
-                                print(timePause);
-                                Duration timeFinal =
-                                    timePause.difference(timeInit);
-                                print(timeFinal);
-                                if (medo == true) {
-                                  timeMedo = timeFinal;
-                                  updateFirebase('Times', 'timeMedo', timeMedo);
-                                }
-                                if (ansi == true) {
-                                  timeAnsi = timeFinal;
-                                  updateFirebase('Times', 'timeAnsi', timeAnsi);
-                                }
-                                if (raiva == true) {
-                                  timeRaiva = timeFinal;
-                                  updateFirebase(
-                                      'Times', 'timeRaiva', timeRaiva);
-                                }
-                                if (stress == true) {
-                                  timeStress = timeFinal;
-                                  updateFirebase(
-                                      'Times', 'timeStress', timeStress);
-                                }
-                                if (triste == true) {
-                                  timeTriste = timeFinal;
-                                  updateFirebase(
-                                      'Times', 'timeTriste', timeTriste);
-                                }
                                 _player!.pause();
                                 setState(() {
                                   playBtn = Icons.play_arrow;
@@ -256,30 +216,6 @@ class _MeditationPageState extends State<MeditationPage> {
           );
         });
   }
-
-  /* void timerStart() async {
-    if (contTimer == 1) {
-      timer.startEnable = true;
-      if (timer.startEnable == true) {
-        timer.startTimer;
-      }
-    }
-  }
-  void timerStop() async {
-    if (contTimer == 0) {
-      await timer.stopEnable;
-      print('CEBOLACEBOLACEBOLA');
-    }
-  } */
-
-  /* void timerContinue() {
-    if (contTimer == 2) {
-      (timer.continueEnable)!;
-      ElevatedButton(onPressed: timer.continueEnable, child: Text(''));
-    } else {
-      ElevatedButton(onPressed: null, child: Text(''));
-    }
-  } */
 
   Future<void> abrirLink() async {
     if (await canLaunch(_url)) {
