@@ -8,6 +8,8 @@ import 'package:sapad_v3/Telas/Screens/meditation.dart';
 import 'package:sapad_v3/Telas/Screens/timer_provider.dart';
 import 'package:syncfusion_localizations/syncfusion_localizations.dart';
 import 'package:workmanager/workmanager.dart';
+import 'package:flutter/services.dart';
+
 
 import 'Telas/components/event_provider.dart';
 
@@ -34,6 +36,9 @@ Future<void> main() async {
   Workmanager()
       .registerPeriodicTask("2", myTask, frequency: Duration(minutes: 1));
   await Firebase?.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<GoogleSignInProvider>(
