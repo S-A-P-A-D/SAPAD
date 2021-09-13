@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:sapad_v3/FireBase/register_firebase.dart';
 import 'package:sapad_v3/Telas/components/popup_therapy.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:sapad_v3/Telas/Screens/timer_provider.dart';
 
 class MeditationPage extends StatefulWidget {
   final bool? medo;
@@ -49,7 +48,6 @@ class _MeditationPageState extends State<MeditationPage> {
 
   void initState() {
     super.initState();
-    timer = Provider.of<TimerProvider>(context, listen: false);
     _player = AudioPlayer();
     cache = AudioCache(fixedPlayer: _player);
   }
@@ -87,52 +85,6 @@ class _MeditationPageState extends State<MeditationPage> {
             padding: EdgeInsets.only(
                 left: 10.0, right: 10.0, top: 20.0, bottom: 20.0),
             children: [
-              /* Consumer<TimerProvider>(
-                builder: (context, timerprovider, widget) => Column(
-                  children: [
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Center(
-                      child: Text(
-                        '${timer.hour} : ' +
-                            '${timer.minute} : ' +
-                            '${timer.seconds} ',
-                        style: TextStyle(
-                          color: Colors.yellow,
-                          fontSize: 40,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        (timer.stopEnable)
-                            ? ElevatedButton(
-                                onPressed: timer.stopTimer,
-                                child: Text('Parar'),
-                              )
-                            : ElevatedButton(
-                                onPressed: null,
-                                child: Text('Parar'),
-                              ),
-                        (timer.continueEnable)
-                            ? ElevatedButton(
-                                onPressed: timer.continueTimer,
-                                child: Text('Continuar'),
-                              )
-                            : ElevatedButton(
-                                onPressed: null,
-                                child: Text('Continuar'),
-                              ),
-                      ],
-                    ),
-                  ],
-                ),
-              ), */
               //Card 1
               PopUpTherapy(
                   onPressed: () => _requestPop(context),
