@@ -83,6 +83,36 @@ class _InfoPageState extends State<InfoPage> {
                 ),
               ),
             ),
+
+            Padding(
+              padding: EdgeInsets.all(10.0),
+              child: GestureDetector(
+                child: Card(
+                  color: Colors.black38,
+                  shadowColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Container(
+                        child: Text(
+                          "Saiba mais sobre MindFulness",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white, fontSize: 20.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  const url =
+                      'https://sites.google.com/view/sapad/início?authuser=0';
+                  abrirUrl(url);
+                },
+              ),
+            ),
             //Card 2
 
             Padding(

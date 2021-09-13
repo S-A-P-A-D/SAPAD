@@ -606,14 +606,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  abrirUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   _saveData() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.setBool('_med', _med!);
@@ -972,6 +964,14 @@ class Data {
   Data(this.data);
 }
 
+abrirUrl(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
 class Item1 extends StatelessWidget {
   const Item1({Key? key}) : super(key: key);
 
@@ -1000,10 +1000,7 @@ class Item1 extends StatelessWidget {
       ),
       onTap: () {
         bool item1 = true;
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => InfoCarrousel(item1: item1)));
+        abrirUrl("https://sites.google.com/view/sapad/cromoterapia?authuser=0");
       },
     );
   }
@@ -1033,10 +1030,8 @@ class Item2 extends StatelessWidget {
       ),
       onTap: () {
         bool item2 = true;
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => InfoCarrousel(item2: item2)));
+        abrirUrl(
+            "https://sites.google.com/view/sapad/musicoterapia?authuser=0");
       },
     );
   }
@@ -1066,10 +1061,8 @@ class Item3 extends StatelessWidget {
       ),
       onTap: () {
         bool item3 = true;
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => InfoCarrousel(item3: item3)));
+        abrirUrl(
+            "https://sites.google.com/view/sapad/respiração-consciente?authuser=0");
       },
     );
   }
@@ -1099,10 +1092,7 @@ class Item4 extends StatelessWidget {
       ),
       onTap: () {
         bool item4 = true;
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => InfoCarrousel(item4: item4)));
+        abrirUrl("https://sites.google.com/view/sapad/meditação?authuser=0");
       },
     );
   }
