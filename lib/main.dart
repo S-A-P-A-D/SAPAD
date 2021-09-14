@@ -2,14 +2,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:sapad_v3/Telas/LoginScreens/google_sign_in.dart';
-import 'package:sapad_v3/Telas/LoginScreens/login.dart';
-import 'package:sapad_v3/Telas/Screens/meditation.dart';
+import 'package:sapad_v3/domain/entities/google_sign_in.dart';
+import 'package:sapad_v3/infrastructure/presentation/HomeScreens/login.dart';
+import 'package:sapad_v3/infrastructure/presentation/action_screens/meditation.dart';
 import 'package:syncfusion_localizations/syncfusion_localizations.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:flutter/services.dart';
-
-import 'Telas/components/event_provider.dart';
+import '/infrastructure/presentation/components/event_provider.dart';
 
 const myTask = "syncWithTheBackEnd";
 

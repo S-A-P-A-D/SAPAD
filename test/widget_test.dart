@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sapad_v3/Telas/LoginScreens/login.dart';
+import 'package:sapad_v3/infrastructure/presentation/HomeScreens/login.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
